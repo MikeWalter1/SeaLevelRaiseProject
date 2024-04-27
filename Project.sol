@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
+import "./DonationReceipt.sol";
+
 contract Project {
     address payable public projectOwner;
+    string public projectTitle;
     string public projectDescription;
     uint public fundingGoal;
     uint public currentFunding;
+
     mapping(address => uint) public votes;
 
         // Enum to represent project states
@@ -41,8 +45,9 @@ contract Project {
     event FundingGoalReached(uint amount);
 
     // Constructor to initialize project details
-    constructor(address payable _owner, string memory _description, uint _goal) {
+    constructor(address payable _owner, string memory _title, string memory _description, uint _goal) {
         projectOwner = _owner;
+        projectTitle = _title;
         projectDescription = _description;
         fundingGoal = _goal;
         currentFunding = 0;
@@ -71,6 +76,10 @@ contract Project {
         projectDescription = _newDescription;
     }
 
+    function getDonationAmount(address _donor) public view returns (uint) {
+        return votes[_donor];
+    }
+
 
     // Transitions:
 /*     // Function for DAO contract to start voting
@@ -78,33 +87,34 @@ contract Project {
         require(state == ProjectState.Onboarding, "Project is not in the Onboarding state");
         _transitionState(ProjectState.Voting);
     }
+*/
+    // Function for DAO contract to fail the project
+    function startVoting() public {
+        require(state != ProjectState.Voting, "Project is already in voting state");
+
+        _transitionState(ProjectState.Voting);
+    }
 
     // Function for DAO contract to start the project
-    function startProject() external onlyDAO {
+    function startProject() public {
         require(state == ProjectState.Voting, "Project is not in the Voting state");
         require(currentFunding >= fundingGoal, "Funding goal not reached");
         _transitionState(ProjectState.Started);
     }
 
     // Function for DAO contract to end the project
-    function endProject() external onlyDAO {
+    function endProject() public {
         require(state == ProjectState.Started, "Project is not in the Started state");
         _transitionState(ProjectState.Ended);
     }
-
+/* 
     // Function for DAO contract to complete the project
     function completeProject() external onlyDAO {
         require(state == ProjectState.Ended, "Project is not in the Ended state");
         _transitionState(ProjectState.Completed); 
-   }*/
+   } */
 
-    // Function for DAO contract to fail the project
-    function startVoting() private {
-        require(state != ProjectState.Voting, "Project is already in voting state");
-        _transitionState(ProjectState.Voting);
-    }
-
-    function _transitionState(ProjectState newState) private {
+    function _transitionState(ProjectState newState) internal {
         state = newState;
         emit StateChanged(newState);
     }
