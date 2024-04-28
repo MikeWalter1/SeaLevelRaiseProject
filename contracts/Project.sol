@@ -2,6 +2,34 @@
 pragma solidity ^0.8.24;
 
 import "./DonationReceipt.sol";
+import "./Organization.sol";
+
+// enum ProjectState {
+//     Onboarding,
+//     OnboardingFailed,
+//     Started,
+//     Completed
+// }
+enum ProjectState {
+    Onboarding,
+    OnboardingFailed,
+    Voting,
+    VotingRejected,
+    Started,
+    Ended,
+    Completed,
+    Failed
+}
+
+struct ProjectData {
+    address payable projectOwner;
+    string projectTitle;
+    string projectDescription;
+    uint fundingGoal;
+    uint currentFunding;
+    ProjectState state;
+    mapping(address => uint) votes;
+}
 
 contract Project {
     address payable public projectOwner;
@@ -9,20 +37,12 @@ contract Project {
     string public projectDescription;
     uint public fundingGoal;
     uint public currentFunding;
+    mapping(address => ProjectData) public projects;
 
     mapping(address => uint) public votes;
 
         // Enum to represent project states
-    enum ProjectState {
-        Onboarding,
-        OnboardingFailed,
-        Voting,
-        VotingRejected,
-        Started,
-        Ended,
-        Completed,
-        Failed
-    }
+
 
     ProjectState public state;
 
@@ -45,12 +65,34 @@ contract Project {
     event FundingGoalReached(uint amount);
 
     // Constructor to initialize project details
-    constructor(address payable _owner, string memory _title, string memory _description, uint _goal) {
+    constructor(address payable _owner, string memory _title, string memory _description, uint _goal, OrganizationState _isProjectOwnerOnboarded) {
         projectOwner = _owner;
         projectTitle = _title;
         projectDescription = _description;
         fundingGoal = _goal;
         currentFunding = 0;
+
+        if (_isProjectOwnerOnboarded == OrganizationState.Onboarding)
+            _transitionState(ProjectState.Onboarding);
+        if (_isProjectOwnerOnboarded == OrganizationState.Onboarded)
+            _transitionState(ProjectState.Voting);
+    }
+
+    function createProjectData(address payable _owner, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external {
+        ProjectData storage newProject = projects[_owner];
+        newProject.projectOwner = _owner;
+        newProject.projectTitle = _title;
+        newProject.projectDescription = _description;
+        newProject.fundingGoal = _goal;
+        newProject.currentFunding = 0;
+        newProject.votes[msg.sender] = 0;
+        
+        //projects[_owner] = newProject;
+
+        if (_orgaState == OrganizationState.Onboarding)
+            newProject.state = ProjectState.Onboarding;
+        if (_orgaState == OrganizationState.Onboarded)
+            newProject.state = ProjectState.Voting;
     }
 
     // Function for donors to vote for the project

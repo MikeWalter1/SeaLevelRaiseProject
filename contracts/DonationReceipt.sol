@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract DonationNFT is ERC721URIStorage {
+contract DonationReceipt is ERC721URIStorage {
     uint private nextTokenId;
     address payable public dao;
     mapping(bytes32 => bool) public nftsCreated;
@@ -21,7 +21,7 @@ contract DonationNFT is ERC721URIStorage {
         bytes32 nftHash = hash(Strings.toHexString(uint256(uint160(_recipient)), 20), Strings.toString(_projectId), _donationAmount, _timestamp);
         require(!nftsCreated[nftHash], "NFT already created");
         nftsCreated[nftHash] = true;
-        
+
         //this has to happen somewhere else
         //require(_projectId < projectCount, "Invalid project ID");
         //require(projects[_projectId].currentFunding() >= projects[_projectId].fundingGoal(), "Project not funded yet");

@@ -12,6 +12,7 @@ struct OrganizationData {
     address payable walletAddress;
     string organizationName;
     string organisationDescription;
+    OrganizationState state;
 }
 
 contract Organization {
@@ -60,7 +61,15 @@ contract Organization {
     }
 
     function createOrganizationData(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription) external onlyOwner {
-        organizations[_walletAddress] = OrganizationData(_walletAddress, _organizationName, _organisationDescription);
+        organizations[_walletAddress] = OrganizationData(_walletAddress, _organizationName, _organisationDescription, OrganizationState.Onboarding);
+    }
+
+    function getOrganizationData(address _walletAddress) public view returns(OrganizationData memory) {
+        return organizations[_walletAddress];
+    }
+
+    function setOrganizationState(address _walletAddress, OrganizationState _state) public onlyOwner {
+        organizations[_walletAddress].state = _state;
     }
 
 /*     function setOrganizationState(OrganizationState _state) public onlyOwner {
