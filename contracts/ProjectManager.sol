@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-import "./DonationReceipt.sol";
-import "./Organization.sol";
+// import "./DonationReceipt.sol";
+import "./OrganizationManager.sol";
 
 // enum ProjectState {
 //     Onboarding,
@@ -21,7 +21,7 @@ enum ProjectState {
     Failed
 }
 
-struct ProjectData {
+struct Project {
     address payable projectOwner;
     string projectTitle;
     string projectDescription;
@@ -31,18 +31,15 @@ struct ProjectData {
     mapping(address => uint) votes;
 }
 
-contract Project {
+contract ProjectManager {
     address payable public projectOwner;
     string public projectTitle;
     string public projectDescription;
     uint public fundingGoal;
     uint public currentFunding;
-    mapping(address => ProjectData) public projects;
+    mapping(address => Project) public projects;
 
     mapping(address => uint) public votes;
-
-        // Enum to represent project states
-
 
     ProjectState public state;
 
@@ -52,11 +49,6 @@ contract Project {
         _;
     }
 
-    // Modifier to restrict access to the DAO contract
-    //modifier onlyDAO() {
-    //    require(msg.sender == address(DAO), "Only DAO contract can call this function");
-    //    _;
-    //}
 
     // Event to emit when project state changes
     event StateChanged(ProjectState newState);
@@ -64,22 +56,8 @@ contract Project {
     // Event to emit when funding goal is reached
     event FundingGoalReached(uint amount);
 
-    // Constructor to initialize project details
-    constructor(address payable _owner, string memory _title, string memory _description, uint _goal, OrganizationState _isProjectOwnerOnboarded) {
-        projectOwner = _owner;
-        projectTitle = _title;
-        projectDescription = _description;
-        fundingGoal = _goal;
-        currentFunding = 0;
-
-        if (_isProjectOwnerOnboarded == OrganizationState.Onboarding)
-            _transitionState(ProjectState.Onboarding);
-        if (_isProjectOwnerOnboarded == OrganizationState.Onboarded)
-            _transitionState(ProjectState.Voting);
-    }
-
-    function createProjectData(address payable _owner, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external {
-        ProjectData storage newProject = projects[_owner];
+    function createProject(address payable _owner, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external {
+        Project storage newProject = projects[_owner];
         newProject.projectOwner = _owner;
         newProject.projectTitle = _title;
         newProject.projectDescription = _description;

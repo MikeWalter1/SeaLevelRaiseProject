@@ -3,21 +3,16 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract DonationReceipt is ERC721URIStorage {
-    uint private nextTokenId;
-    address payable public dao;
+contract DonationReceiptPrinter is ERC721URIStorage {
+    uint internal nextTokenId;
     mapping(bytes32 => bool) public nftsCreated;
 
-    constructor(address _dao) ERC721("SLR-DonationReceipt", "SLR-DR") {
-        dao = payable(_dao);
-        //dao = payable(address(DAO_SLR));
+    constructor() ERC721("SLR-DonationReceipt", "SLR-DR") {
         nextTokenId = 0;
     }
 
     // Function to mint NFTs for donors if a project receives enough votes
-    function createDonationReceipt(address _recipient, uint _projectId, uint _donationAmount, uint _timestamp) external {
-        require(msg.sender == dao, "Only DAO_SLR contract can access this function");
-        
+    function createDonationReceipt(address _recipient, uint _projectId, uint _donationAmount, uint _timestamp) internal {
         bytes32 nftHash = hash(Strings.toHexString(uint256(uint160(_recipient)), 20), Strings.toString(_projectId), _donationAmount, _timestamp);
         require(!nftsCreated[nftHash], "NFT already created");
         nftsCreated[nftHash] = true;

@@ -86,13 +86,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DonationReceipt__factory>;
     getContractFactory(
+      name: "DonationReceiptPrinter",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DonationReceiptPrinter__factory>;
+    getContractFactory(
       name: "Organization",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Organization__factory>;
     getContractFactory(
+      name: "OrganizationManager",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.OrganizationManager__factory>;
+    getContractFactory(
       name: "Project",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Project__factory>;
+    getContractFactory(
+      name: "ProjectManager",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ProjectManager__factory>;
 
     getContractAt(
       name: "IERC1155Errors",
@@ -185,15 +197,30 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DonationReceipt>;
     getContractAt(
+      name: "DonationReceiptPrinter",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DonationReceiptPrinter>;
+    getContractAt(
       name: "Organization",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Organization>;
     getContractAt(
+      name: "OrganizationManager",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.OrganizationManager>;
+    getContractAt(
       name: "Project",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.Project>;
+    getContractAt(
+      name: "ProjectManager",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ProjectManager>;
 
     deployContract(
       name: "IERC1155Errors",
@@ -268,13 +295,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DonationReceipt>;
     deployContract(
+      name: "DonationReceiptPrinter",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DonationReceiptPrinter>;
+    deployContract(
       name: "Organization",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Organization>;
     deployContract(
+      name: "OrganizationManager",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.OrganizationManager>;
+    deployContract(
       name: "Project",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Project>;
+    deployContract(
+      name: "ProjectManager",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ProjectManager>;
 
     deployContract(
       name: "IERC1155Errors",
@@ -367,15 +406,30 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DonationReceipt>;
     deployContract(
+      name: "DonationReceiptPrinter",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.DonationReceiptPrinter>;
+    deployContract(
       name: "Organization",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Organization>;
     deployContract(
+      name: "OrganizationManager",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.OrganizationManager>;
+    deployContract(
       name: "Project",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.Project>;
+    deployContract(
+      name: "ProjectManager",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.ProjectManager>;
 
     // default types
     getContractFactory(

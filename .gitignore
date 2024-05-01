@@ -2,4 +2,6 @@
 node_modules
 node_modules
 typechain-types
+/typechain-types
 artifacts
+/artifacts

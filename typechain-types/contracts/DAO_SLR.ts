@@ -8,6 +8,7 @@ import type {
   FunctionFragment,
   Result,
   Interface,
+  EventFragment,
   AddressLike,
   ContractRunner,
   ContractMethod,
@@ -17,103 +18,241 @@ import type {
   TypedContractEvent,
   TypedDeferredTopicFilter,
   TypedEventLog,
+  TypedLogDescription,
   TypedListener,
   TypedContractMethod,
 } from "../common";
 
+export type OrganizationDataStruct = {
+  walletAddress: AddressLike;
+  organizationName: string;
+  organisationDescription: string;
+  state: BigNumberish;
+};
+
+export type OrganizationDataStructOutput = [
+  walletAddress: string,
+  organizationName: string,
+  organisationDescription: string,
+  state: bigint
+] & {
+  walletAddress: string;
+  organizationName: string;
+  organisationDescription: string;
+  state: bigint;
+};
+
 export interface DAO_SLRInterface extends Interface {
   getFunction(
     nameOrSignature:
-      | "createNewOrganization"
+      | "approve"
+      | "balanceOf"
+      | "changeDescription"
       | "createProject"
       | "createReceipt"
-      | "donationReceiptPrinter"
+      | "currentFunding"
+      | "endProject"
+      | "fundingGoal"
+      | "getApproved"
+      | "getDonationAmount"
       | "getDonorTokenBalance"
+      | "getOrganizationData"
       | "getProjectOwnerState"
-      | "hasReceivedNFT"
+      | "isApprovedForAll"
       | "isProjectOwnerDaoMember"
-      | "organizationManager"
+      | "name"
+      | "nftsCreated"
       | "organizations"
+      | "ownerOf"
       | "projectCount"
-      | "projectOwnerOnboarded"
+      | "projectDescription"
+      | "projectOwner"
+      | "projectTitle"
       | "projects"
+      | "safeTransferFrom(address,address,uint256)"
+      | "safeTransferFrom(address,address,uint256,bytes)"
+      | "setApprovalForAll"
       | "showProjectDetails"
+      | "startProject"
+      | "startVoting"
+      | "state"
+      | "supportsInterface"
+      | "symbol"
       | "tokenMultiplier"
+      | "tokenURI"
+      | "transferFrom"
+      | "transferFunds"
+      | "vote"
       | "voteForProject"
+      | "votes"
       | "votingTokens"
   ): FunctionFragment;
 
+  getEvent(
+    nameOrSignatureOrTopic:
+      | "Approval"
+      | "ApprovalForAll"
+      | "BatchMetadataUpdate"
+      | "FundingGoalReached"
+      | "MetadataUpdate"
+      | "StateChanged"
+      | "Transfer"
+  ): EventFragment;
+
   encodeFunctionData(
-    functionFragment: "createNewOrganization",
-    values: [string, string]
+    functionFragment: "approve",
+    values: [AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "balanceOf",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "changeDescription",
+    values: [string]
   ): string;
   encodeFunctionData(
     functionFragment: "createProject",
-    values: [string, string, BigNumberish]
+    values: [AddressLike, BigNumberish, string, string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "createReceipt",
     values: [AddressLike, BigNumberish, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "donationReceiptPrinter",
+    functionFragment: "currentFunding",
     values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "endProject",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "fundingGoal",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getApproved",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDonationAmount",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "getDonorTokenBalance",
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "getOrganizationData",
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "getProjectOwnerState",
     values: [AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "hasReceivedNFT",
-    values: [AddressLike]
+    functionFragment: "isApprovedForAll",
+    values: [AddressLike, AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "isProjectOwnerDaoMember",
     values: [AddressLike]
   ): string;
+  encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "organizationManager",
-    values?: undefined
+    functionFragment: "nftsCreated",
+    values: [BytesLike]
   ): string;
   encodeFunctionData(
     functionFragment: "organizations",
     values: [AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "ownerOf",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "projectCount",
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "projectOwnerOnboarded",
-    values: [AddressLike]
+    functionFragment: "projectDescription",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "projectOwner",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "projectTitle",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "projects",
-    values: [BigNumberish]
+    values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom(address,address,uint256)",
+    values: [AddressLike, AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    values: [AddressLike, AddressLike, BigNumberish, BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setApprovalForAll",
+    values: [AddressLike, boolean]
   ): string;
   encodeFunctionData(
     functionFragment: "showProjectDetails",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "startProject",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "startVoting",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "state", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "supportsInterface",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
     functionFragment: "tokenMultiplier",
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "tokenURI",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFrom",
+    values: [AddressLike, AddressLike, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "transferFunds",
+    values?: undefined
+  ): string;
+  encodeFunctionData(functionFragment: "vote", values: [BigNumberish]): string;
+  encodeFunctionData(
     functionFragment: "voteForProject",
     values: [BigNumberish, BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "votes", values: [AddressLike]): string;
   encodeFunctionData(
     functionFragment: "votingTokens",
     values: [AddressLike]
   ): string;
 
+  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "createNewOrganization",
+    functionFragment: "changeDescription",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -125,7 +264,20 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "donationReceiptPrinter",
+    functionFragment: "currentFunding",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "endProject", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "fundingGoal",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getDonationAmount",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -133,50 +285,211 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "getOrganizationData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getProjectOwnerState",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "hasReceivedNFT",
+    functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "isProjectOwnerDaoMember",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "organizationManager",
+    functionFragment: "nftsCreated",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "organizations",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "projectCount",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "projectOwnerOnboarded",
+    functionFragment: "projectDescription",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectOwner",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectTitle",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "projects", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom(address,address,uint256)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setApprovalForAll",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "showProjectDetails",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "startProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "startVoting",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "state", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "supportsInterface",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(
     functionFragment: "tokenMultiplier",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFrom",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "transferFunds",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "vote", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "voteForProject",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "votes", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "votingTokens",
     data: BytesLike
   ): Result;
+}
+
+export namespace ApprovalEvent {
+  export type InputTuple = [
+    owner: AddressLike,
+    approved: AddressLike,
+    tokenId: BigNumberish
+  ];
+  export type OutputTuple = [owner: string, approved: string, tokenId: bigint];
+  export interface OutputObject {
+    owner: string;
+    approved: string;
+    tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace ApprovalForAllEvent {
+  export type InputTuple = [
+    owner: AddressLike,
+    operator: AddressLike,
+    approved: boolean
+  ];
+  export type OutputTuple = [
+    owner: string,
+    operator: string,
+    approved: boolean
+  ];
+  export interface OutputObject {
+    owner: string;
+    operator: string;
+    approved: boolean;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace BatchMetadataUpdateEvent {
+  export type InputTuple = [
+    _fromTokenId: BigNumberish,
+    _toTokenId: BigNumberish
+  ];
+  export type OutputTuple = [_fromTokenId: bigint, _toTokenId: bigint];
+  export interface OutputObject {
+    _fromTokenId: bigint;
+    _toTokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace FundingGoalReachedEvent {
+  export type InputTuple = [amount: BigNumberish];
+  export type OutputTuple = [amount: bigint];
+  export interface OutputObject {
+    amount: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace MetadataUpdateEvent {
+  export type InputTuple = [_tokenId: BigNumberish];
+  export type OutputTuple = [_tokenId: bigint];
+  export interface OutputObject {
+    _tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace StateChangedEvent {
+  export type InputTuple = [newState: BigNumberish];
+  export type OutputTuple = [newState: bigint];
+  export interface OutputObject {
+    newState: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
+}
+
+export namespace TransferEvent {
+  export type InputTuple = [
+    from: AddressLike,
+    to: AddressLike,
+    tokenId: BigNumberish
+  ];
+  export type OutputTuple = [from: string, to: string, tokenId: bigint];
+  export interface OutputObject {
+    from: string;
+    to: string;
+    tokenId: bigint;
+  }
+  export type Event = TypedContractEvent<InputTuple, OutputTuple, OutputObject>;
+  export type Filter = TypedDeferredTopicFilter<Event>;
+  export type Log = TypedEventLog<Event>;
+  export type LogDescription = TypedLogDescription<Event>;
 }
 
 export interface DAO_SLR extends BaseContract {
@@ -222,15 +535,29 @@ export interface DAO_SLR extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  createNewOrganization: TypedContractMethod<
-    [_organizationName: string, _organisationDescription: string],
+  approve: TypedContractMethod<
+    [to: AddressLike, tokenId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
+
+  balanceOf: TypedContractMethod<[owner: AddressLike], [bigint], "view">;
+
+  changeDescription: TypedContractMethod<
+    [_newDescription: string],
     [void],
     "nonpayable"
   >;
 
   createProject: TypedContractMethod<
-    [_title: string, _description: string, _goal: BigNumberish],
-    [bigint],
+    [
+      _owner: AddressLike,
+      _orgaState: BigNumberish,
+      _title: string,
+      _description: string,
+      _goal: BigNumberish
+    ],
+    [void],
     "nonpayable"
   >;
 
@@ -245,9 +572,27 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
 
-  donationReceiptPrinter: TypedContractMethod<[], [string], "view">;
+  currentFunding: TypedContractMethod<[], [bigint], "view">;
+
+  endProject: TypedContractMethod<[], [void], "nonpayable">;
+
+  fundingGoal: TypedContractMethod<[], [bigint], "view">;
+
+  getApproved: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+
+  getDonationAmount: TypedContractMethod<
+    [_donor: AddressLike],
+    [bigint],
+    "view"
+  >;
 
   getDonorTokenBalance: TypedContractMethod<[], [bigint], "view">;
+
+  getOrganizationData: TypedContractMethod<
+    [_walletAddress: AddressLike],
+    [OrganizationDataStructOutput],
+    "view"
+  >;
 
   getProjectOwnerState: TypedContractMethod<
     [_projectOwner: AddressLike],
@@ -255,7 +600,11 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
-  hasReceivedNFT: TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
+  isApprovedForAll: TypedContractMethod<
+    [owner: AddressLike, operator: AddressLike],
+    [boolean],
+    "view"
+  >;
 
   isProjectOwnerDaoMember: TypedContractMethod<
     [_projectOwner: AddressLike],
@@ -263,19 +612,70 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
-  organizationManager: TypedContractMethod<[], [string], "view">;
+  name: TypedContractMethod<[], [string], "view">;
 
-  organizations: TypedContractMethod<[arg0: AddressLike], [string], "view">;
+  nftsCreated: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
-  projectCount: TypedContractMethod<[], [bigint], "view">;
-
-  projectOwnerOnboarded: TypedContractMethod<
+  organizations: TypedContractMethod<
     [arg0: AddressLike],
-    [bigint],
+    [
+      [string, string, string, bigint] & {
+        walletAddress: string;
+        organizationName: string;
+        organisationDescription: string;
+        state: bigint;
+      }
+    ],
     "view"
   >;
 
-  projects: TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+  ownerOf: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+
+  projectCount: TypedContractMethod<[], [bigint], "view">;
+
+  projectDescription: TypedContractMethod<[], [string], "view">;
+
+  projectOwner: TypedContractMethod<[], [string], "view">;
+
+  projectTitle: TypedContractMethod<[], [string], "view">;
+
+  projects: TypedContractMethod<
+    [arg0: AddressLike],
+    [
+      [string, string, string, bigint, bigint, bigint] & {
+        projectOwner: string;
+        projectTitle: string;
+        projectDescription: string;
+        fundingGoal: bigint;
+        currentFunding: bigint;
+        state: bigint;
+      }
+    ],
+    "view"
+  >;
+
+  "safeTransferFrom(address,address,uint256)": TypedContractMethod<
+    [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
+
+  "safeTransferFrom(address,address,uint256,bytes)": TypedContractMethod<
+    [
+      from: AddressLike,
+      to: AddressLike,
+      tokenId: BigNumberish,
+      data: BytesLike
+    ],
+    [void],
+    "nonpayable"
+  >;
+
+  setApprovalForAll: TypedContractMethod<
+    [operator: AddressLike, approved: boolean],
+    [void],
+    "nonpayable"
+  >;
 
   showProjectDetails: TypedContractMethod<
     [_projectId: BigNumberish],
@@ -283,13 +683,41 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
+  startProject: TypedContractMethod<[], [void], "nonpayable">;
+
+  startVoting: TypedContractMethod<[], [void], "nonpayable">;
+
+  state: TypedContractMethod<[], [bigint], "view">;
+
+  supportsInterface: TypedContractMethod<
+    [interfaceId: BytesLike],
+    [boolean],
+    "view"
+  >;
+
+  symbol: TypedContractMethod<[], [string], "view">;
+
   tokenMultiplier: TypedContractMethod<[], [bigint], "view">;
+
+  tokenURI: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+
+  transferFrom: TypedContractMethod<
+    [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
+
+  transferFunds: TypedContractMethod<[], [void], "nonpayable">;
+
+  vote: TypedContractMethod<[_amount: BigNumberish], [void], "nonpayable">;
 
   voteForProject: TypedContractMethod<
     [_projectId: BigNumberish, _tokens: BigNumberish],
     [void],
     "nonpayable"
   >;
+
+  votes: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
 
   votingTokens: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
 
@@ -298,17 +726,29 @@ export interface DAO_SLR extends BaseContract {
   ): T;
 
   getFunction(
-    nameOrSignature: "createNewOrganization"
+    nameOrSignature: "approve"
   ): TypedContractMethod<
-    [_organizationName: string, _organisationDescription: string],
+    [to: AddressLike, tokenId: BigNumberish],
     [void],
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "balanceOf"
+  ): TypedContractMethod<[owner: AddressLike], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "changeDescription"
+  ): TypedContractMethod<[_newDescription: string], [void], "nonpayable">;
+  getFunction(
     nameOrSignature: "createProject"
   ): TypedContractMethod<
-    [_title: string, _description: string, _goal: BigNumberish],
-    [bigint],
+    [
+      _owner: AddressLike,
+      _orgaState: BigNumberish,
+      _title: string,
+      _description: string,
+      _goal: BigNumberish
+    ],
+    [void],
     "nonpayable"
   >;
   getFunction(
@@ -324,35 +764,120 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
   getFunction(
-    nameOrSignature: "donationReceiptPrinter"
-  ): TypedContractMethod<[], [string], "view">;
+    nameOrSignature: "currentFunding"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "endProject"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "fundingGoal"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "getApproved"
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+  getFunction(
+    nameOrSignature: "getDonationAmount"
+  ): TypedContractMethod<[_donor: AddressLike], [bigint], "view">;
   getFunction(
     nameOrSignature: "getDonorTokenBalance"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
+    nameOrSignature: "getOrganizationData"
+  ): TypedContractMethod<
+    [_walletAddress: AddressLike],
+    [OrganizationDataStructOutput],
+    "view"
+  >;
+  getFunction(
     nameOrSignature: "getProjectOwnerState"
   ): TypedContractMethod<[_projectOwner: AddressLike], [bigint], "view">;
   getFunction(
-    nameOrSignature: "hasReceivedNFT"
-  ): TypedContractMethod<[arg0: AddressLike], [boolean], "view">;
+    nameOrSignature: "isApprovedForAll"
+  ): TypedContractMethod<
+    [owner: AddressLike, operator: AddressLike],
+    [boolean],
+    "view"
+  >;
   getFunction(
     nameOrSignature: "isProjectOwnerDaoMember"
   ): TypedContractMethod<[_projectOwner: AddressLike], [boolean], "view">;
   getFunction(
-    nameOrSignature: "organizationManager"
+    nameOrSignature: "name"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
+    nameOrSignature: "nftsCreated"
+  ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
+  getFunction(
     nameOrSignature: "organizations"
-  ): TypedContractMethod<[arg0: AddressLike], [string], "view">;
+  ): TypedContractMethod<
+    [arg0: AddressLike],
+    [
+      [string, string, string, bigint] & {
+        walletAddress: string;
+        organizationName: string;
+        organisationDescription: string;
+        state: bigint;
+      }
+    ],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "ownerOf"
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
   getFunction(
     nameOrSignature: "projectCount"
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
-    nameOrSignature: "projectOwnerOnboarded"
-  ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+    nameOrSignature: "projectDescription"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "projectOwner"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
+    nameOrSignature: "projectTitle"
+  ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "projects"
-  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+  ): TypedContractMethod<
+    [arg0: AddressLike],
+    [
+      [string, string, string, bigint, bigint, bigint] & {
+        projectOwner: string;
+        projectTitle: string;
+        projectDescription: string;
+        fundingGoal: bigint;
+        currentFunding: bigint;
+        state: bigint;
+      }
+    ],
+    "view"
+  >;
+  getFunction(
+    nameOrSignature: "safeTransferFrom(address,address,uint256)"
+  ): TypedContractMethod<
+    [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "safeTransferFrom(address,address,uint256,bytes)"
+  ): TypedContractMethod<
+    [
+      from: AddressLike,
+      to: AddressLike,
+      tokenId: BigNumberish,
+      data: BytesLike
+    ],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "setApprovalForAll"
+  ): TypedContractMethod<
+    [operator: AddressLike, approved: boolean],
+    [void],
+    "nonpayable"
+  >;
   getFunction(
     nameOrSignature: "showProjectDetails"
   ): TypedContractMethod<
@@ -361,8 +886,39 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "startProject"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "startVoting"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "state"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "supportsInterface"
+  ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "symbol"
+  ): TypedContractMethod<[], [string], "view">;
+  getFunction(
     nameOrSignature: "tokenMultiplier"
   ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "tokenURI"
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+  getFunction(
+    nameOrSignature: "transferFrom"
+  ): TypedContractMethod<
+    [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
+  getFunction(
+    nameOrSignature: "transferFunds"
+  ): TypedContractMethod<[], [void], "nonpayable">;
+  getFunction(
+    nameOrSignature: "vote"
+  ): TypedContractMethod<[_amount: BigNumberish], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "voteForProject"
   ): TypedContractMethod<
@@ -371,8 +927,138 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
   getFunction(
+    nameOrSignature: "votes"
+  ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+  getFunction(
     nameOrSignature: "votingTokens"
   ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
 
-  filters: {};
+  getEvent(
+    key: "Approval"
+  ): TypedContractEvent<
+    ApprovalEvent.InputTuple,
+    ApprovalEvent.OutputTuple,
+    ApprovalEvent.OutputObject
+  >;
+  getEvent(
+    key: "ApprovalForAll"
+  ): TypedContractEvent<
+    ApprovalForAllEvent.InputTuple,
+    ApprovalForAllEvent.OutputTuple,
+    ApprovalForAllEvent.OutputObject
+  >;
+  getEvent(
+    key: "BatchMetadataUpdate"
+  ): TypedContractEvent<
+    BatchMetadataUpdateEvent.InputTuple,
+    BatchMetadataUpdateEvent.OutputTuple,
+    BatchMetadataUpdateEvent.OutputObject
+  >;
+  getEvent(
+    key: "FundingGoalReached"
+  ): TypedContractEvent<
+    FundingGoalReachedEvent.InputTuple,
+    FundingGoalReachedEvent.OutputTuple,
+    FundingGoalReachedEvent.OutputObject
+  >;
+  getEvent(
+    key: "MetadataUpdate"
+  ): TypedContractEvent<
+    MetadataUpdateEvent.InputTuple,
+    MetadataUpdateEvent.OutputTuple,
+    MetadataUpdateEvent.OutputObject
+  >;
+  getEvent(
+    key: "StateChanged"
+  ): TypedContractEvent<
+    StateChangedEvent.InputTuple,
+    StateChangedEvent.OutputTuple,
+    StateChangedEvent.OutputObject
+  >;
+  getEvent(
+    key: "Transfer"
+  ): TypedContractEvent<
+    TransferEvent.InputTuple,
+    TransferEvent.OutputTuple,
+    TransferEvent.OutputObject
+  >;
+
+  filters: {
+    "Approval(address,address,uint256)": TypedContractEvent<
+      ApprovalEvent.InputTuple,
+      ApprovalEvent.OutputTuple,
+      ApprovalEvent.OutputObject
+    >;
+    Approval: TypedContractEvent<
+      ApprovalEvent.InputTuple,
+      ApprovalEvent.OutputTuple,
+      ApprovalEvent.OutputObject
+    >;
+
+    "ApprovalForAll(address,address,bool)": TypedContractEvent<
+      ApprovalForAllEvent.InputTuple,
+      ApprovalForAllEvent.OutputTuple,
+      ApprovalForAllEvent.OutputObject
+    >;
+    ApprovalForAll: TypedContractEvent<
+      ApprovalForAllEvent.InputTuple,
+      ApprovalForAllEvent.OutputTuple,
+      ApprovalForAllEvent.OutputObject
+    >;
+
+    "BatchMetadataUpdate(uint256,uint256)": TypedContractEvent<
+      BatchMetadataUpdateEvent.InputTuple,
+      BatchMetadataUpdateEvent.OutputTuple,
+      BatchMetadataUpdateEvent.OutputObject
+    >;
+    BatchMetadataUpdate: TypedContractEvent<
+      BatchMetadataUpdateEvent.InputTuple,
+      BatchMetadataUpdateEvent.OutputTuple,
+      BatchMetadataUpdateEvent.OutputObject
+    >;
+
+    "FundingGoalReached(uint256)": TypedContractEvent<
+      FundingGoalReachedEvent.InputTuple,
+      FundingGoalReachedEvent.OutputTuple,
+      FundingGoalReachedEvent.OutputObject
+    >;
+    FundingGoalReached: TypedContractEvent<
+      FundingGoalReachedEvent.InputTuple,
+      FundingGoalReachedEvent.OutputTuple,
+      FundingGoalReachedEvent.OutputObject
+    >;
+
+    "MetadataUpdate(uint256)": TypedContractEvent<
+      MetadataUpdateEvent.InputTuple,
+      MetadataUpdateEvent.OutputTuple,
+      MetadataUpdateEvent.OutputObject
+    >;
+    MetadataUpdate: TypedContractEvent<
+      MetadataUpdateEvent.InputTuple,
+      MetadataUpdateEvent.OutputTuple,
+      MetadataUpdateEvent.OutputObject
+    >;
+
+    "StateChanged(uint8)": TypedContractEvent<
+      StateChangedEvent.InputTuple,
+      StateChangedEvent.OutputTuple,
+      StateChangedEvent.OutputObject
+    >;
+    StateChanged: TypedContractEvent<
+      StateChangedEvent.InputTuple,
+      StateChangedEvent.OutputTuple,
+      StateChangedEvent.OutputObject
+    >;
+
+    "Transfer(address,address,uint256)": TypedContractEvent<
+      TransferEvent.InputTuple,
+      TransferEvent.OutputTuple,
+      TransferEvent.OutputObject
+    >;
+    Transfer: TypedContractEvent<
+      TransferEvent.InputTuple,
+      TransferEvent.OutputTuple,
+      TransferEvent.OutputObject
+    >;
+  };
 }

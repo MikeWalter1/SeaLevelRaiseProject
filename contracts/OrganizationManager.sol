@@ -15,52 +15,10 @@ struct OrganizationData {
     OrganizationState state;
 }
 
-contract Organization {
-/*    address payable public walletAddress;
-    string public organizationName;
-    string public organisationDescription;
-     string public city;
-    string public streetAddress;
-    string public postalCode;
-    string public country;
-    string public urlLegalDocuments;
-    string public taxNumber;
-    string public website;
-    string public phoneNumber;
-    string public email;
-    string public responsiblePerson;
-    OrganizationState public state; */
-
-    address public dao;
+contract OrganizationManager {
     mapping (address => OrganizationData) public organizations;
-    
-    modifier onlyOwner() {
-        require(msg.sender == dao, "Can only be called from the SLR DAO");
-        _;
-    }
 
-/*     constructor(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription,  string memory _city, string memory _streetAddress, string memory _postalCode, string memory _country, string memory _urlLegalDocuments, string memory _taxNumber, string memory _website, string memory _phoneNumber, string memory _email, string memory _responsiblePerson) {
-        walletAddress = _walletAddress;
-        organizationName = _organizationName;
-        organisationDescription = _organisationDescription;
-        city = _city;
-        streetAddress = _streetAddress;
-        postalCode = _postalCode;
-        country = _country;
-        urlLegalDocuments = _urlLegalDocuments;
-        taxNumber = _taxNumber;
-        website = _website;
-        phoneNumber = _phoneNumber;
-        email = _email;
-        responsiblePerson = _responsiblePerson;
-        state = OrganizationState.Onboarding;
-    } */
-
-    constructor(address _dao) {
-        dao = _dao;
-    }
-
-    function createOrganizationData(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription) external onlyOwner {
+    function createOrganizationData(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription) internal  {
         organizations[_walletAddress] = OrganizationData(_walletAddress, _organizationName, _organisationDescription, OrganizationState.Onboarding);
     }
 
@@ -68,7 +26,7 @@ contract Organization {
         return organizations[_walletAddress];
     }
 
-    function setOrganizationState(address _walletAddress, OrganizationState _state) public onlyOwner {
+    function setOrganizationState(address _walletAddress, OrganizationState _state) internal  {
         organizations[_walletAddress].state = _state;
     }
 

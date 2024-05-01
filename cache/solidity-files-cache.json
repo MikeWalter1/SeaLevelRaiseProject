@@ -190,86 +190,9 @@
         "IERC20Metadata"
       ]
     },
-    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DonationReceipt.sol": {
-      "lastModificationDate": 1714318791030,
-      "contentHash": "91442f46ae9589fff10c8de7ce614920",
-      "sourceName": "contracts/DonationReceipt.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "DonationReceipt"
-      ]
-    },
-    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\Project.sol": {
-      "lastModificationDate": 1714324703074,
-      "contentHash": "c9892469983d878647bb284e9b5bcac8",
-      "sourceName": "contracts/Project.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./DonationReceipt.sol",
-        "./Organization.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.24"
-      ],
-      "artifacts": [
-        "Project"
-      ]
-    },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DAO_SLR.sol": {
-      "lastModificationDate": 1714323889721,
-      "contentHash": "140b27ddd4d16f2fd11e9001ab0ffe78",
+      "lastModificationDate": 1714575947643,
+      "contentHash": "5bde5520dda884db56beb628344faf08",
       "sourceName": "contracts/DAO_SLR.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -296,9 +219,8 @@
         }
       },
       "imports": [
-        "./Project.sol",
-        "./Organization.sol",
-        "./DonationReceipt.sol",
+        "./ProjectManager.sol",
+        "./DonationReceiptPrinter.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
       ],
       "versionPragmas": [
@@ -801,10 +723,86 @@
         "SignedMath"
       ]
     },
-    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\Organization.sol": {
-      "lastModificationDate": 1714323642204,
-      "contentHash": "ac5116ef6825ae06a25178d04cddb1b8",
-      "sourceName": "contracts/Organization.sol",
+    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\ProjectManager.sol": {
+      "lastModificationDate": 1714574916216,
+      "contentHash": "90a48c354a448c2036f7861bca361d3c",
+      "sourceName": "contracts/ProjectManager.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./OrganizationManager.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "ProjectManager"
+      ]
+    },
+    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DonationReceiptPrinter.sol": {
+      "lastModificationDate": 1714575946902,
+      "contentHash": "26a00da84ab662589165c278077e98d5",
+      "sourceName": "contracts/DonationReceiptPrinter.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "DonationReceiptPrinter"
+      ]
+    },
+    "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\OrganizationManager.sol": {
+      "lastModificationDate": 1714575946905,
+      "contentHash": "12c84054a5631fd5670246c7e29bd597",
+      "sourceName": "contracts/OrganizationManager.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -834,7 +832,7 @@
         "^0.8.24"
       ],
       "artifacts": [
-        "Organization"
+        "OrganizationManager"
       ]
     }
   }
