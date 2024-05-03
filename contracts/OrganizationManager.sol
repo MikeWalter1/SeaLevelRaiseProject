@@ -8,7 +8,8 @@ enum OrganizationState {
     OngoingProject
 }
 
-struct OrganizationData {
+struct Organization {
+    uint organizationId;
     address payable walletAddress;
     string organizationName;
     string organisationDescription;
@@ -16,19 +17,26 @@ struct OrganizationData {
 }
 
 contract OrganizationManager {
-    mapping (address => OrganizationData) public organizations;
+    mapping (address => Organization) public organizations;
+    uint public numberOfOrganizations;
 
-    function createOrganizationData(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription) internal  {
-        organizations[_walletAddress] = OrganizationData(_walletAddress, _organizationName, _organisationDescription, OrganizationState.Onboarding);
+    function createOrganization(address payable _walletAddress, string memory _organizationName, string memory _organisationDescription) internal  {
+        organizations[_walletAddress] = Organization(numberOfOrganizations, _walletAddress, _organizationName, _organisationDescription, OrganizationState.Onboarding);
+        numberOfOrganizations++;
     }
 
-    function getOrganizationData(address _walletAddress) public view returns(OrganizationData memory) {
+    function getOrganization(address _walletAddress) public view returns(Organization memory) {
         return organizations[_walletAddress];
     }
 
     function setOrganizationState(address _walletAddress, OrganizationState _state) internal  {
         organizations[_walletAddress].state = _state;
     }
+
+    function getOrganizationState(address _walletAddress) public view returns(OrganizationState) {
+        return organizations[_walletAddress].state;
+    }
+
 
 /*     function setOrganizationState(OrganizationState _state) public onlyOwner {
         state = _state;

@@ -1,15 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
 
-// import "./DonationReceipt.sol";
 import "./OrganizationManager.sol";
 
-// enum ProjectState {
-//     Onboarding,
-//     OnboardingFailed,
-//     Started,
-//     Completed
-// }
 enum ProjectState {
     Onboarding,
     OnboardingFailed,
@@ -22,50 +15,54 @@ enum ProjectState {
 }
 
 struct Project {
+    uint projectId;
+    uint organizationId;
     address payable projectOwner;
     string projectTitle;
     string projectDescription;
     uint fundingGoal;
     uint currentFunding;
+    uint totalVotes;
     ProjectState state;
-    mapping(address => uint) votes;
+    // mapping(address => uint) votes; // do we need votes to be connected to donor here? or bether the other way around?
 }
 
-contract ProjectManager {
-    address payable public projectOwner;
-    string public projectTitle;
-    string public projectDescription;
-    uint public fundingGoal;
-    uint public currentFunding;
-    mapping(address => Project) public projects;
+contract ProjectManager is OrganizationManager {
+    mapping(uint => Project) public projects;
+    mapping(uint => uint) public projectToOrganization; // needed?
 
-    mapping(address => uint) public votes;
-
-    ProjectState public state;
-
-    // Modifier to restrict access to the owner
-    modifier onlyOwner() {
-        require(msg.sender == projectOwner, "Only project owner can call this function");
+    modifier onlyOrganizationOwner() {
+        require(organizations[msg.sender].walletAddress == msg.sender, "Only the organization owner can call this function.");
         _;
     }
 
+    modifier onlyValidOrganization(){
+        require(organizations[msg.sender].state != OrganizationState.Onboarding, "Only an organization that has been onboarded can call this function.");
+        require(organizations[msg.sender].state != OrganizationState.OnboardingFailed, "This organisation has been banned.");
+        _;
+    }
+    
+    uint numberOfProjects;
+    
+    mapping(address => uint) public votes;
 
     // Event to emit when project state changes
-    event StateChanged(ProjectState newState);
+    event StateChanged(uint _projectId, ProjectState _newState);
 
     // Event to emit when funding goal is reached
-    event FundingGoalReached(uint amount);
+    event FundingGoalReached(uint _projectId, uint _amount);
 
-    function createProject(address payable _owner, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external {
-        Project storage newProject = projects[_owner];
+    function createProject(address payable _owner, uint _organizationId, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external onlyOrganizationOwner {
+        Project storage newProject = projects[numberOfProjects];
+        newProject.organizationId = _organizationId;
         newProject.projectOwner = _owner;
         newProject.projectTitle = _title;
         newProject.projectDescription = _description;
         newProject.fundingGoal = _goal;
-        newProject.currentFunding = 0;
-        newProject.votes[msg.sender] = 0;
-        
-        //projects[_owner] = newProject;
+        newProject.currentFunding = 0; // do i need to set this to 0?
+        newProject.totalVotes = 0; // do i need to set this to 0?
+
+        numberOfProjects++;
 
         if (_orgaState == OrganizationState.Onboarding)
             newProject.state = ProjectState.Onboarding;
@@ -73,60 +70,74 @@ contract ProjectManager {
             newProject.state = ProjectState.Voting;
     }
 
+    function getProjectsInRange(uint _from, uint _to) public view returns(Project[] memory){
+        require(_from <= _to, "Invalid range");
+        require(_to < numberOfProjects, "Range exceeds project list length");
+        require(_from < numberOfProjects, "Range exceeds project list length");
+
+        Project[] memory projectsInRange = new Project[](_to - _from + 1);
+
+        for (uint i = _from; i <= _to; i++) {
+            projectsInRange[i] = projects[i];
+        }
+        return projectsInRange;
+    }
+
+    function getLastTenProjects() public view returns(Project[] memory){
+        return getProjectsInRange(numberOfProjects - 10, numberOfProjects - 1);
+    }
+
     // Function for donors to vote for the project
-    function vote(uint _amount) public {
-        votes[msg.sender] += _amount;
-        currentFunding += _amount;
-        if (currentFunding >= fundingGoal) {
-            emit FundingGoalReached(currentFunding);
+    function vote(uint _projectId, uint _amount) public {
+        projects[_projectId].totalVotes += _amount;
+        projects[_projectId].currentFunding += _amount;
+        
+        if (projects[_projectId].currentFunding >= projects[_projectId].fundingGoal) {
+            emit FundingGoalReached(_projectId, projects[_projectId].currentFunding);
+            transferFunds(_projectId);
         }
     }
-
+    
     // Function to transfer funds to project owner when funding goal is reached
-    function transferFunds() public {
-        require(currentFunding >= fundingGoal, "Funding goal not reached");
-        projectOwner.transfer(currentFunding);
-        
-        // no need to set funding to 0. prevent more than one transfer by adding a state variable. 
-        //currentFunding = 0; // Reset current funding after transfer
+    function transferFunds(uint _projectId) public {
+        require(hasReachedFundingGoal(_projectId), "Funding goal not reached");
+        Project memory project = projects[_projectId];
+        //address payable orgWallet = organizations[project.projectOwner].walletAddress;
+       //org.transfer(project.currentFunding);
     }
 
-    // Function for the owner to alter the project description
-    function changeDescription(string memory _newDescription) public onlyOwner {
-        projectDescription = _newDescription;
+    function hasReachedFundingGoal(uint _projectId) public view returns (bool) {
+        return projects[_projectId].currentFunding >= projects[_projectId].fundingGoal;
     }
 
-    function getDonationAmount(address _donor) public view returns (uint) {
-        return votes[_donor];
-    }
 
 
     // Transitions:
-/*     // Function for DAO contract to start voting
-    function startVoting() external onlyDAO {
-        require(state == ProjectState.Onboarding, "Project is not in the Onboarding state");
-        _transitionState(ProjectState.Voting);
-    }
-*/
-    // Function for DAO contract to fail the project
-    function startVoting() public {
-        require(state != ProjectState.Voting, "Project is already in voting state");
-
-        _transitionState(ProjectState.Voting);
+// Function for DAO contract to start voting
+    function startVoting(uint _projectId) external {
+        // require(projects[_projectId].state == OrganizationState.Onboarded, "Project is not in the Onboarding state");
+        // _transitionState(ProjectState.Voting);
     }
 
-    // Function for DAO contract to start the project
-    function startProject() public {
-        require(state == ProjectState.Voting, "Project is not in the Voting state");
-        require(currentFunding >= fundingGoal, "Funding goal not reached");
-        _transitionState(ProjectState.Started);
-    }
+    // // Function for DAO contract to fail the project
+    // function startVoting() public {
+    //     require(state != ProjectState.Voting, "Project is already in voting state");
 
-    // Function for DAO contract to end the project
-    function endProject() public {
-        require(state == ProjectState.Started, "Project is not in the Started state");
-        _transitionState(ProjectState.Ended);
-    }
+    //     _transitionState(ProjectState.Voting);
+    // }
+
+    // // Function for DAO contract to start the project
+    // function startProject() public {
+    //     require(state == ProjectState.Voting, "Project is not in the Voting state");
+    //     require(currentFunding >= fundingGoal, "Funding goal not reached");
+    //     _transitionState(ProjectState.Started);
+    // }
+
+    // // Function for DAO contract to end the project
+    // function endProject() public {
+    //     require(state == ProjectState.Started, "Project is not in the Started state");
+    //     _transitionState(ProjectState.Ended);
+    // }
 /* 
     // Function for DAO contract to complete the project
     function completeProject() external onlyDAO {
@@ -134,9 +145,9 @@ contract ProjectManager {
         _transitionState(ProjectState.Completed); 
    } */
 
-    function _transitionState(ProjectState newState) internal {
-        state = newState;
-        emit StateChanged(newState);
+    function _transitionState(uint _projectId, ProjectState newState) internal {
+        projects[_projectId].state = newState;
+        emit StateChanged(_projectId, newState);
     }
     // Other functions for managing donations, checking if funding goal is reached, etc.
 }
