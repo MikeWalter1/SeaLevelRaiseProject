@@ -2,9 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export { DAO_SLR__factory } from "./DAO_SLR__factory";
-export { DonationReceipt__factory } from "./DonationReceipt__factory";
 export { DonationReceiptPrinter__factory } from "./DonationReceiptPrinter__factory";
-export { Organization__factory } from "./Organization__factory";
+export { DonorManager__factory } from "./DonorManager__factory";
 export { OrganizationManager__factory } from "./OrganizationManager__factory";
-export { Project__factory } from "./Project__factory";
 export { ProjectManager__factory } from "./ProjectManager__factory";

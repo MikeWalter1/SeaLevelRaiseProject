@@ -31,18 +31,9 @@ contract ProjectManager is OrganizationManager {
     mapping(uint => Project) public projects;
     mapping(uint => uint) public projectToOrganization; // needed?
 
-    modifier onlyOrganizationOwner() {
-        require(organizations[msg.sender].walletAddress == msg.sender, "Only the organization owner can call this function.");
-        _;
-    }
 
-    modifier onlyValidOrganization(){
-        require(organizations[msg.sender].state != OrganizationState.Onboarding, "Only an organization that has been onboarded can call this function.");
-        require(organizations[msg.sender].state != OrganizationState.OnboardingFailed, "This organisation has been banned.");
-        _;
-    }
     
-    uint numberOfProjects;
+    uint projectCount;
     
     mapping(address => uint) public votes;
 
@@ -52,28 +43,22 @@ contract ProjectManager is OrganizationManager {
     // Event to emit when funding goal is reached
     event FundingGoalReached(uint _projectId, uint _amount);
 
-    function createProject(address payable _owner, uint _organizationId, OrganizationState _orgaState, string memory _title, string memory _description, uint _goal) external onlyOrganizationOwner {
-        Project storage newProject = projects[numberOfProjects];
+    function createProject(address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
+        
+        Project storage newProject = projects[projectCount];
         newProject.organizationId = _organizationId;
         newProject.projectOwner = _owner;
         newProject.projectTitle = _title;
         newProject.projectDescription = _description;
         newProject.fundingGoal = _goal;
-        newProject.currentFunding = 0; // do i need to set this to 0?
-        newProject.totalVotes = 0; // do i need to set this to 0?
-
-        numberOfProjects++;
-
-        if (_orgaState == OrganizationState.Onboarding)
-            newProject.state = ProjectState.Onboarding;
-        if (_orgaState == OrganizationState.Onboarded)
-            newProject.state = ProjectState.Voting;
+        newProject.state = ProjectState.Voting;
+        projectCount++;
     }
 
     function getProjectsInRange(uint _from, uint _to) public view returns(Project[] memory){
         require(_from <= _to, "Invalid range");
-        require(_to < numberOfProjects, "Range exceeds project list length");
-        require(_from < numberOfProjects, "Range exceeds project list length");
+        require(_to < projectCount, "Range exceeds project list length");
+        require(_from < projectCount, "Range exceeds project list length");
 
         Project[] memory projectsInRange = new Project[](_to - _from + 1);
 
@@ -84,7 +69,7 @@ contract ProjectManager is OrganizationManager {
     }
 
     function getLastTenProjects() public view returns(Project[] memory){
-        return getProjectsInRange(numberOfProjects - 10, numberOfProjects - 1);
+        return getProjectsInRange(projectCount - 10, projectCount - 1);
     }
 
     // Function for donors to vote for the project
@@ -94,23 +79,25 @@ contract ProjectManager is OrganizationManager {
         
         if (projects[_projectId].currentFunding >= projects[_projectId].fundingGoal) {
             emit FundingGoalReached(_projectId, projects[_projectId].currentFunding);
-            transferFunds(_projectId);
+            // // transferFunds(_projectId);
         }
     }
     
-    // Function to transfer funds to project owner when funding goal is reached
-    function transferFunds(uint _projectId) public {
-        require(hasReachedFundingGoal(_projectId), "Funding goal not reached");
-        Project memory project = projects[_projectId];
-        //address payable orgWallet = organizations[project.projectOwner].walletAddress;
-       //org.transfer(project.currentFunding);
-    }
+    // // Function to transfer funds to project owner when funding goal is reached
+    // function transferFunds(uint _projectId) public {
+    //     require(hasReachedFundingGoal(_projectId), "Funding goal not reached");
+    //     Project memory project = projects[_projectId];
+    //     //address payable orgWallet = organizations[project.projectOwner].walletAddress;
+    //    //org.transfer(project.currentFunding);
+    // }
 
     function hasReachedFundingGoal(uint _projectId) public view returns (bool) {
         return projects[_projectId].currentFunding >= projects[_projectId].fundingGoal;
     }
 
-
+    function doesProjectExist(uint _projectId) public view returns (bool) {
+        return _projectId < projectCount;
+    }
 
     // Transitions:
 // Function for DAO contract to start voting

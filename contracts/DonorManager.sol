@@ -9,6 +9,7 @@ struct Donor{
 contract DonorManager {
     mapping(address => Donor) public donors;
 
+
     function addDonor(address _donor) internal {
         donors[_donor].donorAddress = _donor;
     }

@@ -82,25 +82,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DAO_SLR__factory>;
     getContractFactory(
-      name: "DonationReceipt",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.DonationReceipt__factory>;
-    getContractFactory(
       name: "DonationReceiptPrinter",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DonationReceiptPrinter__factory>;
     getContractFactory(
-      name: "Organization",
+      name: "DonorManager",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Organization__factory>;
+    ): Promise<Contracts.DonorManager__factory>;
     getContractFactory(
       name: "OrganizationManager",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.OrganizationManager__factory>;
-    getContractFactory(
-      name: "Project",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Project__factory>;
     getContractFactory(
       name: "ProjectManager",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -192,30 +184,20 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DAO_SLR>;
     getContractAt(
-      name: "DonationReceipt",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.DonationReceipt>;
-    getContractAt(
       name: "DonationReceiptPrinter",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.DonationReceiptPrinter>;
     getContractAt(
-      name: "Organization",
+      name: "DonorManager",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.Organization>;
+    ): Promise<Contracts.DonorManager>;
     getContractAt(
       name: "OrganizationManager",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.OrganizationManager>;
-    getContractAt(
-      name: "Project",
-      address: string | ethers.Addressable,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Project>;
     getContractAt(
       name: "ProjectManager",
       address: string | ethers.Addressable,
@@ -291,25 +273,17 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DAO_SLR>;
     deployContract(
-      name: "DonationReceipt",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.DonationReceipt>;
-    deployContract(
       name: "DonationReceiptPrinter",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DonationReceiptPrinter>;
     deployContract(
-      name: "Organization",
+      name: "DonorManager",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Organization>;
+    ): Promise<Contracts.DonorManager>;
     deployContract(
       name: "OrganizationManager",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.OrganizationManager>;
-    deployContract(
-      name: "Project",
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Project>;
     deployContract(
       name: "ProjectManager",
       signerOrOptions?: ethers.Signer | DeployContractOptions
@@ -401,30 +375,20 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DAO_SLR>;
     deployContract(
-      name: "DonationReceipt",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.DonationReceipt>;
-    deployContract(
       name: "DonationReceiptPrinter",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.DonationReceiptPrinter>;
     deployContract(
-      name: "Organization",
+      name: "DonorManager",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Organization>;
+    ): Promise<Contracts.DonorManager>;
     deployContract(
       name: "OrganizationManager",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.OrganizationManager>;
-    deployContract(
-      name: "Project",
-      args: any[],
-      signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.Project>;
     deployContract(
       name: "ProjectManager",
       args: any[],

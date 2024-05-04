@@ -17,15 +17,10 @@ contract DonationReceiptPrinter is ERC721URIStorage {
         require(!nftsCreated[nftHash], "NFT already created");
         nftsCreated[nftHash] = true;
 
-        //this has to happen somewhere else
-        //require(_projectId < projectCount, "Invalid project ID");
-        //require(projects[_projectId].currentFunding() >= projects[_projectId].fundingGoal(), "Project not funded yet");
-        //require(!hasReceivedNFT[msg.sender], "NFT already received");
-
         // Mint the NFT
         _safeMint(_recipient, nextTokenId);
 
-        // Create the token URI with the donation details
+        // Create the token URI with the donation details !(Info not correct, needs to be updated!)
         string memory tokenURI = 
         string(abi.encodePacked("data:application/json,{\"Project Title\":\"Donation NFT\",\"description\":\" + projects[_projectId].projectDescription() + ", _donationAmount, " ETH to the contract.\"}"));
 

@@ -2,9 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { DAO_SLR } from "./DAO_SLR";
-export type { DonationReceipt } from "./DonationReceipt";
 export type { DonationReceiptPrinter } from "./DonationReceiptPrinter";
-export type { Organization } from "./Organization";
+export type { DonorManager } from "./DonorManager";
 export type { OrganizationManager } from "./OrganizationManager";
-export type { Project } from "./Project";
 export type { ProjectManager } from "./ProjectManager";
