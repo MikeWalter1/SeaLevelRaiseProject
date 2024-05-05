@@ -5,4 +5,17 @@ const config: HardhatUserConfig = {
   solidity: "0.8.24",
 };
 
+module.exports = {
+  solidity: {
+    version: "0.8.24",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000,
+      },
+    },
+  },
+  allowUnlimitedContractSize: true,
+}
+
 export default config;
