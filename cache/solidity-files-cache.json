@@ -43,17 +43,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1714217937367,
+      "lastModificationDate": 1714904939574,
       "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -79,17 +79,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\interfaces\\draft-IERC6093.sol": {
-      "lastModificationDate": 1714217937368,
+      "lastModificationDate": 1714904939575,
       "contentHash": "4aefc698f77ecbace7f401257dfe182d",
       "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -191,17 +191,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DAO_SLR.sol": {
-      "lastModificationDate": 1714825168983,
-      "contentHash": "1cd28f18dbd3a0f0958463842c715800",
+      "lastModificationDate": 1714914172737,
+      "contentHash": "8df09cb6332d2352cb0c32b4a76ce378",
       "sourceName": "contracts/DAO_SLR.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -232,17 +232,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
-      "lastModificationDate": 1714242716836,
+      "lastModificationDate": 1714904939546,
       "contentHash": "50d770b698931f015309e77a750f54f6",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -273,17 +273,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC4906.sol": {
-      "lastModificationDate": 1714242716868,
+      "lastModificationDate": 1714904939552,
       "contentHash": "7f130e0d70179d683e9b9df0dda38a51",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC4906.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -312,17 +312,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC165.sol": {
-      "lastModificationDate": 1714242716876,
+      "lastModificationDate": 1714904939552,
       "contentHash": "f808b485ee0cdc6768ee8385ae5f9a2a",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC165.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -348,17 +348,17 @@
       "artifacts": []
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1714242692286,
+      "lastModificationDate": 1714904939552,
       "contentHash": "1e64e2ad597dc5b2dae11346502baad4",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -392,17 +392,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1714244476066,
+      "lastModificationDate": 1714904939552,
       "contentHash": "ba57ff4ddf1d9cae9d2009792795b7f6",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -431,17 +431,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC721.sol": {
-      "lastModificationDate": 1714242716881,
+      "lastModificationDate": 1714904939576,
       "contentHash": "d8d23fc2f55ed934d1a1b91c9afd8526",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC721.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -467,17 +467,17 @@
       "artifacts": []
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1714244476085,
+      "lastModificationDate": 1714904939575,
       "contentHash": "de0163561b417b800d01749cbbe2147e",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -503,17 +503,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1714244476085,
+      "lastModificationDate": 1714904939576,
       "contentHash": "5df8fdb527e563085847cad29e3c5f2e",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -541,17 +541,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1714244476083,
+      "lastModificationDate": 1714904939575,
       "contentHash": "6a55c353946e471d9792965d06208295",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -579,17 +579,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1714244476085,
+      "lastModificationDate": 1714904939576,
       "contentHash": "fc8a9841f4bdd6329c26a00d5e75f4b3",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -615,17 +615,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1714244476086,
+      "lastModificationDate": 1714904939576,
       "contentHash": "12c206f185cb951213799561fdcaa40d",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -653,17 +653,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
-      "lastModificationDate": 1714244476085,
+      "lastModificationDate": 1714904939576,
       "contentHash": "718fa8ba0ff269c92e364c1429d9de57",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -689,17 +689,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SignedMath.sol": {
-      "lastModificationDate": 1714244476085,
+      "lastModificationDate": 1714904939576,
       "contentHash": "b6c6bdc7aaca4fe5b680760a72e09d3e",
       "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -725,17 +725,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\ProjectManager.sol": {
-      "lastModificationDate": 1714825168987,
-      "contentHash": "a878d761ac2ac5a07ddf38873cc12b72",
+      "lastModificationDate": 1714914172737,
+      "contentHash": "a414b74ea09c3c02196ca78e91be6316",
       "sourceName": "contracts/ProjectManager.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -763,17 +763,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DonationReceiptPrinter.sol": {
-      "lastModificationDate": 1714821054521,
+      "lastModificationDate": 1714904939542,
       "contentHash": "966eb1e01491f32f3420b25c393f3c8c",
       "sourceName": "contracts/DonationReceiptPrinter.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -801,17 +801,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\OrganizationManager.sol": {
-      "lastModificationDate": 1714827463636,
-      "contentHash": "fa9acedabe6ec00ab02d4b78362ad731",
+      "lastModificationDate": 1714916660431,
+      "contentHash": "7130f47d9dc79495ca47d345c5a40615",
       "sourceName": "contracts/OrganizationManager.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [
@@ -837,17 +837,17 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DonorManager.sol": {
-      "lastModificationDate": 1714820875205,
-      "contentHash": "176864bc5b7850482218fea71dd377a3",
+      "lastModificationDate": 1714904939542,
+      "contentHash": "2b4f62fcfcb9330429ec8e1160dfccaf",
       "sourceName": "contracts/DonorManager.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
-          "evmVersion": "paris",
           "optimizer": {
-            "enabled": false,
-            "runs": 200
+            "enabled": true,
+            "runs": 1000
           },
+          "evmVersion": "paris",
           "outputSelection": {
             "*": {
               "*": [

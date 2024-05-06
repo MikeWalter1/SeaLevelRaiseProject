@@ -9,6 +9,10 @@ struct Donor{
 contract DonorManager {
     mapping(address => Donor) public donors;
 
+    modifier onlyValidDonor() {
+        require(doesDonorExist(msg.sender), "Only donors can call this function.");
+        _;
+    }
 
     function addDonor(address _donor) internal {
         donors[_donor].donorAddress = _donor;

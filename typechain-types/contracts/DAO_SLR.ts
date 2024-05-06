@@ -93,7 +93,6 @@ export interface DAO_SLRInterface extends Interface {
       | "createOrganization"
       | "createProject"
       | "createReceipt"
-      | "decreaseVotes"
       | "doesDonorExist"
       | "doesProjectExist"
       | "donors"
@@ -101,16 +100,18 @@ export interface DAO_SLRInterface extends Interface {
       | "getDonorTokenBalance"
       | "getLastTenProjects"
       | "getOrganization"
+      | "getOrganizationById"
       | "getOrganizationState"
       | "getProjectsInRange"
+      | "hasEnoughVotesForOnboarding"
       | "hasReachedFundingGoal"
-      | "increaseVotes"
       | "isApprovedForAll"
+      | "isControversial"
       | "name"
       | "nftsCreated"
-      | "numberOfOrganizations"
       | "organizationIdToAddress"
       | "organizations"
+      | "organizationsCount"
       | "ownerOf"
       | "projectToOrganization"
       | "projects"
@@ -123,13 +124,14 @@ export interface DAO_SLRInterface extends Interface {
       | "tokenMultiplier"
       | "tokenURI"
       | "transferFrom"
-      | "transferFunds"
       | "transferFundsToProject"
       | "vote"
       | "voteAgainstOrganization"
       | "voteForOrganization"
       | "voteForProject"
       | "votes"
+      | "votesAgainstOrga"
+      | "votesForOrga"
       | "withdrawFunds"
   ): FunctionFragment;
 
@@ -158,22 +160,11 @@ export interface DAO_SLRInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "createProject",
-    values: [
-      AddressLike,
-      BigNumberish,
-      BigNumberish,
-      string,
-      string,
-      BigNumberish
-    ]
+    values: [AddressLike, BigNumberish, string, string, BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "createReceipt",
     values: [AddressLike, BigNumberish, BigNumberish, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "decreaseVotes",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "doesDonorExist",
@@ -201,6 +192,10 @@ export interface DAO_SLRInterface extends Interface {
     values: [AddressLike]
   ): string;
   encodeFunctionData(
+    functionFragment: "getOrganizationById",
+    values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
     functionFragment: "getOrganizationState",
     values: [AddressLike]
   ): string;
@@ -209,25 +204,25 @@ export interface DAO_SLRInterface extends Interface {
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "hasReachedFundingGoal",
+    functionFragment: "hasEnoughVotesForOnboarding",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "increaseVotes",
-    values?: undefined
+    functionFragment: "hasReachedFundingGoal",
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [AddressLike, AddressLike]
   ): string;
+  encodeFunctionData(
+    functionFragment: "isControversial",
+    values: [BigNumberish]
+  ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "nftsCreated",
     values: [BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "numberOfOrganizations",
-    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "organizationIdToAddress",
@@ -236,6 +231,10 @@ export interface DAO_SLRInterface extends Interface {
   encodeFunctionData(
     functionFragment: "organizations",
     values: [AddressLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "organizationsCount",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
@@ -283,10 +282,6 @@ export interface DAO_SLRInterface extends Interface {
     values: [AddressLike, AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "transferFunds",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
     functionFragment: "transferFundsToProject",
     values: [BigNumberish]
   ): string;
@@ -296,17 +291,25 @@ export interface DAO_SLRInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "voteAgainstOrganization",
-    values?: undefined
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "voteForOrganization",
-    values?: undefined
+    values: [BigNumberish]
   ): string;
   encodeFunctionData(
     functionFragment: "voteForProject",
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "votes", values: [AddressLike]): string;
+  encodeFunctionData(
+    functionFragment: "votesAgainstOrga",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "votesForOrga",
+    values: [BytesLike]
+  ): string;
   encodeFunctionData(
     functionFragment: "withdrawFunds",
     values: [BigNumberish]
@@ -324,10 +327,6 @@ export interface DAO_SLRInterface extends Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "createReceipt",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "decreaseVotes",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -356,6 +355,10 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "getOrganizationById",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getOrganizationState",
     data: BytesLike
   ): Result;
@@ -364,15 +367,19 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
+    functionFragment: "hasEnoughVotesForOnboarding",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "hasReachedFundingGoal",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "increaseVotes",
+    functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "isApprovedForAll",
+    functionFragment: "isControversial",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
@@ -381,15 +388,15 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "numberOfOrganizations",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "organizationIdToAddress",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "organizations",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "organizationsCount",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
@@ -429,10 +436,6 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "transferFunds",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "transferFundsToProject",
     data: BytesLike
   ): Result;
@@ -450,6 +453,14 @@ export interface DAO_SLRInterface extends Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "votes", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "votesAgainstOrga",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "votesForOrga",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "withdrawFunds",
     data: BytesLike
@@ -633,7 +644,6 @@ export interface DAO_SLR extends BaseContract {
     [
       _owner: AddressLike,
       _organizationId: BigNumberish,
-      _orgaState: BigNumberish,
       _title: string,
       _description: string,
       _goal: BigNumberish
@@ -652,8 +662,6 @@ export interface DAO_SLR extends BaseContract {
     [void],
     "nonpayable"
   >;
-
-  decreaseVotes: TypedContractMethod<[], [void], "nonpayable">;
 
   doesDonorExist: TypedContractMethod<[_donor: AddressLike], [boolean], "view">;
 
@@ -685,6 +693,12 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
+  getOrganizationById: TypedContractMethod<
+    [_orgId: BigNumberish],
+    [OrganizationStructOutput],
+    "view"
+  >;
+
   getOrganizationState: TypedContractMethod<
     [_walletAddress: AddressLike],
     [bigint],
@@ -697,13 +711,17 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
+  hasEnoughVotesForOnboarding: TypedContractMethod<
+    [_orgaId: BigNumberish],
+    [boolean],
+    "view"
+  >;
+
   hasReachedFundingGoal: TypedContractMethod<
     [_projectId: BigNumberish],
     [boolean],
     "view"
   >;
-
-  increaseVotes: TypedContractMethod<[], [void], "nonpayable">;
 
   isApprovedForAll: TypedContractMethod<
     [owner: AddressLike, operator: AddressLike],
@@ -711,11 +729,15 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
 
+  isControversial: TypedContractMethod<
+    [_orgaId: BigNumberish],
+    [boolean],
+    "view"
+  >;
+
   name: TypedContractMethod<[], [string], "view">;
 
   nftsCreated: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
-
-  numberOfOrganizations: TypedContractMethod<[], [bigint], "view">;
 
   organizationIdToAddress: TypedContractMethod<
     [arg0: BigNumberish],
@@ -738,6 +760,8 @@ export interface DAO_SLR extends BaseContract {
     ],
     "view"
   >;
+
+  organizationsCount: TypedContractMethod<[], [bigint], "view">;
 
   ownerOf: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
 
@@ -822,12 +846,6 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
 
-  transferFunds: TypedContractMethod<
-    [_projectId: BigNumberish],
-    [void],
-    "nonpayable"
-  >;
-
   transferFundsToProject: TypedContractMethod<
     [_projectId: BigNumberish],
     [void],
@@ -840,9 +858,17 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
 
-  voteAgainstOrganization: TypedContractMethod<[], [void], "nonpayable">;
+  voteAgainstOrganization: TypedContractMethod<
+    [_orgaId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
 
-  voteForOrganization: TypedContractMethod<[], [void], "nonpayable">;
+  voteForOrganization: TypedContractMethod<
+    [_orgaId: BigNumberish],
+    [void],
+    "nonpayable"
+  >;
 
   voteForProject: TypedContractMethod<
     [_projectId: BigNumberish, _tokens: BigNumberish],
@@ -851,6 +877,10 @@ export interface DAO_SLR extends BaseContract {
   >;
 
   votes: TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+
+  votesAgainstOrga: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
+
+  votesForOrga: TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
 
   withdrawFunds: TypedContractMethod<
     [_amount: BigNumberish],
@@ -889,7 +919,6 @@ export interface DAO_SLR extends BaseContract {
     [
       _owner: AddressLike,
       _organizationId: BigNumberish,
-      _orgaState: BigNumberish,
       _title: string,
       _description: string,
       _goal: BigNumberish
@@ -909,9 +938,6 @@ export interface DAO_SLR extends BaseContract {
     [void],
     "nonpayable"
   >;
-  getFunction(
-    nameOrSignature: "decreaseVotes"
-  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "doesDonorExist"
   ): TypedContractMethod<[_donor: AddressLike], [boolean], "view">;
@@ -942,6 +968,13 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "getOrganizationById"
+  ): TypedContractMethod<
+    [_orgId: BigNumberish],
+    [OrganizationStructOutput],
+    "view"
+  >;
+  getFunction(
     nameOrSignature: "getOrganizationState"
   ): TypedContractMethod<[_walletAddress: AddressLike], [bigint], "view">;
   getFunction(
@@ -952,11 +985,11 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "hasEnoughVotesForOnboarding"
+  ): TypedContractMethod<[_orgaId: BigNumberish], [boolean], "view">;
+  getFunction(
     nameOrSignature: "hasReachedFundingGoal"
   ): TypedContractMethod<[_projectId: BigNumberish], [boolean], "view">;
-  getFunction(
-    nameOrSignature: "increaseVotes"
-  ): TypedContractMethod<[], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "isApprovedForAll"
   ): TypedContractMethod<
@@ -965,14 +998,14 @@ export interface DAO_SLR extends BaseContract {
     "view"
   >;
   getFunction(
+    nameOrSignature: "isControversial"
+  ): TypedContractMethod<[_orgaId: BigNumberish], [boolean], "view">;
+  getFunction(
     nameOrSignature: "name"
   ): TypedContractMethod<[], [string], "view">;
   getFunction(
     nameOrSignature: "nftsCreated"
   ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
-  getFunction(
-    nameOrSignature: "numberOfOrganizations"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "organizationIdToAddress"
   ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
@@ -993,6 +1026,9 @@ export interface DAO_SLR extends BaseContract {
     ],
     "view"
   >;
+  getFunction(
+    nameOrSignature: "organizationsCount"
+  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "ownerOf"
   ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
@@ -1077,9 +1113,6 @@ export interface DAO_SLR extends BaseContract {
     "nonpayable"
   >;
   getFunction(
-    nameOrSignature: "transferFunds"
-  ): TypedContractMethod<[_projectId: BigNumberish], [void], "nonpayable">;
-  getFunction(
     nameOrSignature: "transferFundsToProject"
   ): TypedContractMethod<[_projectId: BigNumberish], [void], "nonpayable">;
   getFunction(
@@ -1091,10 +1124,10 @@ export interface DAO_SLR extends BaseContract {
   >;
   getFunction(
     nameOrSignature: "voteAgainstOrganization"
-  ): TypedContractMethod<[], [void], "nonpayable">;
+  ): TypedContractMethod<[_orgaId: BigNumberish], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "voteForOrganization"
-  ): TypedContractMethod<[], [void], "nonpayable">;
+  ): TypedContractMethod<[_orgaId: BigNumberish], [void], "nonpayable">;
   getFunction(
     nameOrSignature: "voteForProject"
   ): TypedContractMethod<
@@ -1105,6 +1138,12 @@ export interface DAO_SLR extends BaseContract {
   getFunction(
     nameOrSignature: "votes"
   ): TypedContractMethod<[arg0: AddressLike], [bigint], "view">;
+  getFunction(
+    nameOrSignature: "votesAgainstOrga"
+  ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
+  getFunction(
+    nameOrSignature: "votesForOrga"
+  ): TypedContractMethod<[arg0: BytesLike], [boolean], "view">;
   getFunction(
     nameOrSignature: "withdrawFunds"
   ): TypedContractMethod<[_amount: BigNumberish], [void], "nonpayable">;

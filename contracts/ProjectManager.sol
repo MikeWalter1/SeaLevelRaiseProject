@@ -30,11 +30,7 @@ struct Project {
 contract ProjectManager is OrganizationManager {
     mapping(uint => Project) public projects;
     mapping(uint => uint) public projectToOrganization; // needed?
-
-
-    
     uint projectCount;
-    
     mapping(address => uint) public votes;
 
     // Event to emit when project state changes
@@ -42,6 +38,7 @@ contract ProjectManager is OrganizationManager {
 
     // Event to emit when funding goal is reached
     event FundingGoalReached(uint _projectId, uint _amount);
+
 
     function createProject(address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
         
@@ -82,6 +79,8 @@ contract ProjectManager is OrganizationManager {
             // // transferFunds(_projectId);
         }
     }
+
+
     
     // // Function to transfer funds to project owner when funding goal is reached
     // function transferFunds(uint _projectId) public {

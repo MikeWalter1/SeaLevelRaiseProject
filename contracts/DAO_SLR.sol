@@ -12,13 +12,6 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
     // uint public projectCount;
     uint public tokenMultiplier = 1;
 
-    modifier onlyValidPoDaoMember() {
-        require(getOrganization(msg.sender).walletAddress == msg.sender, "Only a project owner that has been onboarded can call this function.");
-        require(getOrganizationState(msg.sender) == OrganizationState.OnboardingFailed, "This organisation has been banned.");
-        require(getOrganizationState(msg.sender) == OrganizationState.OngoingProject, "There is an active project ongoing. Please complete it before creating a new one.");
-        _;
-    }
-
     // Function to donate and receive voting tokens
     receive() external payable {
         addVotingTokens(msg.sender, msg.value * tokenMultiplier);
@@ -32,12 +25,14 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
         vote(_projectId, _tokens);
     }
 
-    function voteForOrganization() public {
-        // TODO
+    function voteForOrganization(uint _orgaId) public onlyValidDonor {
+        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId, true);
+        increaseVotes(_orgaId);
     }
 
-    function voteAgainstOrganization() public {
-        // TODO
+    function voteAgainstOrganization(uint _orgaId) public onlyValidDonor {
+        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId, false);
+        decreaseVotes(_orgaId);
     }
 
     // Transfer funds to project owner when funding goal is reached
