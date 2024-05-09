@@ -52,12 +52,13 @@ contract OrganizationManager {
 
     // removes all votes for a specific organization, negative and positive
     function removeAllVotesFromDonorForOrganization(address _donor , uint _orgId, bool _increaseVote) internal {
+        //maybe use require() and shut down if vote was already casted?
         if(voteAlreadyCasted(_donor, _orgId, _increaseVote)){
             decreaseVotes(_orgId);
             votesForOrga[hashVote(_donor, _orgId, _increaseVote)] = false;
         }
         if(voteAlreadyCasted(_donor, _orgId, !_increaseVote)){
-            increaseVotes(_orgId);
+            decreaseDownVotes(_orgId);
             votesAgainstOrga[hashVote(_donor, _orgId, _increaseVote)] = false;
         }
     }
@@ -65,22 +66,14 @@ contract OrganizationManager {
     function increaseVotes(uint _orgId) internal {
         votesForOrga[hashVote(msg.sender, _orgId, true)] = true;
         organizations[organizationIdToAddress[_orgId]].votes++;
-        // swap out below with updateOrganizationState();
-        if (isControversial(_orgId))
-            return;
-        if (hasEnoughVotesForOnboarding(_orgId)) {
-            setOrganizationState(organizationIdToAddress[_orgId], OrganizationState.Onboarded);
-        }
-        else {
-            setOrganizationState(organizationIdToAddress[_orgId], OrganizationState.Onboarding);
-        }
+        updateOrganizationState(_orgId);
     }
 
     function decreaseVotes(uint _orgaId) internal {
-        organizations[organizationIdToAddress[_orgaId]].votes--;
-        if (isControversial(_orgaId)) {
-            setOrganizationState(organizationIdToAddress[_orgaId], OrganizationState.OnboardingFailed);
-        }
+        unchecked{
+        uint votes = organizations[organizationIdToAddress[_orgaId]].votes;
+        organizations[organizationIdToAddress[_orgaId]].votes = votes - 1;}
+        updateOrganizationState(_orgaId);
     }
 
     function increaseDownVotes(uint _orgId) internal {
@@ -90,10 +83,10 @@ contract OrganizationManager {
     }
 
     function decreaseDownVotes(uint _orgaId) internal {
+        unchecked{
         organizations[organizationIdToAddress[_orgaId]].downVotes--;
-        if (isControversial(_orgaId)) {
-            setOrganizationState(organizationIdToAddress[_orgaId], OrganizationState.OnboardingFailed);
         }
+        updateOrganizationState(_orgaId);
     }
 
     function updateOrganizationState(uint _orgId) internal {
@@ -115,6 +108,7 @@ contract OrganizationManager {
         return organizations[organizationIdToAddress[_orgaId]].votes < organizations[organizationIdToAddress[_orgaId]].downVotes;
     }
     
+    // set magic number to something more reasonable
     function hasEnoughVotesForOnboarding(uint _orgaId) public view returns(bool) {
         return organizations[organizationIdToAddress[_orgaId]].votes > 0;
     }

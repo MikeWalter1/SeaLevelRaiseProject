@@ -191,8 +191,8 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\DAO_SLR.sol": {
-      "lastModificationDate": 1714914172737,
-      "contentHash": "8df09cb6332d2352cb0c32b4a76ce378",
+      "lastModificationDate": 1715263313672,
+      "contentHash": "4c6398df1923e0f51d5bdb4ec7ddf750",
       "sourceName": "contracts/DAO_SLR.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -725,7 +725,7 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\ProjectManager.sol": {
-      "lastModificationDate": 1714914172737,
+      "lastModificationDate": 1715262115589,
       "contentHash": "a414b74ea09c3c02196ca78e91be6316",
       "sourceName": "contracts/ProjectManager.sol",
       "solcConfig": {
@@ -801,8 +801,8 @@
       ]
     },
     "C:\\Users\\Majek\\OneDrive\\Desktop\\Masterarbeit\\SLR Code\\contracts\\OrganizationManager.sol": {
-      "lastModificationDate": 1714916660431,
-      "contentHash": "7130f47d9dc79495ca47d345c5a40615",
+      "lastModificationDate": 1715263384391,
+      "contentHash": "e0be2e7af1191e51760f9422fc4d9886",
       "sourceName": "contracts/OrganizationManager.sol",
       "solcConfig": {
         "version": "0.8.24",

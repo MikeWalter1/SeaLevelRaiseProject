@@ -32,7 +32,7 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
 
     function voteAgainstOrganization(uint _orgaId) public onlyValidDonor {
         removeAllVotesFromDonorForOrganization(msg.sender, _orgaId, false);
-        decreaseVotes(_orgaId);
+        increaseDownVotes(_orgaId);
     }
 
     // Transfer funds to project owner when funding goal is reached
@@ -47,9 +47,7 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
 
         // no need to set funding to 0. prevent more than one transfer by adding a state variable. 
         //currentFunding = 0; // Reset current funding after transfer
-    }
-
-    
+    }   
 
     // Function to mint NFTs for donors if a project receives enough votes
     function createReceipt(address _recipient, uint _projectId, uint _donationAmount, uint _timestamp) external {

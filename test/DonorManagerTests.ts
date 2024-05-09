@@ -79,5 +79,22 @@ describe("DonorManager", function () {
         const addr1Address = await addr1.getAddress();
         expect(await dao.getDonorTokenBalance(addr1.getAddress())).to.equal(842);
     });
+
+    it("Should withdraw all eth donated", async function () {
+      const { dao, owner, addr1 } = await loadFixture(deployDaoWithDefaultProject);
+    
+      // Transfer ETH to the contract
+      const deployedAddress = await dao.getAddress();
+      const ethValue = 421;
+      const tx = {
+      to: deployedAddress,
+      value: ethValue,
+      };
+      await addr1.sendTransaction(tx);
+      await dao.connect(addr1).withdrawFunds(421);
+
+      const addr1Address = await addr1.getAddress();
+      expect(await dao.getDonorTokenBalance(addr1.getAddress())).to.equal(0);
+  });
   });
 });
