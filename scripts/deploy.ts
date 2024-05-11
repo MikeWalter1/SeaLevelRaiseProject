@@ -1,4 +1,5 @@
 import { ethers } from "hardhat";
+import { writeFileSync } from "fs";
 
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
@@ -6,16 +7,21 @@ async function main() {
 
   const lockedAmount = ethers.parseEther("0.001");
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  // const dao = await ethers.deployContract("DAO_SLR", [unlockTime], {
+  //   value: lockedAmount,
+  // });
+  const dao = await ethers.deployContract("DAO_SLR");
+  await dao.waitForDeployment();
+  const deployedAdress = await dao.getAddress();
 
-  await lock.waitForDeployment();
+  const outputFilePath = "./deployed-contracts.json";
+  writeFileSync(outputFilePath, JSON.stringify(deployedAdress, null, 2));
+  console.log(`Deployed contracts saved to ${outputFilePath}`);
 
   console.log(
-    `Lock with ${ethers.formatEther(
+    `DAO with ${ethers.formatEther(
       lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+    )}ETH and unlock timestamp ${unlockTime} deployed to ${dao.target}`
   );
 }
 
