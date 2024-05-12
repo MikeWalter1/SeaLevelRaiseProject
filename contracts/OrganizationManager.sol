@@ -18,6 +18,9 @@ struct Organization {
     uint downVotes;
 }
 
+// TODO: add a way to see all / last X projects from Organization?
+// TODO: add a way to see active projects from Organization?
+// TODO: add function to return all organizations
 contract OrganizationManager {
     mapping (address => Organization) public organizations;
     mapping (uint => address) public organizationIdToAddress; 

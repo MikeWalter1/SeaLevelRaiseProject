@@ -4,14 +4,14 @@ pragma solidity ^0.8.24;
 import "./OrganizationManager.sol";
 
 enum ProjectState {
-    Onboarding,
-    OnboardingFailed,
+    Onboarding, // not needed anymore
+    OnboardingFailed, // not needed anymore
     Voting,
-    VotingRejected,
-    Started,
-    Ended,
-    Completed,
-    Failed
+    VotingRejected, // should trigger after time?
+    Started, // Project was started
+    Ended, // wating for DAO to decide whether project was successful or not
+    Completed, // Project was successful
+    Failed // Project was not successful - penalty for organization
 }
 
 struct Project {
@@ -24,9 +24,15 @@ struct Project {
     uint currentFunding;
     uint totalVotes;
     ProjectState state;
+    uint creationTimestamp;
     // mapping(address => uint) votes; // do we need votes to be connected to donor here? or bether the other way around?
+    // or better add array of voters + another array of voting amounts, so that we can give back the donations if project fails
 }
 
+
+// TODO: add proof handling for project end. maybe add url field to project struct?
+// TODO: add vote for ending project successfully or not?
+// TODO: returning donations for failed projects
 contract ProjectManager is OrganizationManager {
     mapping(uint => Project) public projects;
     mapping(uint => uint) public projectToOrganization; // needed?
@@ -39,7 +45,6 @@ contract ProjectManager is OrganizationManager {
     // Event to emit when funding goal is reached
     event FundingGoalReached(uint _projectId, uint _amount);
 
-
     function createProject(address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
         
         Project storage newProject = projects[projectCount];
@@ -49,6 +54,7 @@ contract ProjectManager is OrganizationManager {
         newProject.projectDescription = _description;
         newProject.fundingGoal = _goal;
         newProject.state = ProjectState.Voting;
+        newProject.creationTimestamp = block.timestamp;
         projectCount++;
     }
 
@@ -74,66 +80,81 @@ contract ProjectManager is OrganizationManager {
         projects[_projectId].totalVotes += _amount;
         projects[_projectId].currentFunding += _amount;
         
-        if (projects[_projectId].currentFunding >= projects[_projectId].fundingGoal) {
+        if (hasReachedFundingGoal(_projectId)) {
             emit FundingGoalReached(_projectId, projects[_projectId].currentFunding);
             // // transferFunds(_projectId);
+            Project memory project = projects[_projectId];
+            getOrganization(project.projectOwner).walletAddress.transfer(project.currentFunding);
         }
     }
 
+    function updateProjectState(uint _projectId) internal {
+        Project memory project = projects[_projectId];
+        
+        if (project.state == ProjectState.Voting) 
+            transitionFromVoting(_projectId);
+        
+        if (project.state == ProjectState.Started) 
+            transitionFromStarted(_projectId);
 
+        if (project.state == ProjectState.Ended)
+            transitionFromEnded(_projectId);
+    }
     
-    // // Function to transfer funds to project owner when funding goal is reached
-    // function transferFunds(uint _projectId) public {
-    //     require(hasReachedFundingGoal(_projectId), "Funding goal not reached");
-    //     Project memory project = projects[_projectId];
-    //     //address payable orgWallet = organizations[project.projectOwner].walletAddress;
-    //    //org.transfer(project.currentFunding);
-    // }
+    function transitionFromVoting(uint _projectId) public {
+        address payable orgaWallet = getOrganizationById(projects[_projectId].organizationId).walletAddress;
+        uint funding = projects[_projectId].currentFunding;
+
+        if(exceededTimeLimit(_projectId)){
+            // give donations back to donors, or keep them for DAO to incentivize something else?
+            _transitionState(_projectId, ProjectState.VotingRejected);
+        }
+
+        // organizationi is banned, hence project is not further processed
+        if(getOrganizationState(orgaWallet) != OrganizationState.Onboarded)
+            return;
+
+        // build in time limit for voting !
+        if(hasReachedFundingGoal(_projectId)){
+            _transitionState(_projectId, ProjectState.Started);
+            orgaWallet.transfer(funding);
+        }
+    }
+
+    function transitionFromStarted(uint _projectId) public {
+            _transitionState(_projectId, ProjectState.Ended);
+    }
+
+    // organization can end the project and provide the proof
+    function endProject(uint _projectId, string memory _proofUrl) public {
+        require(projects[_projectId].state == ProjectState.Started, "Project not started yet");
+        require(projects[_projectId].projectOwner == msg.sender, "Only project owner can end project");
+        transitionFromStarted(_projectId);
+    }
+
+    // DAO decides whether project was successful or not
+    // for now, let's end the process here
+    function transitionFromEnded(uint _projectId) public {
+        if (true==true)
+            _transitionState(_projectId, ProjectState.Completed);
+        else
+            _transitionState(_projectId, ProjectState.Failed);
+    }
 
     function hasReachedFundingGoal(uint _projectId) public view returns (bool) {
         return projects[_projectId].currentFunding >= projects[_projectId].fundingGoal;
+    }
+
+    function exceededTimeLimit(uint _projectId) public view returns (bool) {
+        return block.timestamp > projects[_projectId].creationTimestamp + 8 weeks;
     }
 
     function doesProjectExist(uint _projectId) public view returns (bool) {
         return _projectId < projectCount;
     }
 
-    // Transitions:
-// Function for DAO contract to start voting
-    function startVoting(uint _projectId) external {
-        // require(projects[_projectId].state == OrganizationState.Onboarded, "Project is not in the Onboarding state");
-        // _transitionState(ProjectState.Voting);
-    }
-
-    // // Function for DAO contract to fail the project
-    // function startVoting() public {
-    //     require(state != ProjectState.Voting, "Project is already in voting state");
-
-    //     _transitionState(ProjectState.Voting);
-    // }
-
-    // // Function for DAO contract to start the project
-    // function startProject() public {
-    //     require(state == ProjectState.Voting, "Project is not in the Voting state");
-    //     require(currentFunding >= fundingGoal, "Funding goal not reached");
-    //     _transitionState(ProjectState.Started);
-    // }
-
-    // // Function for DAO contract to end the project
-    // function endProject() public {
-    //     require(state == ProjectState.Started, "Project is not in the Started state");
-    //     _transitionState(ProjectState.Ended);
-    // }
-/* 
-    // Function for DAO contract to complete the project
-    function completeProject() external onlyDAO {
-        require(state == ProjectState.Ended, "Project is not in the Ended state");
-        _transitionState(ProjectState.Completed); 
-   } */
-
     function _transitionState(uint _projectId, ProjectState newState) internal {
         projects[_projectId].state = newState;
         emit StateChanged(_projectId, newState);
     }
-    // Other functions for managing donations, checking if funding goal is reached, etc.
 }

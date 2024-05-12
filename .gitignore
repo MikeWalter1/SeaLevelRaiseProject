@@ -1,7 +1,12 @@
 /Deprecated
 node_modules
 node_modules
+.env
+coverage
+coverage.json
+typechain
+cache
+artifacts
 typechain-types
 /typechain-types
-artifacts
 /artifacts

@@ -6,6 +6,7 @@ struct Donor{
     uint votingTokens;
 }
 
+// TODO: save all votes, so that we can return the donations if project fails?
 contract DonorManager {
     mapping(address => Donor) public donors;
 

@@ -3,6 +3,7 @@ pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
+// TODO: add password/salt to hash so that the donor can remain anonymous?
 contract DonationReceiptPrinter is ERC721URIStorage {
     uint internal nextTokenId;
     mapping(bytes32 => bool) public nftsCreated;
@@ -12,6 +13,7 @@ contract DonationReceiptPrinter is ERC721URIStorage {
     }
 
     // Function to mint NFTs for donors if a project receives enough votes
+    // how will we handle multiple donations from the same donor? like irl, one receipt per donation?
     function createDonationReceipt(address _recipient, uint _projectId, uint _donationAmount, uint _timestamp) internal {
         bytes32 nftHash = hash(Strings.toHexString(uint256(uint160(_recipient)), 20), Strings.toString(_projectId), _donationAmount, _timestamp);
         require(!nftsCreated[nftHash], "NFT already created");
@@ -25,8 +27,7 @@ contract DonationReceiptPrinter is ERC721URIStorage {
         string(abi.encodePacked("data:application/json,{\"Project Title\":\"Donation NFT\",\"description\":\" + projects[_projectId].projectDescription() + ", _donationAmount, " ETH to the contract.\"}"));
 
         _setTokenURI(nextTokenId, tokenURI);
-
-        // Increment the next token ID
+        
         nextTokenId += 1;
     }
 
