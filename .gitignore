@@ -10,3 +10,12 @@ artifacts
 typechain-types
 /typechain-types
 /artifacts
+Backend/node_modules
+Backend/.env
+Backend/coverage
+Backend/coverage.json
+Backend/typechain
+Backend/cache
+Backend/artifacts
+Backend/typechain-types
+
