@@ -1,0 +1,222 @@
+.banner-area {
+    z-index: 1;
+    position: relative;
+    background: {
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+    padding: {
+        top: 210px;
+        bottom: 360px;
+    };
+    &::before {
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        z-index: -1;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(9, 3, 26, 0.7) 0%, rgba(17, 26, 40, 0.5) 100%);
+    }
+	.shape {
+		position: absolute;
+		z-index: -1;
+        
+		&.shape-3 {
+			z-index: 1;
+			left: 100px;
+			bottom: 200px;
+			animation: off-on 5s infinite linear;
+		}
+		&.shape-4 {
+			z-index: 1;
+			right: 100px;
+			bottom: 200px;
+			animation: off-on 6s infinite linear;
+		}
+	}
+}
+.banner-content {
+    max-width: 860px;
+    text-align: center;
+    margin: {
+        left: auto;
+        right: auto;
+    };
+    .top-title {
+		background: linear-gradient(90.99deg, #FDCE39 0.27%, #FD8963 30%, #ED5174 98.69%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		letter-spacing: 0.1em;
+		display: inline-block;
+		margin-bottom: 12px;
+        font: {
+            weight: 600;
+            family: var(--headingFontFamily);
+        };
+	}
+	h1 {
+		font-size: 80px;
+		line-height: 100px;
+		margin-bottom: 25px;
+		color: var(--whiteColor);
+	}
+	p {
+		color: var(--whiteColor);
+		max-width: 800px;
+		color: #ECE9F1;
+        margin: {
+            left: auto;
+            right: auto;
+        };
+	}
+	.banner-btn {
+        margin-top: 35px;
+
+		.default-btn {
+			margin: {
+                left: 10px;
+                right: 10px;
+            };
+            &.connect {
+				background: linear-gradient(135deg, #57F0FA 0%, #712AF9 100%);
+			}
+		}
+	}
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+	.banner-area {
+		padding: {
+			top: 80px;
+			bottom: 225px;
+		};
+		.shape {
+			display: none;
+		}
+	}
+    .banner-content {
+		max-width: 100%;
+    
+		.top-title {
+			margin-bottom: 10px;
+		}
+        h1 {
+            font-size: 30px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .banner-btn {
+            margin-top: 20px;
+
+            .default-btn {
+                margin: {
+					left: 5px;
+					right: 5px;
+				};
+            }
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+	.banner-area {
+		padding: {
+			top: 100px;
+			bottom: 195px;
+		};
+		.shape {
+			display: none;
+		}
+	}
+	.banner-content {
+		max-width: 100%;
+    
+        h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+        p {
+            max-width: 600px;
+        }
+        .banner-btn {
+            margin-top: 25px;
+        }
+	}
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+	.banner-area {
+		padding: {
+			top: 150px;
+			bottom: 280px;
+		};
+		.shape {
+			&.shape-3 {
+				left: 100px;
+				bottom: 100px;
+				max-width: 150px;
+			}
+			&.shape-4 {
+				right: 100px;
+				bottom: 100px;
+				max-width: 150px;
+			}
+		}
+	}
+    .banner-content {
+		max-width: 100%;
+
+        h1 {
+            font-size: 60px;
+            line-height: 75px;
+			margin-bottom: 15px;
+        }
+        p {
+			max-width: 675px;
+        }
+        .banner-btn {
+            margin-top: 25px;
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+
+	.banner-area {
+		.shape {
+			&.shape-3 {
+				left: 200px;
+				bottom: 200px;
+			}
+			&.shape-4 {
+				right: 200px;
+				bottom: 200px;
+			}
+		}
+	}
+
+}

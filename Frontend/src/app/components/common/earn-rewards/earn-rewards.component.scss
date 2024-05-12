@@ -1,0 +1,211 @@
+.stake-area {
+	position: relative;
+    
+	.take-shape {
+		top: 0;
+		left: 0;
+		position: absolute;
+	}
+}
+.stake-bg {
+	background: linear-gradient(135deg, #3A285C 0%, #1A093A 100%);
+	border-radius: 30px;
+	position: relative;
+	z-index: 1;
+
+	.page-star {
+		right: 0;
+		left: 200px;
+		z-index: -1;
+		margin: auto;
+		bottom: 100px;
+		position: absolute;
+		animation: rotation 30s infinite linear;
+	}
+    .stake-content {
+        padding: 100px 90px;
+    
+        .top-title {
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+            display: inline-block;
+            color: var(--primaryColor);
+            background: linear-gradient(90.99deg, #FDCE39 0.27%, #FD8963 30%, #ED5174 98.69%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font: {
+                family: var(--headingFontFamily);
+                weight: 600;
+            };
+        }
+        h2 {
+            font-size: 50px;
+            margin-bottom: 25px;
+    
+            span {
+                color: var(--primaryColor);
+            }
+        }
+        p {
+            color: #BEB8CC;
+        }
+        .default-btn {
+            margin-top: 15px;
+        }
+    }
+    .stake-image {
+        position: relative;
+        text-align: center;
+        z-index: 1;
+    
+        &::before {
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            content: "";
+            opacity: 0.1;
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            border-radius: 50%;
+            background: var(--whiteColor);
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .stake-area {
+        .take-shape {
+            display: none;
+        }
+    }
+    .stake-bg {
+        border-radius: 10px;
+        padding: 60px 15px 0;
+    
+        .page-star {
+            display: none;
+        }
+        .stake-content {
+            padding: 0;
+            text-align: center;
+        
+            .top-title {
+                margin-bottom: 10px;
+            }
+            h2 {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+            .default-btn {
+                margin-top: 0;
+            }
+        }
+        .stake-image {
+            margin-top: 30px;
+        
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .stake-area {
+        .take-shape {
+            display: none;
+        }
+    }
+    .stake-bg {
+        padding: 80px 50px 0;
+
+        .page-star {
+            display: none;
+        }
+        .stake-content {
+            padding: 0;
+            text-align: center;
+        
+            .top-title {
+                margin-bottom: 12px;
+            }
+            h2 {
+                font-size: 40px;
+                margin-bottom: 12px;
+            }
+            .default-btn {
+                margin-top: 5px;
+            }
+        }
+        .stake-image {
+            margin-top: 30px;
+        
+            &::before {
+                margin: auto;
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .stake-bg {
+        padding-right: 35px;
+
+        .stake-content {
+            padding: 100px 50px;
+        
+            .top-title {
+                margin-bottom: 15px;
+            }
+            h2 {
+                font-size: 48px;
+                margin-bottom: 15px;
+            }
+            .default-btn {
+                margin-top: 10px;
+            }
+        }
+        .stake-image {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .stake-bg {
+        padding-right: 35px;
+    
+        .stake-content {
+            padding: 100px 60px;
+        }
+        .stake-image {
+            &::before {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

@@ -1,0 +1,132 @@
+.ecosystem-area {
+    background: {
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+}
+.ecosystem-tabs {
+    padding-right: 15px;
+
+    .ecosystem-content {
+        h2 {
+            font-size: 35px;
+            margin-bottom: 30px;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .default-btn {
+            margin-top: 10px;
+        }
+    }
+}
+.ecosystem-image {
+    margin-left: 15px;
+	position: relative;
+    padding-bottom: 50px;
+
+	.ecosystem-gif {
+		border-radius: 30px;
+		position: absolute;
+		max-width: 160px;
+		left: 100px;
+		bottom: 0;
+	}
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .ecosystem-tabs {
+        padding-right: 0;
+    
+        .ecosystem-content {
+            h2 {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            p {
+                margin-bottom: 15px;
+            }
+            .default-btn {
+                margin-top: 5px;
+            }
+        }
+    }
+    .ecosystem-image {
+        padding-bottom: 50px;
+        margin: {
+            left: 10px;
+            top: 25px;
+        };
+        .ecosystem-gif {
+            border-radius: 10px;
+            max-width: 100px;
+            left: 35px;
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .ecosystem-tabs {
+        padding-right: 0;
+    
+        .ecosystem-content {
+            h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+            p {
+                margin-bottom: 15px;
+            }
+            .default-btn {
+                margin-top: 5px;
+            }
+        }
+    }
+    .ecosystem-image {
+        margin: {
+            left: 0;
+            top: 25px;
+        };
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .ecosystem-tabs {
+        padding-right: 0;
+    
+        .ecosystem-content {
+            h2 {
+                font-size: 30px;
+                margin-bottom: 25px;
+            }
+            p {
+                margin-bottom: 25px;
+            }
+            .default-btn {
+                margin-top: 10px;
+            }
+        }
+    }
+    .ecosystem-image {
+        margin-left: 0;
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

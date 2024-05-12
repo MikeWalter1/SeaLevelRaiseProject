@@ -1,0 +1,1157 @@
+// Navbar
+.navbar-area {
+    background-color: #140c2d;
+    z-index: 3;
+    
+    &.sticky {
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        position: fixed;
+        background: var(--blackColor) !important;
+        box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+        animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+    }
+    .bg-light {
+        background-color: transparent !important;
+    }
+    .container-fluid {
+        padding: {
+            left: 30px;
+            right: 30px;
+        };
+    }
+    .navbar {
+        padding: 0;
+        position: inherit;
+
+        .navbar-brand {
+            font-size: inherit;
+            line-height: 1;
+            padding: 0;
+        }
+        ul {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style-type: none;
+        }
+        .navbar-nav {
+            margin: {
+                left: auto;
+                right: auto;
+            };
+            .nav-item {
+                position: relative;
+                margin: {
+                    left: 20px;
+                    right: 20px;
+                };
+                .nav-link {
+                    cursor: pointer;
+                    position: relative;
+                    color: var(--whiteColor);
+                    transition: var(--transition);
+                    font: {
+                        family: var(--headingFontFamily);
+                        size: var(--fontSize);
+                    };
+                    padding: {
+                        left: 0;
+                        right: 0;
+                        top: 40px;
+                        bottom: 40px;
+                    };
+                    &::after {
+                        right: 0;
+                        width: 0;
+                        border: 0;
+                        height: 2px;
+                        content: "";
+                        bottom: 38px;
+                        margin-left: 0;
+                        position: absolute;
+                        vertical-align: unset;
+                        transition: var(--transition);
+                        background: linear-gradient(135deg, #FA26CA 0%, #712AF9 100%);
+                    }
+                    &:hover, &.active {
+                        color: var(--whiteColor);
+
+                        &::after {
+                            right: auto;
+                            width: 100%;
+                            left: 0;
+                        }
+                    }
+                }
+                .dropdown-toggle {
+                    padding-right: 17px;
+
+                    &::before {
+                        position: absolute;
+                        content: "\EA4E";
+                        line-height: 1;
+                        right: -4px;
+                        top: 43px;
+                        font: {
+                            family: remixicon;
+                            size: 20px;
+                        };
+                    }
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:hover, &.active {
+                    .nav-link {
+                        color: var(--whiteColor);
+
+                        &::after {
+                            right: auto;
+                            width: 100%;
+                            left: 0;
+                        }
+                    }
+                }
+                .dropdown-menu {
+                    left: 0;
+                    top: 100%;
+                    opacity: 0;
+                    z-index: 99;
+                    border: none;
+                    width: 250px;
+                    margin-top: 0;
+                    display: block;
+                    padding: 10px 0;
+                    border-radius: 0;
+                    position: absolute;
+                    visibility: hidden;
+                    background: var(--blackColor);
+                    transition: all 0.2s ease-in-out;
+                    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+
+                    .nav-item {
+                        margin: 0;
+                        padding: {
+                            left: 20px;
+                            right: 20px;
+                        };
+                        .nav-link {
+                            padding: 0;
+                            position: relative;
+                            display: inline-block;
+                            color: var(--whiteColor);
+                            margin: {
+                                top: 8px;
+                                bottom: 8px;
+                            };
+                            &::after {
+                                width: 0;
+                                height: 1px;
+                                bottom: -1px;
+                            }
+                            &.dropdown-toggle {
+                                display: block;
+
+                                &::before {
+                                    top: 50%;
+                                    right: 0;
+                                    transform: translateY(-50%);
+                                }
+                            }
+                            &:hover, &.active {
+                                color: var(--whiteColor);
+
+                                &::after {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                        .dropdown-menu {
+                            top: 0;
+                            opacity: 0;
+                            left: -100%;
+                            margin-top: 0;
+                            visibility: hidden;
+                            
+                            .nav-item {
+                                .nav-link {
+                                    color: var(--whiteColor);
+                                    
+                                    &::after {
+                                        width: 0;
+                                        bottom: 0;
+                                        height: 1px;
+                                    }
+                                    &:hover, &.active {
+                                        color: var(--whiteColor);
+
+                                        &::after {
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                                .dropdown-menu {
+                                    top: 0;
+                                    opacity: 0;
+                                    right: 100%;
+                                    visibility: hidden;
+        
+                                    .nav-item {
+                                        .nav-link {
+                                            color: var(--whiteColor);
+                                            
+                                            &::after {
+                                                width: 0;
+                                                bottom: 0;
+                                                height: 1px;
+                                            }
+                                            &:hover, &.active {
+                                                color: var(--whiteColor);
+        
+                                                &::after {
+                                                    width: 100%;
+                                                }
+                                            }
+                                        }
+                                        .dropdown-menu {
+                                            top: 0;
+                                            opacity: 0;
+                                            right: 100%;
+                                            visibility: hidden;
+                
+                                            .nav-item {
+                                                .nav-link {
+                                                    color: var(--whiteColor);
+                                                    
+                                                    &::after {
+                                                        width: 0;
+                                                        bottom: 0;
+                                                        height: 1px;
+                                                    }
+                                                    &:hover, &.active {
+                                                        color: var(--whiteColor);
+                
+                                                        &::after {
+                                                            width: 100%;
+                                                        }
+                                                    }
+                                                }
+                                                &.active {
+                                                    .nav-link {
+                                                        color: var(--whiteColor);
+                                                    }
+                                                }
+                                                &:hover {
+                                                    .dropdown-menu {
+                                                        opacity: 1;
+                                                        visibility: visible;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &.active {
+                                            .nav-link {
+                                                color: var(--whiteColor);
+                                            }
+                                        }
+                                        &:hover {
+                                            .dropdown-menu {
+                                                opacity: 1;
+                                                visibility: visible;
+                                            }
+                                        }
+                                    }
+                                }
+                                &.active {
+                                    .nav-link {
+                                        color: var(--whiteColor);
+                                    }
+                                }
+                                &:hover {
+                                    .dropdown-menu {
+                                        opacity: 1;
+                                        visibility: visible;
+                                    }
+                                }
+                            }
+                        }
+                        &.active {
+                            .nav-link {
+                                color: var(--whiteColor);
+                            }
+                        }
+                        &:hover {
+                            .dropdown-menu {
+                                opacity: 1;
+                                margin-top: 0;
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+                &:hover {
+                    .dropdown-menu {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+        .others-option {
+            .option-item {
+                margin-left: 30px;
+
+                .burger-menu {
+                    cursor: pointer;
+                    font-size: 30px;
+                    display: block;
+                }
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    .style-two {
+        .navbar {
+            .navbar-brand {
+                display: none;
+            }
+            .navbar-nav {
+                margin: {
+                    left: 0;
+                    right: 0;
+                };
+            }
+            .logo-center {
+                margin-bottom: -50px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            .others-option {
+                margin-left: 35px;
+            }
+            .for-responsive {
+                display: none;
+            }
+        }
+    }
+    .style-three {
+        .navbar {
+            .navbar-brand {
+                margin-bottom: -40px;
+                position: relative;
+                z-index: 3;
+            }
+            .navbar-nav {
+                margin: {
+                    left: auto;
+                    right: 0;
+                };
+            }
+            .others-option {
+                margin-left: 35px;
+            }
+        }
+    }
+}
+.d-none {
+    &.d-block {
+        display: block !important;
+    }
+}
+
+// Sidebar Modal
+.sidebarModal {
+    background: rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+    visibility: hidden;
+    position: fixed;
+    z-index: 1050;
+    opacity: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+
+    .modal-dialog {
+        top: 0;
+        right: 0;
+        width: 420px;
+        height: 100%;
+        position: absolute;
+        background-color: var(--blackColor);
+
+        .modal-content {
+            overflow-y: auto;
+            background-color: var(--blackColor);
+
+            .modal-body {
+                padding: 80px 30px;
+
+                .instagram-list {
+                    margin-top: 45px;
+
+                    .box {
+                        z-index: 1;
+                        overflow: hidden;
+                        margin-top: 25px;
+                        position: relative;
+                        text-align: center;
+
+                        .link-btn {
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 3;
+                            display: block;
+                            position: absolute;
+                        }
+                        i {
+                            left: 0;
+                            right: 0;
+                            top: 50%;
+                            opacity: 0;
+                            z-index: 2;
+                            font-size: 30px;
+                            position: absolute;
+                            visibility: hidden;
+                            color: var(--whiteColor);
+                            transform: translateY(-50%);
+                            transition: var(--transition);
+                        }
+                        img {
+                            transition: var(--transition);
+                        }
+                        &::before {
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 1;
+                            opacity: 0;
+                            content: '';
+                            visibility: hidden;
+                            position: absolute;
+                            transition: var(--transition);
+                            background-color: var(--primaryColor);
+                        }
+                        &:hover {
+                            &::before {
+                                opacity: 0.5;
+                                visibility: visible;
+                            }
+                            img {
+                                transform: scale(1.3);
+                            }
+                            i {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+                .sidebar-contact-info {
+                    margin-top: 80px;
+
+                    h2 {
+                        margin-bottom: 0;
+                        font-size: 30px;
+
+                        span {
+                            display: block;
+                            font-size: var(--fontSize);
+                            color: var(--paragraphColor);
+                            margin: {
+                                top: 15px;
+                                bottom: 15px;
+                            };
+                        }
+                    }
+                }
+                .social-list {
+                    list-style-type: none;
+                    padding-left: 0;
+                    margin: {
+                        bottom: 0;
+                        top: 20px;
+                    };
+                    li {
+                        display: inline-block;
+                        margin-right: 5px;
+            
+                        a {
+                            background-color: rgba(255, 255, 255, 0.2);
+                            color: var(--whiteColor);
+                            position: relative;
+                            border-radius: 50%;
+                            text-align: center;
+                            font-size: 15px;
+                            display: block;
+                            height: 35px;
+                            width: 35px;
+            
+                            i {
+                                left: 0;
+                                right: 0;
+                                top: 50%;
+                                line-height: 1;
+                                margin-top: -1px;
+                                position: absolute;
+                                transform: translateY(-50%);
+                            }
+                            &:hover {
+                                color: var(--whiteColor);
+                                background-color: var(--primaryColor);
+                            }
+                        }
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+            .close {
+                top: 15px;
+                z-index: 2;
+                opacity: 1;
+                right: 10px;
+                border: none;
+                float: unset;
+                font-size: 40px;
+                box-shadow: unset;
+                text-shadow: unset;
+                position: absolute;
+                color: var(--whiteColor);
+                transition: var(--transition);
+                background-color: transparent;
+
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+    }
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    // Navbar Area
+    .navbar-area {
+        padding: {
+            top: 12px;
+            bottom: 12px;
+        };
+        &.is-sticky {
+            padding: {
+                top: 12px;
+                bottom: 12px;
+            };
+        }
+        .container-fluid {
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .navbar {
+            .navbar-nav {
+                display: block;
+                max-height: 50vh;
+                flex-direction: unset;
+                background-color: rgba(255, 255, 255, .1);
+                overflow: {
+                    y: scroll;
+                    x: hidden;
+                };
+                margin: {
+                    top: 15px;
+                    left: 0 !important;
+                    right: 0 !important;
+                };
+                padding: {
+                    top: 18px;
+                    left: 18px;
+                    right: 18px;
+                    bottom: 18px;
+                };
+                .nav-item {
+                    margin: {
+                        left: 0;
+                        right: 0;
+                        top: 18px;
+                        bottom: 18px;
+                    };
+                    .nav-link {
+                        font-size: 16px;
+                        color: var(--paragraphColor);
+                        padding: {
+                            top: 0;
+                            bottom: 0;
+                            left: 0 !important;
+                        };
+                        &::after {
+                            display: none;
+                        }
+                        &.active, &:hover {
+                            color: var(--whiteColor);
+                        }
+                    }
+                    .dropdown-toggle {
+                        &::before {
+                            top: 3px;
+                        }
+                    }
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    &:hover, &.active {
+                        a {
+                            color: var(--whiteColor);
+                        }
+                    }
+                    .dropdown-menu {
+                        opacity: 1;
+                        width: 100%;
+                        padding: 18px;
+                        top: 0 !important;
+                        box-shadow: unset;
+                        position: relative;
+                        visibility: visible;
+                        margin-top: 10px !important;
+                        background-color: var(--blackColor);
+
+                        .nav-item {
+                            padding: 0;
+                            margin: {
+                                left: 0;
+                                right: 0;
+                                top: 15px;
+                                bottom: 15px;
+                            };
+                            .nav-link {
+                                margin: 0;
+                                padding: 0;
+                                font-size: 15px;
+                                color: var(--paragraphColor);
+
+                                &.dropdown-toggle {
+                                    &::before {
+                                        right: 0;
+                                    }
+                                }
+                                &.active, &:hover {
+                                    color: var(--whiteColor);
+                                }
+                            }
+                            .dropdown-menu {
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                opacity: 1;
+                                width: auto;
+                                visibility: visible;
+                                margin: 10px 0 0 !important;
+                                background-color: rgba(255, 255, 255, .1);
+                            }
+                            &:first-child {
+                                margin-top: 0;
+                            }
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .others-option {
+                margin-top: 15px;
+            }
+        }
+        .style-two {
+            .navbar {
+                .navbar-brand {
+                    display: inline-block;
+                }
+                .navbar-nav {
+                    display: none;
+                    margin: {
+                        left: 0;
+                        right: 0;
+                    };
+                }
+                .for-responsive {
+                    display: block;
+                }
+                .logo-center {
+                    display: none;
+                }
+                .others-option {
+                    margin-left: 0;
+                }
+            }
+        }
+        .style-three {
+            .navbar {
+                .navbar-brand {
+                    margin-bottom: 0;
+
+                    img {
+                        width: 80px;
+                    }
+                }
+                .others-option {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    .navbar-light {
+        .navbar-toggler {
+            color: var(--whiteColor);
+            font-size: inherit;
+            box-shadow: unset;
+            border: none;
+            padding: 0;
+
+            .burger-menu {
+                cursor: pointer;
+
+                span {
+                    height: 3px;
+                    width: 30px;
+                    margin: 5px 0;
+                    display: block;
+                    background: var(--whiteColor);
+                }
+            }
+        }
+        &.active {
+            .navbar-toggler {
+                .burger-menu {
+                    span {
+                        &.top-bar {
+                            transform: rotate(45deg);
+                            transform-origin: 10% 10%;
+                        }
+                        &.middle-bar {
+                            opacity: 0;
+                        }
+                        &.bottom-bar {
+                            transform: rotate(-45deg);
+                            transform-origin: 10% 90%;
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+            .collapse:not(.show) {
+                display: block;
+            }
+        }
+    }
+
+    // Sidebar Modal
+    .sidebarModal {
+        .modal-dialog {
+            width: 100%;
+    
+            .modal-content {
+                .modal-body {
+                    padding: 30px 15px;
+    
+                    .instagram-list {
+                        margin-top: 0;
+                    }
+                    .sidebar-contact-info {
+                        margin-top: 30px;
+    
+                        h2 {
+                            font-size: 20px;
+                        }
+                    }
+                    .social-list {
+                        margin-top: 10px;
+                    }
+                }
+                .close {
+                    top: 10px;
+                    right: 10px;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width : 576px) and (max-width : 767px) {
+
+    // Navbar Area
+    .navbar-area {
+        .container-fluid {
+            max-width: 540px;
+        }
+    }
+
+    // Sidebar Modal
+    .sidebarModal {
+        .modal-dialog {
+            width: 400px;
+
+            .modal-content {
+                .modal-body {
+                    padding: {
+                        left: 30px;
+                        right: 30px;
+                    };
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    // Navbar Area
+    .navbar-area {
+        padding: {
+            top: 12px;
+            bottom: 12px;
+        };
+        &.is-sticky {
+            padding: {
+                top: 12px;
+                bottom: 12px;
+            };
+        }
+        .container-fluid {
+            max-width: 720px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .navbar {
+            .navbar-nav {
+                display: block;
+                max-height: 50vh;
+                flex-direction: unset;
+                background-color: rgba(255, 255, 255, .1);
+                overflow: {
+                    y: scroll;
+                    x: hidden;
+                };
+                margin: {
+                    top: 15px;
+                    left: 0 !important;
+                    right: 0 !important;
+                };
+                padding: {
+                    top: 18px;
+                    left: 18px;
+                    right: 18px;
+                    bottom: 18px;
+                };
+                .nav-item {
+                    margin: {
+                        left: 0;
+                        right: 0;
+                        top: 18px;
+                        bottom: 18px;
+                    };
+                    .nav-link {
+                        font-size: 16px;
+                        color: var(--paragraphColor);
+                        padding: {
+                            top: 0;
+                            bottom: 0;
+                            left: 0 !important;
+                        };
+                        &::after {
+                            display: none;
+                        }
+                        &.active, &:hover {
+                            color: var(--whiteColor);
+                        }
+                    }
+                    .dropdown-toggle {
+                        &::before {
+                            top: 3px;
+                        }
+                    }
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    &:hover, &.active {
+                        a {
+                            color: var(--whiteColor);
+                        }
+                    }
+                    .dropdown-menu {
+                        opacity: 1;
+                        width: 100%;
+                        padding: 18px;
+                        top: 0 !important;
+                        box-shadow: unset;
+                        position: relative;
+                        visibility: visible;
+                        margin-top: 10px !important;
+                        background-color: var(--blackColor);
+
+                        .nav-item {
+                            padding: 0;
+                            margin: {
+                                left: 0;
+                                right: 0;
+                                top: 15px;
+                                bottom: 15px;
+                            };
+                            .nav-link {
+                                margin: 0;
+                                padding: 0;
+                                font-size: 15px;
+                                color: var(--paragraphColor);
+
+                                &.dropdown-toggle {
+                                    &::before {
+                                        right: 0;
+                                    }
+                                }
+                                &.active, &:hover {
+                                    color: var(--whiteColor);
+                                }
+                            }
+                            .dropdown-menu {
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                opacity: 1;
+                                width: auto;
+                                visibility: visible;
+                                margin: 10px 0 0 !important;
+                                background-color: rgba(255, 255, 255, .1);
+                            }
+                            &:first-child {
+                                margin-top: 0;
+                            }
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .others-option {
+                margin-top: 15px;
+            }
+        }
+        .style-two {
+            .navbar {
+                .navbar-brand {
+                    display: inline-block;
+                }
+                .navbar-nav {
+                    display: none;
+                    margin: {
+                        left: 0;
+                        right: 0;
+                    };
+                }
+                .for-responsive {
+                    display: block;
+                }
+                .logo-center {
+                    display: none;
+                }
+                .others-option {
+                    margin-left: 0;
+                }
+            }
+        }
+        .style-three {
+            .navbar {
+                .navbar-brand {
+                    margin-bottom: 0;
+
+                    img {
+                        width: 80px;
+                    }
+                }
+                .others-option {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    .navbar-light {
+        .navbar-toggler {
+            color: var(--whiteColor);
+            font-size: inherit;
+            box-shadow: unset;
+            border: none;
+            padding: 0;
+
+            .burger-menu {
+                cursor: pointer;
+
+                span {
+                    height: 3px;
+                    width: 30px;
+                    margin: 5px 0;
+                    display: block;
+                    background: var(--whiteColor);
+                }
+            }
+        }
+        &.active {
+            .navbar-toggler {
+                .burger-menu {
+                    span {
+                        &.top-bar {
+                            transform: rotate(45deg);
+                            transform-origin: 10% 10%;
+                        }
+                        &.middle-bar {
+                            opacity: 0;
+                        }
+                        &.bottom-bar {
+                            transform: rotate(-45deg);
+                            transform-origin: 10% 90%;
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+            .collapse:not(.show) {
+                display: block;
+            }
+        }
+    }
+
+    // Sidebar Modal
+    .sidebarModal {
+        .modal-dialog {
+            .modal-content {
+                .modal-body {
+                    .instagram-list {
+                        margin-top: 5px;
+                    }
+                    .sidebar-contact-info {
+                        margin-top: 30px;
+
+                        h2 {
+                            font-size: 25px;
+                        }
+                    }
+                    .social-list {
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {
+
+    // Navbar Area
+    .navbar-area {
+        .container-fluid {
+            max-width: 960px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .navbar {
+            .navbar-nav {
+                .nav-item {
+                    margin: {
+                        left: 10px;
+                        right: 10px;
+                    };
+                    .nav-link {
+                        font-size: 15px;
+
+                        &::before {
+                            top: 41px;
+                        }
+                    }
+                }
+            }
+            .others-option {
+                .option-item {
+                    margin-left: 15px;
+
+                    .default-btn {
+                        padding: 14px 22px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .style-two {
+            .navbar {
+                .logo-center {
+                    margin-bottom: -35px;
+                    
+                    img {
+                        width: 115px;
+                    }
+                }
+            }
+        }
+        .style-three {
+            .navbar {
+                .navbar-brand {
+                    img {
+                        width: 150px;
+                    }
+                }
+                .others-option {
+                    margin-left: 25px;
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+
+    // Navbar
+    .navbar-area {
+        .container-fluid {
+            max-width: 1780px;
+        }
+    }
+
+}

@@ -1,0 +1,33 @@
+<div
+    class="stake-area pt-120"
+    [ngClass]="{'pt-0': router.url === '/index-2' || router.url === '/index-5' || router.url === '/dex-offering' || router.url === '/land-selling-platform' || router.url === '/about-us' || router.url === '/blog'}"
+>
+    <div class="container">
+        <div class="stake-bg">
+            <div class="row align-items-end">
+                <div class="col-lg-8 col-md-12">
+                    <div class="stake-content">
+                        <span class="top-title">STAKE MAVE</span>
+                        <h2>Stake Mave To Earn Rewards</h2>
+                        <p>A Gamified Marketplace Dedicated To The Metaverse And Gaming Assets. The Metaverse Marketplace Allows Users To Trade, Auction, And Rent Virtual Ownership Assets From Various Metaverse And Gaming Projects.</p>
+                        <a routerLink="/projects" class="default-btn btn-active">
+                            Stake Mave
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="stake-image">
+                        <img src="assets/images/stake-img.png" alt="stake-image">
+                    </div>
+                </div>
+            </div>
+            <img src="assets/images/page-star.png" class="page-star" alt="page-star">
+        </div>
+    </div>
+    <img
+        src="assets/images/take-shape.png"
+        class="take-shape"
+        alt="take-shape"
+        [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3' || router.url === '/index-4' || router.url === '/index-5' || router.url === '/dex-offering' || router.url === '/gaming-metaverse' || router.url === '/nft-centric-metaverse' || router.url === '/land-selling-platform' || router.url === '/about-us' || router.url === '/features' || router.url === '/blog'}"
+    >
+</div>

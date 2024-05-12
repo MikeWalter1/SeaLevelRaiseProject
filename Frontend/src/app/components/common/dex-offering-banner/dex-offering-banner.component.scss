@@ -1,0 +1,173 @@
+.banner-area {
+	z-index: 1;
+	position: relative;
+    background: {
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+    padding: {
+        top: 300px;
+        bottom: 350px;
+    };
+    &::before {
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        z-index: -1;
+        height: 100%;
+        opacity: 0.5;
+        position: absolute;
+        background: #140C2D;
+    }
+}
+.banner-content {
+    max-width: 960px;
+    text-align: center;
+    margin: {
+        left: auto;
+        right: auto;
+    };
+	h1 {
+		font-size: 80px;
+		line-height: 100px;
+		margin-bottom: 25px;
+	}
+	.banner-btn {
+        margin-top: 40px;
+
+		.default-btn {
+			margin: {
+                left: 12px;
+                right: 12px;
+            };
+			&.connect {
+				background: linear-gradient(135deg, #57F0FA 0%, #712AF9 100%);
+			}
+		}
+	}
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .banner-area {
+        padding: {
+            top: 100px;
+            bottom: 150px;
+        };
+    }
+    .banner-content {
+        max-width: 100%;
+    
+        h1 {
+            font-size: 29px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .banner-btn {
+            margin-top: 15px;
+
+            .default-btn {
+                margin: {
+                    left: 5px;
+                    top: 10px;
+                    right: 5px;
+                };
+            }
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .banner-area {
+        padding: {
+            top: 150px;
+            bottom: 180px;
+        };
+    }
+    .banner-content {
+        max-width: 690px;
+
+        h1 {
+            font-size: 45px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .banner-btn {
+            margin-top: 25px;
+
+            .default-btn {
+                margin: {
+                    left: 7px;
+                    right: 7px;
+                };
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .banner-area {
+        padding: {
+            top: 200px;
+            bottom: 240px;
+        };
+    }
+    .banner-content {
+        max-width: 875px;
+
+        h1 {
+            font-size: 58px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .banner-btn {
+            margin-top: 30px;
+
+            .default-btn {
+                margin: {
+                    left: 8px;
+                    right: 8px;
+                };
+            }
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .banner-area {
+        padding: {
+            top: 200px;
+            bottom: 250px;
+        };
+    }
+    .banner-content {
+        max-width: 910px;
+
+        h1 {
+            font-size: 60px;
+            line-height: 75px;
+        }
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

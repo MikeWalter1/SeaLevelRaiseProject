@@ -1,0 +1,509 @@
+<app-multipage-navbar></app-multipage-navbar>
+
+<!-- Page Title -->
+<div class="page-banner-area" style="background-image: url(assets/images/page-banner-bg.jpg);">
+    <div class="container">
+        <div class="page-banner-content">
+            <ul>
+                <li>
+                    <a routerLink="/">
+                        HOME
+                    </a>
+                </li>
+                <li>
+                    <span>PROJECTS</span>
+                </li>
+            </ul>
+            <h2>Projects</h2>
+            <img src="assets/images/page-star.png" class="star" alt="star">
+        </div>
+    </div>
+    <img src="assets/images/banner/banner-shape-1.png" class="shape shape-1" alt="shape">
+    <img src="assets/images/banner/banner-shape-2.png" class="shape shape-2" alt="shape">
+</div>
+
+<!-- Projects -->
+<div class="projects-area ptb-120">
+    <div class="container">
+        <div class="projects-tabs">
+            <ul class="nav-tabset">
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab1'}">
+                    <span (click)="switchTab($event, 'tab1')">
+                        Open Projects
+                    </span>
+                </li>
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab2'}">
+                    <span (click)="switchTab($event, 'tab2')">
+                        Upcoming Projects
+                    </span>
+                </li>
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab3'}">
+                    <span (click)="switchTab($event, 'tab3')">
+                        Completed Projects
+                    </span>
+                </li>
+            </ul>
+            <div class="tabs-container">
+                <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-1.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-2.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-3.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-4.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-5.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-6.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="read-more-btn">
+                                <a routerLink="/projects" class="read-more">Load More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pane" id="tab2" *ngIf="currentTab === 'tab2'">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-4.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-5.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-6.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-1.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-2.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-3.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="read-more-btn">
+                                <a routerLink="/projects" class="read-more">Load More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pane" id="tab3" *ngIf="currentTab === 'tab3'">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-1.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-2.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-3.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-4.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Tech Arrow Fighter</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-5.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Do Or Die Game</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-next-project">
+                                <img src="assets/images/next-project/next-project-6.jpg" alt="project-image">
+                                <div class="next-project-content">
+                                    <h3>Space War 02</h3>
+                                    <p>The Metaverse is the next generation of the internet. As one of its earliest.</p>
+                                    <ul>
+                                        <li>
+                                            Targeted Raise
+                                            <span>300,000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Token price
+                                            <span>0.30000 <sub>BUSD</sub></span>
+                                        </li>
+                                        <li>
+                                            Projects Start on
+                                            <span>17 <sub>March, 2024</sub></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="read-more-btn">
+                                <a routerLink="/projects" class="read-more">Load More Projects</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

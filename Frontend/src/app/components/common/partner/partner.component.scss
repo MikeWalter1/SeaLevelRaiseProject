@@ -1,0 +1,97 @@
+.partner-slides {
+    .partner-item {
+        text-align: center;
+
+        img {
+            margin: auto;
+            width: auto !important;
+            display: inline-block !important;
+        }
+	}
+}
+.partner-wrap {
+	background: linear-gradient(92.34deg, #FDCE39 1.68%, #FD8963 50.6%, #ED5174 98.82%);
+	padding: 80px 100px;
+	border-radius: 10px;
+	position: relative;
+    margin-top: -100px;
+	z-index: 1;
+}
+.partner-inner {
+	background: linear-gradient(92.34deg, #FDCE39 1.68%, #FD8963 50.6%, #ED5174 98.82%);
+	padding: 80px 100px 40px;
+	border-radius: 10px;
+    text-align: center;
+
+    .partner-item {
+        margin-bottom: 40px;
+    }
+}
+.d-none {
+    &.d-block {
+        display: block !important;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .partner-wrap {
+        padding: 30px 25px;
+        margin-top: -50px;
+    }
+    .partner-inner {
+        padding: 60px 15px 30px;
+    
+        .partner-item {
+            margin-bottom: 30px;
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .partner-wrap {
+        padding: 30px 25px;
+        margin-top: -50px;
+    }
+    .partner-inner {
+        padding: 80px 30px 50px;
+    
+        .partner-item {
+            margin-bottom: 30px;
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .partner-wrap {
+        padding: 60px 50px;
+        margin-top: -70px;
+    }
+    .partner-inner {
+        padding: 80px 50px 40px;
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    
+    .partner-wrap {
+        padding: 60px 20px;
+        margin-top: -70px;
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

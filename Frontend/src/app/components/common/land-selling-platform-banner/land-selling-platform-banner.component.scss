@@ -1,0 +1,326 @@
+.banner-area {
+	z-index: 1;
+    overflow: hidden;
+	position: relative;
+    background: {
+        position: center center;
+        repeat: no-repeat;
+        size: cover;
+    };
+    padding: {
+        top: 200px;
+        bottom: 200px;
+    };
+    .shape {
+        position: absolute;
+        z-index: -1;
+        
+        &.shape-1 {
+            left: auto;
+            right: 0;
+            top: 0;
+        }
+        &.shape-2 {
+            right: auto;
+            left: 0;
+            top: 0;
+        }
+        &.earth {
+            right: 0;
+            top: 30px;
+            opacity: 1;
+            left: 220px;
+            margin: auto;
+            max-width: 300px;
+            border-radius: 50%;
+        }
+    }
+	.container-fluid {
+        padding: {
+            left: 30px;
+            right: 30px;
+        };
+	}
+}
+.banner-content {
+    position: relative;
+    max-width: 870px;
+    z-index: 1;
+
+    .top-title {
+		background: linear-gradient(90.99deg, #FDCE39 0.27%, #FD8963 30%, #ED5174 98.69%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		display: inline-block;
+		margin-bottom: 12px;
+        font: {
+		    size: 20px;
+            weight: 600;
+            family: var(--headingFontFamily);
+        };
+	}
+	h1 {
+		font-size: 80px;
+		line-height: 100px;
+		margin-bottom: 25px;
+		color: var(--whiteColor);
+	}
+	p {
+		color: var(--whiteColor);
+        max-width: 755px;
+		color: #BEB8CC;
+	}
+    .default-btn {
+        margin-top: 25px;
+	}
+}
+.banner-image {
+	position: absolute;
+    text-align: end;
+	bottom: -3px;
+	right: 0;
+
+    img {
+        max-width: 88%;
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .banner-area {
+        padding: {
+            top: 60px;
+            bottom: 0;
+        };
+        .shape {
+            display: none;
+        }
+        .container-fluid {
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+    }
+    .banner-content {
+        max-width: 100%;
+        text-align: center;
+    
+        .top-title {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        h1 {
+            font-size: 30px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .default-btn {
+            margin-top: 5px;
+        }
+    }
+    .banner-image {
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+        bottom: 0;
+    
+        img {
+            max-width: 100%;
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+    .banner-area {
+        .container-fluid {
+            max-width: 540px;
+        }
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .banner-area {
+        padding: {
+            top: 80px;
+            bottom: 0;
+        };
+        .container-fluid {
+            max-width: 720px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .shape {
+            display: none;
+        }
+    }
+    .banner-content {
+        text-align: center;
+        max-width: 100%;
+    
+        .top-title {
+            font-size: 17px;
+        }
+        h1 {
+            font-size: 45px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .default-btn {
+            margin-top: 10px;
+        }
+    }
+    .banner-image {
+        position: relative;
+        text-align: center;
+        margin-top: 30px;
+        bottom: 0;
+    
+        img {
+            max-width: 100%;
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    .banner-area {
+        padding: {
+            top: 120px;
+            bottom: 130px;
+        };
+        .container-fluid {
+            max-width: 960px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .shape {
+            display: none;
+
+            &.earth {
+                max-width: 200px;
+                display: block;
+                left: 0;
+            }
+        }
+    }
+    .banner-content {
+        max-width: 100%;
+
+        .top-title {
+            font-size: 17px;
+        }
+        h1 {
+            font-size: 55px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .default-btn {
+            margin-top: 10px;
+        }
+    }
+    .banner-image {
+        img {
+            max-width: 60%;
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    .banner-area {
+        padding: {
+            top: 150px;
+            bottom: 150px;
+        };
+        .container-fluid {
+            max-width: 1140px;
+            padding: {
+                left: calc(var(--bs-gutter-x) * 0.5);
+                right: calc(var(--bs-gutter-x) * 0.5);
+            };
+        }
+        .shape {
+            &.shape-1 {
+                display: none;
+            }
+            &.earth {
+                left: 0;
+                max-width: 235px;
+            }
+        }
+    }
+    .banner-content {
+        max-width: 100%;
+
+        .top-title {
+            font-size: 18px;
+        }
+        h1 {
+            font-size: 65px;
+            line-height: 80px;
+            margin-bottom: 20px;
+        }
+        p {
+            max-width: 100%;
+        }
+        .default-btn {
+            margin-top: 15px;
+        }
+    }
+    .banner-image {
+        img {
+            max-width: 70%;
+        }
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {
+
+    .banner-area {
+        .shape {
+            &.earth {
+                right: 0;
+                top: 50px;
+                left: 320px;
+                max-width: 550px;
+            }
+        }
+        .container-fluid {
+            max-width: 1780px;
+        }
+    }
+    .banner-image {
+        img {
+            max-width: 100%;
+        }
+    }
+
+}

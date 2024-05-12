@@ -1,0 +1,91 @@
+<div
+    id="how-it-works"
+    class="how-it-works-area ptb-120"
+    [ngClass]="{'pt-0': router.url === '/index-2' || router.url === '/dex-offering'}"
+>
+    <div class="container">
+        <div class="section-title">
+            <span class="top-title">HOW IT WORKS</span>
+            <h2>The Ignition Of Metaverse</h2>
+        </div>
+        <div class="how-it-works-tabs">
+            <ul class="nav-tabset">
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab1'}">
+                    <span (click)="switchTab($event, 'tab1')">
+                        Metaverse Marketplace
+                    </span>
+                </li>
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab2'}">
+                    <span (click)="switchTab($event, 'tab2')">
+                        Launchpad
+                    </span>
+                </li>
+                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab3'}">
+                    <span (click)="switchTab($event, 'tab3')">
+                        MetaFi DeFi Vault
+                    </span>
+                </li>
+            </ul>
+            <div class="tabs-container">
+                <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
+                    <div class="image">
+                        <img src="assets/images/works/works-2.jpg" alt="works-image">
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12">
+                                <h3>Metaverse Marketplace</h3>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                <p>A Gamified Marketplace Dedicated To The Metaverse And Gaming Assets. The Metaverse Marketplace Allows Users To Trade, Auction, And Rent Virtual Ownership Assets From Various Metaverse And Gaming Projects. The Metaverse Is The Next Generation Of The Internet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pane" id="tab2" *ngIf="currentTab === 'tab2'">
+                    <div class="image">
+                        <img src="assets/images/works/works-1.jpg" alt="works-image">
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12">
+                                <h3>Launchpad</h3>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                <p>A Gamified Marketplace Dedicated To The Metaverse And Gaming Assets. The Metaverse Marketplace Allows Users To Trade, Auction, And Rent Virtual Ownership Assets From Various Metaverse And Gaming Projects. The Metaverse Is The Next Generation Of The Internet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pane" id="tab3" *ngIf="currentTab === 'tab3'">
+                    <div class="image">
+                        <img src="assets/images/works/works-3.jpg" alt="works-image">
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12">
+                                <h3>MetaFi DeFi Vault</h3>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                <p>A Gamified Marketplace Dedicated To The Metaverse And Gaming Assets. The Metaverse Marketplace Allows Users To Trade, Auction, And Rent Virtual Ownership Assets From Various Metaverse And Gaming Projects. The Metaverse Is The Next Generation Of The Internet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img
+            src="assets/images/works/shape-1.png"
+            class="shape shape-1"
+            alt="shape"
+            [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3' || router.url === '/dex-offering' || router.url === '/gaming-metaverse' || router.url === '/about-us'}"
+        >
+        <img
+            src="assets/images/works/shape-2.png"
+            class="shape shape-2"
+            alt="shape"
+            [ngClass]="{'d-none': router.url === '/index-2' || router.url === '/index-3' || router.url === '/dex-offering' || router.url === '/gaming-metaverse' || router.url === '/about-us'}"
+        >
+        <img src="assets/images/works/shape-3.png" class="shape shape-3" alt="shape">
+    </div>
+</div>

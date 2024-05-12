@@ -1,0 +1,63 @@
+<div id="ecosystem" class="ecosystem-area ptb-120" style="background-image: url(assets/images/ecosystem-bg-shape.png);">
+    <div class="container">
+        <div class="section-title">
+            <span class="top-title">ECOSYSTEM</span>
+            <h2>Our Best Ecosystem</h2>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="ecosystem-tabs">
+                    <ul class="nav-tabset">
+                        <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab1'}">
+                            <span (click)="switchTab($event, 'tab1')">
+                                Mave Launchpad
+                            </span>
+                        </li>
+                        <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab2'}">
+                            <span (click)="switchTab($event, 'tab2')">
+                                NFT Marketplace
+                            </span>
+                        </li>
+                        <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab3'}">
+                            <span (click)="switchTab($event, 'tab3')">
+                                Mave Dex
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="tabs-container">
+                        <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
+                            <div class="ecosystem-content">
+                                <h2>Mave Launchpad</h2>
+                                <p>NFT allows artists to exhibit their artworks and reach millions of art lovers in all countries around the world. Get started now by creating nft artworks and maximizing your profits!</p>
+                                <p>The Metaverse is the next generation of the internet. As one of its earliest explorers, you will help fuel its expansion and growth.</p>
+                                <a routerLink="/projects" class="default-btn btn-active">Explore More</a>
+                            </div>
+                        </div>
+                        <div class="pane" id="tab2" *ngIf="currentTab === 'tab2'">
+                            <div class="ecosystem-content">
+                                <h2>NFT Marketplace</h2>
+                                <p>NFT allows artists to exhibit their artworks and reach millions of art lovers in all countries around the world. Get started now by creating NFT artworks and maximizing your profits!</p>
+                                <p>The Metaverse is the next generation of the internet. As one of its earliest explorers, you will help fuel its expansion and growth.</p>
+                                <a routerLink="/projects" class="default-btn btn-active">Explore More</a>
+                            </div>
+                        </div>
+                        <div class="pane" id="tab3" *ngIf="currentTab === 'tab3'">
+                            <div class="ecosystem-content">
+                                <h2>Mave Dex</h2>
+                                <p>NFT allows artists to exhibit their artworks and reach millions of art lovers in all countries around the world. Get started now by creating NFT artworks and maximizing your profits!</p>
+                                <p>The Metaverse is the next generation of the internet. As one of its earliest explorers, you will help fuel its expansion and growth.</p>
+                                <a routerLink="/projects" class="default-btn btn-active">Explore More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="ecosystem-image">
+                    <img src="assets/images/ecosystem-img.png" alt="ecosystem-image">
+                    <img src="assets/images/ecosystem.gif" class="ecosystem-gif" alt="ecosystem-gif">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
