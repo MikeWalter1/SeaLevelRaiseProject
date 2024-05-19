@@ -23,6 +23,8 @@ import { LandSellingPlatformLandingComponent } from './components/pages/single-p
 import { MetavarseLaunchpadLandingComponent } from './components/pages/single-page/metavarse-launchpad-landing/metavarse-launchpad-landing.component';
 import { NftCentricMetaverseLandingComponent } from './components/pages/single-page/nft-centric-metaverse-landing/nft-centric-metaverse-landing.component';
 import { ContractInteractionComponent } from './components/common/contract-interaction/contract-interaction.component';
+import { WalletConnectComponent } from './components/common/wallet-connect/wallet-connect.component';
+import { CreateOrganizationComponent } from './components/pages/inner-pages/create-organization/create-organization.component';
 
 const routes: Routes = [
 
@@ -52,6 +54,7 @@ const routes: Routes = [
     {path: 'blog-details', component: BlogDetailsPageComponent},
     {path: 'privacy-policy', component: PrivacyPolicyPageComponent},
     {path: 'terms-conditions', component: TermsConditionsPageComponent},
+    {path: 'create-organization', component: CreateOrganizationComponent},
     // {path: 'contact-us', component: ContactPageComponent},
     // Here add new pages component
 

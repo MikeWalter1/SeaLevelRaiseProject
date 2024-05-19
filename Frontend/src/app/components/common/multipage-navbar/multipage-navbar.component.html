@@ -61,7 +61,7 @@
                         <a routerLink="/projects" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a routerLink="/projects" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Organizations</a>
+                        <a routerLink="/create-organization" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Organizations</a>
                     </li>
                     <!-- <li class="nav-item"><a href="javascript:void(0)" class="dropdown-toggle nav-link">Projects</a>
                         <ul class="dropdown-menu">
@@ -108,12 +108,12 @@
                 </ul>
 
                 <div class="others-option d-flex align-items-center">
-                    <div class="option-item">
+                    <!-- <div class="option-item">
                         <a routerLink="/contact-us" class="default-btn">Connect Wallet</a>
                     </div>
                     <div class="option-item">
                         <a routerLink="/contact-us" class="default-btn">Apply For IDO</a>
-                    </div>
+                    </div> -->
                     <div class="option-item">
                         <span class="burger-menu" (click)="switcherToggleClass()">
                             <i class="ri-menu-4-line"></i>
@@ -415,8 +415,11 @@
                     </li>
                 </ul>
                 <div class="others-option d-flex align-items-center">
-                    <div class="option-item">
+                    <!-- <div class="option-item">
                         <a routerLink="/contact-us" class="default-btn">Connect Wallet</a>
+                    </div> -->
+                    <div>
+                        <app-wallet-connect></app-wallet-connect>
                     </div>
                     <div class="option-item">
                         <span class="burger-menu" (click)="switcherToggleClass()">

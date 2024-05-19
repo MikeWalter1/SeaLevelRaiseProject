@@ -1,0 +1,13 @@
+<!-- <div *ngIf="account">
+    <p>Connected wallet: {{ account }}</p>
+</div> -->
+
+<!-- <ng-template #connectWallet> -->
+<div *ngIf="!account">
+    <button class="default-btn" (click)="tryConnectWallet()">Connect Wallet</button>
+</div>
+<div *ngIf="account">
+    <button class="default-btn" (click)="disconnectWallet()">Disconnect Wallet</button>
+    <!-- <p>Connected wallet: {{ account }}</p> -->
+</div>
+<!-- </ng-template> -->

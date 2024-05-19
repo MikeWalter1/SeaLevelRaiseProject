@@ -52,6 +52,9 @@ import { MultipageNavbarComponent } from './components/common/multipage-navbar/m
 import { TeamPageComponent } from './components/pages/inner-pages/team-page/team-page.component';
 import { OnepageNavbarComponent } from './components/common/onepage-navbar/onepage-navbar.component';
 import { ContractInteractionComponent } from './components/common/contract-interaction/contract-interaction.component';
+import { HttpClientModule } from '@angular/common/http';
+import { WalletConnectComponent } from './components/common/wallet-connect/wallet-connect.component';
+// import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -101,14 +104,17 @@ import { ContractInteractionComponent } from './components/common/contract-inter
         MultipageNavbarComponent,
         TeamPageComponent,
         OnepageNavbarComponent,
-        ContractInteractionComponent
+        ContractInteractionComponent,
+        WalletConnectComponent,
+        // FormsModule
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         CarouselModule,
         NgxScrollTopModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
