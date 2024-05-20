@@ -31,8 +31,10 @@ async function main() {
   );
   copyFile("./artifacts/contracts/DAO_SLR.sol/DAO_SLR.json", "../Frontend/src/assets/DAO_SLR.json");
 
-  dao.createOrganization(firstOrgaOwner.getAddress(), "Test Organization", "Organization Description");
+  await dao.connect(firstOrgaOwner).createOrganization("Test Organization", "Organization Description");
   console.log(`Organization "Test Organization" created by ${firstOrgaOwner.getAddress()}`);
+  await dao.connect(firstOrgaOwner).createProject("Test Project", "Project Description", 1000);
+  console.log(`Project "Test Project" created by ${firstOrgaOwner.getAddress()}`);
 
 }
 

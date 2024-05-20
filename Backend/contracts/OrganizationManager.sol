@@ -35,14 +35,16 @@ contract OrganizationManager {
     }
 
     modifier onlyValidOrganization(){
-        require(organizations[msg.sender].state != OrganizationState.Onboarding, "Only an organization that has been onboarded can call this function.");
+        // for now every organization can create a project despite not being onboarded
+        // require(organizations[msg.sender].state != OrganizationState.Onboarding, "Only an organization that has been onboarded can call this function.");
         require(organizations[msg.sender].state != OrganizationState.OnboardingFailed, "This organisation has been banned."); // not called
         _;
     }
 
-    function createOrganization(address payable _walletAddress, string memory _organizationName, string memory _organizationDescription) public  {
-        organizations[_walletAddress] = Organization(organizationsCount, _walletAddress, _organizationName, _organizationDescription, OrganizationState.Onboarding, 0, 0);
-        organizationIdToAddress[organizationsCount] = _walletAddress;
+    function createOrganization(string memory _organizationName, string memory _organizationDescription) public  {
+        // TODO: Check whether msg.sender has already an organization
+        organizations[payable(msg.sender)] = Organization(organizationsCount, payable(msg.sender), _organizationName, _organizationDescription, OrganizationState.Onboarding, 0, 0);
+        organizationIdToAddress[organizationsCount] = payable(msg.sender);
         organizationsCount++;
     }
 

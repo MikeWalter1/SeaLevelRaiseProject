@@ -45,11 +45,14 @@ contract ProjectManager is OrganizationManager {
     // Event to emit when funding goal is reached
     event FundingGoalReached(uint _projectId, uint _amount);
 
-    function createProject(address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
-        
+    function createProject(string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
+        require(_goal > 0, "Goal must be greater than 0");
+        Organization memory orga = organizations[msg.sender];
+        require(orga.walletAddress == msg.sender, "Only the organization owner can call this function.");
+
         Project storage newProject = projects[projectCount];
-        newProject.organizationId = _organizationId;
-        newProject.projectOwner = _owner;
+        newProject.organizationId = orga.organizationId;
+        newProject.projectOwner = payable(msg.sender);
         newProject.projectTitle = _title;
         newProject.projectDescription = _description;
         newProject.fundingGoal = _goal;
@@ -58,11 +61,19 @@ contract ProjectManager is OrganizationManager {
         projectCount++;
     }
 
+    function getAllProjectsTest() public view returns(string[] memory names){
+        string[] memory projectNames = new string[](projectCount);
+        for (uint i = 0; i < projectCount; i++) {
+            projectNames[i] = projects[i].projectTitle;
+        }
+        return projectNames;
+    }
+
     function getProjectsInRange(uint _from, uint _to) public view returns(Project[] memory){
         require(_from <= _to, "Invalid range");
         require(_to < projectCount, "Range exceeds project list length");
         require(_from < projectCount, "Range exceeds project list length");
-
+        if (_from < 0) _from = 0;
         Project[] memory projectsInRange = new Project[](_to - _from + 1);
 
         for (uint i = _from; i <= _to; i++) {
@@ -70,6 +81,10 @@ contract ProjectManager is OrganizationManager {
         }
         return projectsInRange;
     }
+
+    function getAllProjects() public view returns(Project[] memory){
+        return getProjectsInRange(0, projectCount - 1);
+    }   
 
     function getLastTenProjects() public view returns(Project[] memory){
         return getProjectsInRange(projectCount - 10, projectCount - 1);
