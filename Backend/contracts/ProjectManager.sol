@@ -61,12 +61,22 @@ contract ProjectManager is OrganizationManager {
         projectCount++;
     }
 
-    function getAllProjectsTest() public view returns(string[] memory names){
+    function getAllProjectsTest() public view returns(string[] memory names, string[] memory descriptions, uint[] memory goals, uint[] memory currentFundings, uint[] memory projectIds) {
         string[] memory projectNames = new string[](projectCount);
+        string[] memory projectDescriptions = new string[](projectCount);
+        uint[] memory projectGoals = new uint[](projectCount);
+        uint[] memory projectCurrentFundings = new uint[](projectCount);
+        uint[] memory projectIdsArray = new uint[](projectCount);
+
         for (uint i = 0; i < projectCount; i++) {
             projectNames[i] = projects[i].projectTitle;
+            projectDescriptions[i] = projects[i].projectDescription;
+            projectGoals[i] = projects[i].fundingGoal;
+            projectCurrentFundings[i] = projects[i].currentFunding;
+            projectIdsArray[i] = projects[i].projectId;
         }
-        return projectNames;
+
+        return (projectNames, projectDescriptions, projectGoals, projectCurrentFundings, projectIdsArray);
     }
 
     function getProjectsInRange(uint _from, uint _to) public view returns(Project[] memory){
