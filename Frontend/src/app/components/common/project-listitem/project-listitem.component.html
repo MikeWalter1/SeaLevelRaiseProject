@@ -1,0 +1,24 @@
+<!-- <div class="col-lg-4 col-md-6"> -->
+    <div class="single-next-project">
+        <img [src]="imageUrl" alt="project-image">
+        <div class="next-project-content">
+            <h3>{{ projectTitle }}</h3>
+            <p>{{ projectDescription }} </p>
+            <ul>
+                <li>
+                    Amount Needed
+                    <span>{{ fundsNeeded }} <sub>ETH</sub></span>
+                </li>
+                <li>
+                    Raised Funds
+                    <span>{{ totalDonations }} <sub>ETH</sub></span>
+                </li>
+                <li>
+                    Phase:
+                    <span>Voting <sub></sub></span>
+                </li>
+            </ul>
+        </div>
+        <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+    </div>
+<!-- </div> -->

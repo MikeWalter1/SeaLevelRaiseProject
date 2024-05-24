@@ -31,15 +31,15 @@
                     <div class="featured-auction-info-wrap d-flex align-items-center">
                         <img src="assets/images/featured-auction-img.jpg" alt="featured-auction-img">
                         <div class="featured-auction-info">
-                            <h3>Reign Of Terror</h3>
-                            <span>Price (DDO) = 0.05 BUSD</span>
+                            <h3>{{ projectTitle }}</h3>
+                            <span>{{ fundsNeeded }} ETH</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-7">
                     <div class="timer-wrap d-flex align-items-center justify-content-end">
                         <div>
-                            <span>Sale End In:</span>
+                            <span>Vote ends in:</span>
                             <div class="timer flex-wrap d-flex justify-content-center">
                                 <div class="align-items-center flex-column d-flex justify-content-center">
                                     <span class="days">{{days}}</span>
@@ -125,69 +125,97 @@
                 <span class="bg-color"></span>
             </div>
             <ul class="total-raised d-flex justify-content-between">
-                <li>Total raised: 42,300,000 BUSD (74%)</li>
-                <li>Allocations: 1000 BUSD Max</li>
-                <li>Targeted raise: 320,000,000 BUSD</li>
+                <li>Total raised: {{ totalDonations }} ETH (74%)</li>
+                <li>Targeted raise: {{ fundsNeeded }} ETH </li>
+                <li>Phase: Voting</li>
             </ul>
         </div>
+
         <div class="details-info-wrap">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="project-details-info">
-                        <h3>Reign Of Terror</h3>
+                        <h3>How does it work?</h3>
                         <ul>
                             <li>
-                                Token Distribution
-                                <span>Date BUSD</span>
+                                You have to be a registered user to vote by donating to the DAO.
                             </li>
                             <li>
-                                Min. Allocation
-                                <span>0.03 BUSD</span>
+                                Spend your voting tokens on this project.
                             </li>
                             <li>
-                                Max. Allocation
-                                <span>2351.03 BUSD</span>
+                                If it receives enough votes, it will be funded.
                             </li>
-                            <li>
-                                Token Price
-                                <span>1 BUSD = 325.35 SIDUS</span>
-                            </li>
-                            <li>
-                                Access Type
-                                <span>Private</span>
-                            </li>
+                            <li></li>
                         </ul>
+                        <!-- <div class="container"> -->
+                            <div class="contact-form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <button class="default-btn button-small" (click)="voteForProject()">Vote for Project</button>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" name="votingAmount" id="votingAmount" class="form-control" required placeholder="22" [(ngModel)]="votingAmount">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2">
+                                                <span>Tokens</span>
+                                                <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
+
+                                            <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        <!-- </div> -->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="project-details-info">
-                        <h3>Token Info</h3>
+                        <h3>Not a DAO-Member yet?</h3>
                         <ul>
                             <li>
-                                Token Name
-                                <span>Reign Of Terror</span>
+                                Donate to the DAO to become a member.
                             </li>
                             <li>
-                                Token Symbol
-                                <span>ROT</span>
+                                Minimum donation is 0,001 ETH
+                                <!-- <span>0,001 ETH</span> -->
                             </li>
                             <li>
-                                Decimals
-                                <span>22</span>
+                                Your donation will be 1:1 exchanged for voting tokens.
                             </li>
-                            <li>
-                                Address
-                                <span>22cf3459gf3d009</span>
-                            </li>
-                            <li>
-                                Total Sypply
-                                <span>235,342,889.00 ROT</span>
-                            </li>
+                            <div class="contact-form">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <button class="default-btn button-small" (click)="donateToDao()">Donate to DAO</button>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" name="donationAmount" id="donationAmount" class="form-control" required placeholder="22" [(ngModel)]="donationAmount">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2">
+
+                                                <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth">
+
+                                            <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
         <div class="projects-wrap-tabs">
             <ul class="nav-tabset">
                 <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab1'}">
@@ -200,16 +228,16 @@
                         Schedule
                     </span>
                 </li>
-                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab3'}">
+                <!-- <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab3'}">
                     <span (click)="switchTab($event, 'tab3')">
                         Comparison
                     </span>
-                </li>
-                <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab4'}">
+                </li> -->
+                <!-- <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab4'}">
                     <span (click)="switchTab($event, 'tab4')">
                         Tokenomics
                     </span>
-                </li>
+                </li> -->
                 <li class="nav-tab" [ngClass]="{'active': currentTab === 'tab5'}">
                     <span (click)="switchTab($event, 'tab5')">
                         Roadmap
@@ -230,35 +258,34 @@
                 <div class="pane" id="tab1" *ngIf="currentTab === 'tab1'">
                     <div class="project-summary step-1">
                         <h3>Project Summary</h3>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership.</p>
+                        <p>The project is an imporant project because its very important.</p>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
                         <div class="project-summary-img">
                             <img src="assets/images/projects/project-9.jpg" alt="projects-image">
                         </div>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership.</p>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                     </div>
                     <div class="project-summary step-2">
                         <h3>Schedule</h3>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership.</p>
+                        <p>Month 1 - Stuff happens!</p>
+                        <p>Month 3-5 - Done!</p>
                     </div>
-                    <div class="project-summary step-3">
+                    <!-- <div class="project-summary step-3">
                         <h3>Comparison</h3>
                         <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projectsA gamified marketplace dedicated to the meta verse and gaming assets. The Metaverse marketplace allows users to trade, and rent virtual ownership..</p>
-                    </div>
+                    </div> -->
                     <div class="project-summary step-4">
-                        <h3>Tokenomics</h3>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
+                        <h3>Spending</h3>
+                        <p>What are the donations used for?</p>
                         <div class="single-token-list">
                             <ul class="d-flex justify-content-between">
                                 <li>
-                                    <h4>15% <sub>Team</sub></h4>
-                                    <p>0% TGE 5% unlocked each month after</p>
+                                    <h4>15% <sub>Team Salary</sub></h4>
+                                    <p>Salary for the Team</p>
                                 </li>
                                 <li class="text-end">
-                                    <h4>15,000,000,000</h4>
-                                    <p>Tokens</p>
+                                    <h4>2</h4>
+                                    <p>ETH</p>
                                 </li>
                             </ul>
                         </div>
@@ -266,39 +293,39 @@
                             <ul class="d-flex justify-content-between">
                                 <li>
                                     <h4>12% <sub>Strategic Partners & Advisors</sub></h4>
-                                    <p>0% TGE 5% unlocked each month after</p>
+                                    <p>For consultants</p>
                                 </li>
                                 <li class="text-end">
-                                    <h4>21,500,000,000</h4>
-                                    <p>Tokens</p>
+                                    <h4>5</h4>
+                                    <p>ETH</p>
                                 </li>
                             </ul>
                         </div>
                         <div class="single-token-list">
                             <ul class="d-flex justify-content-between">
                                 <li>
-                                    <h4>21.5% <sub>Exchange Listing & Liquidify</sub></h4>
-                                    <p>20% TGE 10% unlocked each month after</p>
+                                    <h4>21.5% <sub>Materials</sub></h4>
+                                    <p>For construction</p>
                                 </li>
                                 <li class="text-end">
-                                    <h4>12,000,000,000</h4>
-                                    <p>Tokens</p>
+                                    <h4>20</h4>
+                                    <p>ETH</p>
                                 </li>
                             </ul>
                         </div>
                         <div class="single-token-list">
                             <ul class="d-flex justify-content-between">
                                 <li>
-                                    <h4>24.5% <sub>Staking, In-game Rewards & Development</sub></h4>
-                                    <p>20% TGE 10% unlocked each month after</p>
+                                    <h4>24.5% <sub>Construction</sub></h4>
+                                    <p>Crew of construction workers</p>
                                 </li>
                                 <li class="text-end">
-                                    <h4>24,500,000,000</h4>
-                                    <p>Tokens</p>
+                                    <h4>25,4</h4>
+                                    <p>ETH</p>
                                 </li>
                             </ul>
                         </div>
-                        <div class="single-token-list">
+                        <!-- <div class="single-token-list">
                             <ul class="d-flex justify-content-between">
                                 <li>
                                     <h4>16% <sub>Company Reserves</sub></h4>
@@ -321,16 +348,17 @@
                                     <p>Tokens</p>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="project-summary step-5">
                         <h3>Roadmap</h3>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
+                        <p>1. Milestone</p>
+                        <p>2. Milestone</p>
                     </div>
                 </div>
                 <div class="pane" id="tab2" *ngIf="currentTab === 'tab2'">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
+                        <!-- <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="single-features style-two">
                                 <div class="d-flex align-items-center">
                                     <img src="assets/images/icon/icon-1.svg" alt="icon">
@@ -401,13 +429,13 @@
                                 <p>The Metaverse is the next generation of the internet. As one of its earliest explorers, you will.</p>
                                 <a routerLink="/project-details" class="read-more">READ MORE</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="pane" id="tab3" *ngIf="currentTab === 'tab3'">
                     <div class="statistics-bar">
                         <div class="bg-1 mb-20 d-flex justify-content-between align-items-center">
-                            <span>Land NFT Minted</span>
+                            <span>1. Milestone</span>
                             <h3>486,822</h3>
                         </div>
                         <div class="bg-2 mb-20 d-flex justify-content-between align-items-center">
@@ -591,9 +619,9 @@
                                 </div>
                                 <ul>
                                     <li>Launch Strategic Round</li>
-                                    <li>Launch Public Sale round under IDO and be listed on exchanges right after IDO</li>
-                                    <li>Launch program on staking BNU to earn NFT representing placements in 3D virtual reality space</li>
-                                    <li>Launch the NFT exchange</li>
+                                    <li>Start planning the project</li>
+                                    <li>Hire a great team</li>
+                                    <li>Do stuff that is very important</li>
                                 </ul>
                             </div>
                         </div>
@@ -604,10 +632,10 @@
                                     <h2>Q3</h2>
                                 </div>
                                 <ul>
-                                    <li>Introduce the collection of NFT for rare artworks and conduct auctions</li>
-                                    <li>Launch the Staking NFT system</li>
+                                    <li>Introduce new stuff to the project</li>
+                                    <li>Launch a rocket to mars</li>
                                     <li>Introduce the system supporting artworks, establish standard storage and preservation centers for artworks</li>
-                                    <li>Build Mave NFT Marketplace</li>
+                                    <li>Build a huge rubber duck</li>
                                 </ul>
                             </div>
                         </div>
@@ -618,9 +646,9 @@
                                     <h2>Q4</h2>
                                 </div>
                                 <ul>
-                                    <li>Demo 3D virtual exhibition</li>
-                                    <li>Announce the extended ecosystems ByteNext Labs Build</li>
-                                    <li>Build Mave Launchpad</li>
+                                    <li>Demo the milestone</li>
+                                    <li>Announce the extended ecosystems.</li>
+                                    <li>Build pyramids that are bigger than the ones in egypt</li>
                                     <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta non ab sed neque exercitationem? Veritatis</li>
                                 </ul>
                             </div>
@@ -632,10 +660,10 @@
                                     <h2>Q1</h2>
                                 </div>
                                 <ul>
-                                    <li>Develop Yield Guild</li>
-                                    <li>Continuously develop and promote Mave Launchpad</li>
-                                    <li>Widen AvatarArt’s network</li>
-                                    <li>Introduce the system supporting artworks, establish standard storage and preservation centers for artworks</li>
+                                    <li>Develop nuclear technology</li>
+                                    <li>Continuously develop and promote other stuff</li>
+                                    <li>Defend against UFOs</li>
+                                    <li>Introduce the system supporting advanced quantum physics on the Moon's CERN.</li>
                                 </ul>
                             </div>
                         </div>
@@ -646,8 +674,8 @@
                                     <h2>Q2</h2>
                                 </div>
                                 <ul>
-                                    <li>Develop Yield Guild</li>
-                                    <li>Complete Mave Labs Ecosystem</li>
+                                    <li>Develop Yield</li>
+                                    <li>I'm out of ideas</li>
                                     <li>Develop global strategy</li>
                                 </ul>
                             </div>
@@ -659,9 +687,9 @@
                                     <h2>Q1</h2>
                                 </div>
                                 <ul>
-                                    <li>Launch Seed and Private Sale(Completed) </li>
-                                    <li>Research Binance Smart Chain, NFT and AvatarArt</li>
-                                    <li>Seed and Private Sale(Completed) </li>
+                                    <li>Launch tree seeds into space </li>
+                                    <li>Research some stuff that is important</li>
+                                    <li>Project finished (Completed) </li>
                                 </ul>
                             </div>
                         </div>
@@ -918,10 +946,6 @@
                         <h3>Schedule</h3>
                         <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projects.</p>
                         <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership.</p>
-                    </div>
-                    <div class="project-summary step-3">
-                        <h3>Comparison</h3>
-                        <p>A gamified marketplace dedicated to the metaverse and gaming assets. The Metaverse marketplace allows users to trade, auction, and rent virtual ownership assets from various metaverse and gaming projectsA gamified marketplace dedicated to the meta verse and gaming assets. The Metaverse marketplace allows users to trade, and rent virtual ownership..</p>
                     </div>
                 </div>
             </div>

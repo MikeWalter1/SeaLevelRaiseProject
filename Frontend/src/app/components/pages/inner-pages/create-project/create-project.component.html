@@ -11,10 +11,10 @@
                     </a>
                 </li>
                 <li>
-                    <span>CREATE ORGANIZATION</span>
+                    <span>CREATE PROJECT</span>
                 </li>
             </ul>
-            <h2>Create an Organization</h2>
+            <h2>Create a Projecct</h2>
             <img src="assets/images/page-star.png" class="star" alt="star">
         </div>
     </div>
@@ -27,44 +27,45 @@
         <div class="row justify-content-center">
         <div class="row">
             <div class="form-group">
-                <h1>Create a new organization</h1>
-                <p>As an organization you will be able to create Projects and receive Donations.</p>
+                <h1>Create a new Project</h1>
+                <p>In order to be able to create projects, you have to have created an Organization first.</p>
 
                 <h3>Rules:</h3>
                 <ol>
-
-                    <li>You're organization has to have a legal entity in a small-state country.</li>
-                    <li>You have to be a registered non-profit organization.</li>
+                    <li>Only one project can be open at a time.</li>
+                    <li>Projects have to be about climate change.</li>
+                    <li>Projects have to be related to small-states.</li>
+                    <li>Projects have to be non-profit.</li>
+                    <li>The max amount of funds needed can't exceed x ETH.</li>
+                    <li>Once a project is created it has X weeks to be voted by the DAO community.</li>
+                    <li>Once a project is voted, the funds will be sent to the organization.</li>
+                    <li>After the project is finished, the organization has to provide a proof.</li>
                 </ol>
             </div>
         </div>
     </div>
 </div>
 
-<!-- <div class="justify-content-center featured-auction-area bg-color-140c2dr">
-<div class="contact-form row justify-content-center">
-    <form> -->
 <div class="container">
-    <div class="contact-form">
-        <form>
-            <div class="row center-block justify-content-center">
-        <!-- <div class="row"> -->
+<div class="contact-form">
+    <form>
+        <div class="row center-block justify-content-center">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <label>Organization Name</label>
-                    <input type="text" name="name" id="name" class="form-control" required placeholder="Name" [(ngModel)]="organizationName">
+                    <label>Project Title</label>
+                    <input type="text" name="name" id="name" class="form-control" required placeholder="Project Title" [(ngModel)]="projectTitle">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>URL for more Information</label>
                     <input type="email" name="email" id="email" class="form-control" required placeholder="your@organization.com">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="text" name="phone_number" id="phone_number" required class="form-control" placeholder="+1(135) 1984 2020">
+                    <label>Funds Needed (ETH)</label>
+                    <input type="text" name="fundsNeeded" id="fundsNeeded" required class="form-control" placeholder="20" [(ngModel)]="fundsNeeded">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -73,10 +74,10 @@
                     <input type="text" name="msg_subject" id="msg_subject" class="form-control" required placeholder="State">
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <label>Organization Description</label>
-                    <textarea name="message" class="form-control" id="message" cols="30" rows="6" required placeholder="Tell us something about your NGO" [(ngModel)]="organizationDescription"></textarea>
+                    <label>Project Description</label>
+                    <textarea name="message" class="form-control" id="message" cols="30" rows="6" required placeholder="Tell us something about your Project" [(ngModel)]="projectDescription"></textarea>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12">
@@ -99,7 +100,7 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-12">
-                <button class="default-btn" (click)="createOrganization()">Create Organization</button>
+                <button class="default-btn" (click)="createProject()">Create Project</button>
             </div>
         </div>
     </form>

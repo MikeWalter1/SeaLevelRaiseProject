@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import Web3 from 'web3';
 import { HttpClient } from '@angular/common/http';
 import ContractDeployed from 'src/assets/DAO_SLR.json';
+import { from } from 'rxjs';
 
 declare let window: any;
 
@@ -35,7 +36,7 @@ export class Web3Service {
             this.contract = new this.web3.eth.Contract(ContractDeployed.abi, this.daoAddress);
 
             //test
-            this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
+            // this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
         });
     }
 
@@ -45,11 +46,80 @@ export class Web3Service {
         return accounts[0];
     }
 
-    async sendTransaction(contractAddress: string, abi: any[], methodName: string, args: any[], value: number): Promise<any> {
+    async sendTransaction(methodName: string, args: any[], value: number): Promise<any> {
         const account = await this.getAccount();
-        const contract = new this.web3.eth.Contract(abi, contractAddress);
+        const contract = new this.web3.eth.Contract(ContractDeployed.abi, this.daoAddress);
         const method = contract.methods[methodName];
         return method(...args).send({ from: account, value: value.toString() });
+    }
+
+    async transferEtherToContract(amountInEther: number): Promise<any> {
+        const account = await this.getAccount();
+        const amountInWei = this.web3.utils.toWei(amountInEther.toString(), 'ether');
+        return this.web3.eth.sendTransaction({
+            from: account,
+            to: this.daoAddress,
+            value: amountInWei
+        });
+    }
+
+    async createOrganzation(orgName: string, orgDesc: string): Promise<any> {
+        console.log('hier:' + this.account);
+        this.account = await this.getAccount();
+        const org = await this.contract.methods.createOrganization(orgName, orgDesc).send({ from: this.account });
+        console.log(org);
+        return org;
+    }
+
+    async createProject(projectTitle: string, projectDescription: string, donationGoal: string): Promise<any> {
+        //address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal
+        this.account = await this.getAccount();
+        const project = await this.contract.methods.createProject(projectTitle, projectDescription, donationGoal).send({ from: this.account });
+        return project;
+    }
+
+    async voteForProject(projectId: number, amount: number): Promise<any> {
+        this.account = await this.getAccount();
+        const donation = await this.contract.methods.voteForProject(projectId, amount).send({ from: this.account});
+        return donation;
+    }
+
+    // async voteForProject(projectId: number): Promise<any> {
+    //     this.account = await this.getAccount();
+    //     const vote = await this.contract.methods.voteForProject(projectId).send({ from: this.account });
+    //     return vote;
+    // }
+
+    async getAllProjects(){
+        this.account = await this.getAccount();
+        // const projects: any[] = await this.contract.methods.getLastTenProjects().call();
+        console.log("§ads");
+        // this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
+        const result = await this.contract.methods.getAllProjectsTest().call({from: this.account});
+        // await this.contract.methods.getLastTenProjects().call().then((result: any) => {
+        //     console.log("§huhu");
+        //     resulto = result;
+
+        //     // console.log(result);
+        // });
+        return result;
+    }
+
+    async getLastTenProjects(){
+        this.account = await this.getAccount();
+        // const projects: any[] = await this.contract.methods.getLastTenProjects().call();
+        console.log("§ads");
+        this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
+        const resulto = await this.contract.methods.getLastTenProjects().call({from: this.account});
+        // await this.contract.methods.getLastTenProjects().call().then((result: any) => {
+        //     console.log("§huhu");
+        //     resulto = result;
+
+        //     // console.log(result);
+        // });
+        console.log("333");
+        console.log(resulto);
+        return "test";
     }
 
     async testSendTransaction(contractAddress: string, abi: any[], methodName: string, args: any[], value: number): Promise<any> {
@@ -91,21 +161,11 @@ export class Web3Service {
           } else {
                 console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
           }
-                  // if (window.ethereum) {
-        //     this.web3 = new Web3(window.ethereum);
-        //     window.ethereum.enable(); // Prompt user to connect their wallet
-        // } else {
-        //     console.warn('No Ethereum browser detected. Install MetaMask!');
-        //     this.web3 = new Web3(window.ethereum);
-        // }
     }
 
     disconnectWallet(): void {
         this.account = null;
     }
-
-
-
 
     async loadAccount() {
         const accounts = await this.web3.eth.getAccounts();

@@ -25,6 +25,7 @@ import { NftCentricMetaverseLandingComponent } from './components/pages/single-p
 import { ContractInteractionComponent } from './components/common/contract-interaction/contract-interaction.component';
 import { WalletConnectComponent } from './components/common/wallet-connect/wallet-connect.component';
 import { CreateOrganizationComponent } from './components/pages/inner-pages/create-organization/create-organization.component';
+import { CreateProjectComponent } from './components/pages/inner-pages/create-project/create-project.component';
 
 const routes: Routes = [
 
@@ -37,11 +38,11 @@ const routes: Routes = [
     {path: 'index-5', component: LandSellingPlatformComponent},
 
     // Single Page
-    {path: 'metavarse-launchpad', component: MetavarseLaunchpadLandingComponent},
-    {path: 'dex-offering', component: DexOfferingLandingComponent},
-    {path: 'gaming-metaverse', component: GamingMetaverseLandingComponent},
-    {path: 'nft-centric-metaverse', component: NftCentricMetaverseLandingComponent},
-    {path: 'land-selling-platform', component: LandSellingPlatformLandingComponent},
+    // {path: 'metavarse-launchpad', component: MetavarseLaunchpadLandingComponent},
+    // {path: 'dex-offering', component: DexOfferingLandingComponent},
+    // {path: 'gaming-metaverse', component: GamingMetaverseLandingComponent},
+    // {path: 'nft-centric-metaverse', component: NftCentricMetaverseLandingComponent},
+    // {path: 'land-selling-platform', component: LandSellingPlatformLandingComponent},
 
     // Inner Pages
     {path: 'about-us', component: AboutPageComponent},
@@ -55,6 +56,7 @@ const routes: Routes = [
     {path: 'privacy-policy', component: PrivacyPolicyPageComponent},
     {path: 'terms-conditions', component: TermsConditionsPageComponent},
     {path: 'create-organization', component: CreateOrganizationComponent},
+    {path: 'create-project', component: CreateProjectComponent},
     // {path: 'contact-us', component: ContactPageComponent},
     // Here add new pages component
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Web3Service } from 'src/app/web3.service';
 
 @Component({
 	selector: 'app-project-details-page',
@@ -12,8 +13,16 @@ export class ProjectDetailsPageComponent implements OnInit {
     minutes: any;
     seconds: any;
     myInterval: any;
+    @Input() public projectId: string = '0';
+    @Input() public projectTitle: string = 'Placeholder Title';
+    @Input() public projectDescription: string = 'Placeholder Description';
+    @Input() public fundsNeeded: string = '1200';
+    @Input() public totalDonations: string = '632';
+    @Input() public votingAmount:string = '0';
 
-    constructor() { }
+    public donationAmount: string = '0';
+
+    constructor(private web3: Web3Service) { }
 
     ngOnInit() {
         this.myInterval = setInterval(() => {
@@ -37,6 +46,16 @@ export class ProjectDetailsPageComponent implements OnInit {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+    }
+
+    voteForProject(){
+        this.web3.voteForProject(+this.projectId, +this.votingAmount);
+        console.log('Voting for project with ID: ' + this.projectId + " and amount: " + this.votingAmount);
+    }
+
+    donateToDao(){
+        this.web3.transferEtherToContract(+this.donationAmount);
+        console.log('Donating to DAO with amount: ' + this.donationAmount);
     }
 
     // Tabs

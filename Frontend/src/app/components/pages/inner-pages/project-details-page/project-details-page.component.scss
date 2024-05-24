@@ -1,3 +1,16 @@
+.button-small{
+    // padding-left: 7px;
+    // padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.eth-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
 .featured-auction-bg {
 	background: linear-gradient(92.34deg, #FDCE39 1.68%, #FD8963 50.6%, #ED5174 98.82%);
     margin-bottom: 50px;
@@ -33,7 +46,7 @@
 		}
 		.timer {
 			margin-top: 10px;
-            
+
 			div {
 				color: var(--blackColor);
                 margin-right: 30px;
@@ -159,7 +172,7 @@
 	&:last-child {
 		margin-bottom: 0;
 	}
-	
+
 }
 
 @import "../../../common/token-info/token-info.component.scss";
@@ -178,7 +191,7 @@
     .featured-auction-bg {
         padding: 20px;
         margin-bottom: 30px;
-    
+
         .featured-auction-info-wrap {
             img {
                 border-radius: 5px;
@@ -193,7 +206,7 @@
         .timer-wrap {
             text-align: start;
             margin-top: 15px;
-    
+
             img {
                 margin-left: 0;
             }
@@ -226,7 +239,7 @@
             border-radius: 0;
             margin-top: 15px;
             padding: 2px;
-    
+
             span {
                 width: 2px;
                 height: 15px;
@@ -257,7 +270,7 @@
         margin-bottom: 30px;
         border-radius: 10px;
         padding: 20px;
-    
+
         h3 {
             font-size: 18px;
             margin-bottom: 18px;
@@ -274,7 +287,7 @@
     .project-summary {
         padding-left: 0;
         margin-bottom: 30px;
-    
+
         h3 {
             font-size: 18px;
             position: relative;
@@ -286,7 +299,7 @@
                 top: 5px;
             };
         }
-        
+
     }
 
 }
@@ -315,7 +328,7 @@
     .featured-auction-bg {
         padding: 30px;
         margin-bottom: 30px;
-    
+
         .featured-auction-info-wrap {
             img {
                 margin-right: 15px;
@@ -344,7 +357,7 @@
         .featured-auction-bar {
             margin-top: 20px;
             padding: 2px;
-    
+
             span {
                 width: 9px;
                 height: 9px;
@@ -368,7 +381,7 @@
     .project-details-info {
         margin-bottom: 30px;
         padding: 25px;
-    
+
         h3 {
             font-size: 20px;
             margin-bottom: 20px;
@@ -385,7 +398,7 @@
     .project-summary {
         padding-left: 0;
         margin-bottom: 30px;
-    
+
         h3 {
             font-size: 20px;
             position: relative;
@@ -397,7 +410,7 @@
                 top: 5px;
             };
         }
-        
+
     }
 
 }

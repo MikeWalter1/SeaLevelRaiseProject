@@ -54,7 +54,14 @@ import { OnepageNavbarComponent } from './components/common/onepage-navbar/onepa
 import { ContractInteractionComponent } from './components/common/contract-interaction/contract-interaction.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WalletConnectComponent } from './components/common/wallet-connect/wallet-connect.component';
-// import { FormsModule } from '@angular/forms';
+import { CreateOrganizationComponent } from './components/pages/inner-pages/create-organization/create-organization.component';
+import { FormsModule } from '@angular/forms';
+import { ProjectListitemComponent } from './components/common/project-listitem/project-listitem.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { CreateProjectComponent } from './components/pages/inner-pages/create-project/create-project.component';
 
 @NgModule({
     declarations: [
@@ -106,7 +113,9 @@ import { WalletConnectComponent } from './components/common/wallet-connect/walle
         OnepageNavbarComponent,
         ContractInteractionComponent,
         WalletConnectComponent,
-        // FormsModule
+        CreateOrganizationComponent,
+        ProjectListitemComponent,
+        CreateProjectComponent,
     ],
     imports: [
         BrowserModule,
@@ -114,7 +123,11 @@ import { WalletConnectComponent } from './components/common/wallet-connect/walle
         CarouselModule,
         NgxScrollTopModule,
         BrowserAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]
