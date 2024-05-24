@@ -33,9 +33,15 @@ async function main() {
 
   await dao.connect(firstOrgaOwner).createOrganization("Test Organization", "Organization Description");
   console.log(`Organization "Test Organization" created by ${firstOrgaOwner.getAddress()}`);
-  await dao.connect(firstOrgaOwner).createProject("Test Project", "Project Description", 1000);
-  console.log(`Project "Test Project" created by ${firstOrgaOwner.getAddress()}`);
+  await dao.connect(firstOrgaOwner).createProject("Very important Project", "Interesting Description of Project", getRandomInt(10,2000));
+  console.log(`Project "Very important Project" created by ${firstOrgaOwner.getAddress()}`);
 
+  for (let index = 0; index < 10; index++) {
+    await dao.connect(addrs[index]).createOrganization("Test Organization Nr.:" + index.toString(), "Organization Description Nr.:" + index.toString());
+    console.log(`Organization "Test Organization" created by ${addrs[index].getAddress()}`);
+    await dao.connect(addrs[index]).createProject("Test Project Nr.:" + index.toString(), "Project Description Nr.:" + index.toString(), getRandomInt(10,2000));
+    console.log(`Project "Test Project" created by ${addrs[index].getAddress()}`);
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
@@ -45,7 +51,11 @@ main().catch((error) => {
   process.exitCode = 1;
 });
 
-
+function getRandomInt(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
 
 function copyFile(source: string, target: string): void {
   fs.copyFile(source, target, (err) => {
