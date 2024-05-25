@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.24;
-
+import "@openzeppelin/contracts/utils/Strings.sol";
 enum OrganizationState {
     Onboarding,
     OnboardingFailed,
@@ -30,7 +30,7 @@ contract OrganizationManager {
     uint public organizationsCount;
 
     modifier onlyOrganizationOwner() {
-        require(organizations[msg.sender].walletAddress == msg.sender, "Only the organization owner can call this function.");
+        require(organizations[msg.sender].walletAddress == msg.sender, "Only an organization can call this function.");
         _;
     }
 
@@ -133,6 +133,32 @@ contract OrganizationManager {
 
     function getOrganizationState(address _walletAddress) public view returns(OrganizationState) {
         return organizations[_walletAddress].state;
+    }
+
+    function getAllOrganizations() public view returns(uint[] memory ids, string[] memory names, string[] memory descriptions, OrganizationState[] memory states, uint[] memory upvotes, uint[] memory downvotes) {
+        uint[] memory orgIds = new uint[](organizationsCount);
+        string[] memory orgaNames = new string[](organizationsCount);
+        string[] memory orgaDescriptions = new string[](organizationsCount);
+        OrganizationState[] memory orgaStates = new OrganizationState[](organizationsCount);
+        uint[] memory votes = new uint[](organizationsCount);
+        uint[] memory downVotes = new uint[](organizationsCount);
+        
+
+        // require(organizationsCount == 2231, Strings.toString(organizationsCount));
+        
+        orgaNames[0] = Strings.toString(organizationsCount);
+
+        // Organization[] memory orgs = new Organization[](organizationsCount);
+        for (uint i = 0; i < organizationsCount; i++) {
+            Organization memory org = getOrganizationById(i);
+            orgIds[i] = org.organizationId;
+            orgaNames[i] = org.organizationName;
+            orgaDescriptions[i] =  org.organizationDescription;
+            orgaStates[i] =  org.state;
+            votes[i] =  org.votes;
+            downVotes[i] =  org.downVotes;
+        }
+        return (orgIds, orgaNames, orgaDescriptions, orgaStates, votes, downVotes);
     }
 
     function hashVote(address _donor , uint _orgId, bool _increaseVote) private pure returns(bytes32){

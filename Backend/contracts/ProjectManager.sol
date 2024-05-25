@@ -48,7 +48,7 @@ contract ProjectManager is OrganizationManager {
     function createProject(string memory _title, string memory _description, uint _goal) public onlyOrganizationOwner onlyValidOrganization {
         require(_goal > 0, "Goal must be greater than 0");
         Organization memory orga = organizations[msg.sender];
-        require(orga.walletAddress == msg.sender, "Only the organization owner can call this function.");
+        require(orga.walletAddress == msg.sender, "Only an organization can call this function.");
 
         Project storage newProject = projects[projectCount];
         newProject.organizationId = orga.organizationId;
