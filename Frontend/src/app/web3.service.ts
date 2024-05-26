@@ -89,6 +89,12 @@ export class Web3Service {
     //     const vote = await this.contract.methods.voteForProject(projectId).send({ from: this.account });
     //     return vote;
     // }
+    async getAllOrganizations(){
+        this.account = await this.getAccount();
+        const result = await this.contract.methods.getAllOrganizations().call({from: this.account});
+        console.log(result);
+        return result;
+    }
 
     async getAllProjects(){
         this.account = await this.getAccount();

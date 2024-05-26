@@ -62,6 +62,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateProjectComponent } from './components/pages/inner-pages/create-project/create-project.component';
+import { OrganizationsOverviewComponent } from './components/pages/inner-pages/organizations-overview/organizations-overview.component';
+import { OrganizationListitemComponent } from './components/common/organization-listitem/organization-listitem.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -116,6 +120,8 @@ import { CreateProjectComponent } from './components/pages/inner-pages/create-pr
         CreateOrganizationComponent,
         ProjectListitemComponent,
         CreateProjectComponent,
+        OrganizationsOverviewComponent,
+        OrganizationListitemComponent
     ],
     imports: [
         BrowserModule,
@@ -126,7 +132,9 @@ import { CreateProjectComponent } from './components/pages/inner-pages/create-pr
         HttpClientModule,
         FormsModule,
         MatFormFieldModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule
 
     ],
     providers: [],

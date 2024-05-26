@@ -26,6 +26,7 @@ import { ContractInteractionComponent } from './components/common/contract-inter
 import { WalletConnectComponent } from './components/common/wallet-connect/wallet-connect.component';
 import { CreateOrganizationComponent } from './components/pages/inner-pages/create-organization/create-organization.component';
 import { CreateProjectComponent } from './components/pages/inner-pages/create-project/create-project.component';
+import { OrganizationsOverviewComponent } from './components/pages/inner-pages/organizations-overview/organizations-overview.component';
 
 const routes: Routes = [
 
@@ -57,6 +58,7 @@ const routes: Routes = [
     {path: 'terms-conditions', component: TermsConditionsPageComponent},
     {path: 'create-organization', component: CreateOrganizationComponent},
     {path: 'create-project', component: CreateProjectComponent},
+    {path: 'organizations-overview', component: OrganizationsOverviewComponent},
     // {path: 'contact-us', component: ContactPageComponent},
     // Here add new pages component
 

@@ -1,0 +1,31 @@
+<!-- <div class="col-lg-3 col-6 col-md-4"> -->
+    <div class="single-team">
+        <img [src]="imageUrl" alt="team-image">
+        <h3>{{ name }}</h3>
+        <span>{{ description }}</span>
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/" target="_blank">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.twitter.com/" target="_blank">
+                    <i class="ri-twitter-fill"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank">
+                    <i class="ri-instagram-fill"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/" target="_blank">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+            </li>
+        </ul>
+        <button class="default-btn button-margin" (click)="upvote()">Upvote</button>
+        <button class="default-btn button-margin" (click)="downvote()">Downvote</button>
+    </div>
+<!-- </div> -->
