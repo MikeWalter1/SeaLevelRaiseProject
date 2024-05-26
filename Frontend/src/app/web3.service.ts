@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import Web3 from 'web3';
+import Web3, { Uint } from 'web3';
 import { HttpClient } from '@angular/common/http';
 import ContractDeployed from 'src/assets/DAO_SLR.json';
 import { from } from 'rxjs';
-import { Project } from './project';
+import { Project, ProjectState, stateNumberToEnum } from './project';
 
 declare let window: any;
 
@@ -21,6 +21,7 @@ export class Web3Service {
     public account: string | null = null;
     public connected: boolean = false;
 
+    public projects: Project[] = [];
     public selectedProject: Project;
 
     constructor(private http: HttpClient) {
@@ -93,7 +94,24 @@ export class Web3Service {
     async getAllProjects(){
         this.account = await this.getAccount();
         const result = await this.contract.methods.getAllProjectsTest().call({from: this.account});
-        return result;
+        this.projects.length = 0;
+        for (let index = 0; index < result.names.length; index++) {
+            let tempStateNumb = 1;
+            let stateNumber = result.states[index]; // This could be any number
+            let stateEnum: ProjectState = stateNumberToEnum[stateNumber];
+            const tempProject = new Project(
+                result.projectIds[index],
+                result.names[index],
+                result.descriptions[index],
+                result.goals[index],
+                result.currentFundings[index],
+                "assets/images/projects/project-"+this.getRandomInt(1, 9).toString()+".jpg",
+                stateEnum
+            );
+
+            this.projects.push(tempProject);
+        }
+        return this.projects;
     }
 
     async getLastTenProjects(){
@@ -166,6 +184,12 @@ export class Web3Service {
     getContractABI(): Promise<any> {
         return this.http.get<any>('assets/DAO_SLR.json').toPromise();
       }
+
+      getRandomInt(min: number, max: number): number {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+    }
 }
 
 

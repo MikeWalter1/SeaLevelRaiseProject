@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/project';
 import { Web3Service } from 'src/app/web3.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DonateDialogComponent } from 'src/app/components/common/donate-dialog/donate-dialog.component';
 
 @Component({
 	selector: 'app-project-details-page',
@@ -14,18 +16,14 @@ export class ProjectDetailsPageComponent implements OnInit {
     minutes: any;
     seconds: any;
     myInterval: any;
-    @Input() public projectId: string = '0';
-    @Input() public projectTitle: string = 'Placeholder Title';
-    @Input() public projectDescription: string = 'Placeholder Description';
-    @Input() public fundsNeeded: string = '1200';
-    @Input() public totalDonations: string = '632';
-    @Input() public votingAmount:string = '0';
+    public amount: number;
+
+    public votingAmount:string = '0';
     public project: Project;
     public donatedInPercent: number = 0;
-
     public donationAmount: string = '0';
 
-    constructor(private web3: Web3Service) {
+    constructor(private web3: Web3Service, public dialog: MatDialog) {
         this.project = this.web3.selectedProject;
         this.donatedInPercent = Math.floor((((parseInt(this.project.totalDonations) / parseInt(this.project.fundsNeeded)) * 100))* 10) / 10;
     }
@@ -55,13 +53,13 @@ export class ProjectDetailsPageComponent implements OnInit {
     }
 
     voteForProject(){
-        this.web3.voteForProject(+this.project.id, +this.votingAmount);
-        console.log('Voting for project with ID: ' + this.projectId + " and amount: " + this.votingAmount);
+        this.web3.voteForProject(Number(this.project.id), Number(this.amount));
+        console.log('Voting for project with ID: ' + this.project.id + " and amount: " + this.amount);
     }
 
     donateToDao(){
-        this.web3.transferEtherToContract(+this.donationAmount);
-        console.log('Donating to DAO with amount: ' + this.donationAmount);
+        this.web3.transferEtherToContract(+this.amount);
+        console.log('Donating to DAO with amount: ' + this.amount);
     }
 
     // Tabs
@@ -69,6 +67,44 @@ export class ProjectDetailsPageComponent implements OnInit {
     switchTab(event: MouseEvent, tab: string) {
         event.preventDefault();
         this.currentTab = tab;
+    }
+
+
+    openVotingDialog(): void {
+        const dialogRef = this.dialog.open(DonateDialogComponent, {
+          width: '300px',
+          height: '220px',
+          data: {
+            title: "Spend Voting Tokens",
+            buttonText: "Vote",
+            amount: this.amount
+        }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          this.amount = result;
+          this.voteForProject();
+        });
+
+    }
+    openDonationDialog(): void {
+        const dialogRef = this.dialog.open(DonateDialogComponent, {
+          width: '300px',
+          height: '220px',
+          data: {
+            title: "Donate ETH to DAO",
+            buttonText: "Donate",
+            amount: this.amount
+        }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          this.amount = result;
+          this.donateToDao();
+        });
+
     }
 
 }

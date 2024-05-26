@@ -51,6 +51,7 @@ contract ProjectManager is OrganizationManager {
         require(orga.walletAddress == msg.sender, "Only an organization can call this function.");
 
         Project storage newProject = projects[projectCount];
+        newProject.projectId = projectCount;
         newProject.organizationId = orga.organizationId;
         newProject.projectOwner = payable(msg.sender);
         newProject.projectTitle = _title;
@@ -61,12 +62,13 @@ contract ProjectManager is OrganizationManager {
         projectCount++;
     }
 
-    function getAllProjectsTest() public view returns(string[] memory names, string[] memory descriptions, uint[] memory goals, uint[] memory currentFundings, uint[] memory projectIds) {
+    function getAllProjectsTest() public view returns(string[] memory names, string[] memory descriptions, uint[] memory goals, uint[] memory currentFundings, uint[] memory projectIds, ProjectState[] memory states) {
         string[] memory projectNames = new string[](projectCount);
         string[] memory projectDescriptions = new string[](projectCount);
         uint[] memory projectGoals = new uint[](projectCount);
         uint[] memory projectCurrentFundings = new uint[](projectCount);
         uint[] memory projectIdsArray = new uint[](projectCount);
+        ProjectState[] memory projectStates = new ProjectState[](projectCount);
 
         for (uint i = 0; i < projectCount; i++) {
             projectNames[i] = projects[i].projectTitle;
@@ -74,9 +76,10 @@ contract ProjectManager is OrganizationManager {
             projectGoals[i] = projects[i].fundingGoal;
             projectCurrentFundings[i] = projects[i].currentFunding;
             projectIdsArray[i] = projects[i].projectId;
+            projectStates[i] = projects[i].state;
         }
 
-        return (projectNames, projectDescriptions, projectGoals, projectCurrentFundings, projectIdsArray);
+        return (projectNames, projectDescriptions, projectGoals, projectCurrentFundings, projectIdsArray, projectStates);
     }
 
     function getProjectsInRange(uint _from, uint _to) public view returns(Project[] memory){
@@ -104,7 +107,7 @@ contract ProjectManager is OrganizationManager {
     function vote(uint _projectId, uint _amount) public {
         projects[_projectId].totalVotes += _amount;
         projects[_projectId].currentFunding += _amount;
-        
+        updateProjectState(_projectId);
         if (hasReachedFundingGoal(_projectId)) {
             emit FundingGoalReached(_projectId, projects[_projectId].currentFunding);
             // // transferFunds(_projectId);

@@ -1,3 +1,4 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* You can add global styles to this file, and also import other style files */
 :root {
     --fontFamily: 'Roboto', sans-serif;
@@ -203,7 +204,7 @@ p {
 	}
 	h2 {
 		font-size: 55px;
-		margin-bottom: 0; 
+		margin-bottom: 0;
 
 		span {
 			color: var(--primaryColor);
@@ -1034,7 +1035,7 @@ p {
     }
 	.read-more-btn {
 		margin-top: 10px;
-	
+
 		.read-more {
 			font-size: 15px;
 		}
@@ -1063,7 +1064,7 @@ p {
 		}
 		&.text-start {
 			text-align: center !important;
-			
+
 			.default-btn {
 				bottom: 0;
 				margin-top: 17px;
@@ -1076,7 +1077,7 @@ p {
 	.how-it-works-tabs {
 		.nav-tabset {
 			margin-bottom: 20px;
-	
+
 			.nav-tab {
 				margin: {
 					left: 5px;
@@ -1130,7 +1131,7 @@ p {
 				position: relative;
 				bottom: 0;
 				left: 0;
-	
+
 				.owl-prev, .owl-next {
 					width: 40px;
 					height: 40px;
@@ -1160,14 +1161,14 @@ p {
 					&.owl-prev {
 						padding-left: 17px;
 						left: 0;
-	
+
 						i {
 							left: -5px;
 						}
 					}
 					&.owl-next {
 						padding-right: 17px;
-	
+
 						i {
 							right: -5px;
 						}
@@ -1206,7 +1207,7 @@ p {
 		.owl-theme {
 			.owl-nav {
 				margin-top: 25px !important;
-	
+
 				.owl-prev, .owl-next {
 					width: 40px;
 					height: 40px;
@@ -1229,7 +1230,7 @@ p {
 	}
 	.page-banner-content {
 		max-width: 100%;
-		
+
 		ul {
 			margin-bottom: 12px;
 
@@ -1258,7 +1259,7 @@ p {
 		.nav-tabset {
 			margin-bottom: 30px;
 			padding: 10px 10px 5px;
-	
+
 			.nav-tab {
 				margin: {
 					left: 7px;
@@ -1268,7 +1269,7 @@ p {
 				span {
 					padding: 0;
 					background-color: transparent;
-					
+
 					&::before {
 						display: none;
 					}
@@ -1280,7 +1281,7 @@ p {
 		.nav-tabset {
 			margin-bottom: 30px;
 			padding: 10px 10px 5px;
-	
+
 			.nav-tab {
 				margin: {
 					left: 7px;
@@ -1290,7 +1291,7 @@ p {
 				span {
 					padding: 0;
 					background-color: transparent;
-					
+
 					&::before {
 						display: none;
 					}
@@ -1339,7 +1340,7 @@ p {
     }
 	.read-more-btn {
 		margin-top: 20px;
-	
+
 		.read-more {
 			font-size: 17px;
 		}
@@ -1355,7 +1356,7 @@ p {
 	.section-title {
 		margin: 0 auto 40px;
 		max-width: 100%;
-	
+
 		.top-title {
 			margin-bottom: 10px;
 		}
@@ -1371,7 +1372,7 @@ p {
 	.how-it-works-tabs {
 		.nav-tabset {
 			margin-bottom: 40px;
-	
+
 			.nav-tab {
 				span {
 					padding: 18px 45px;
@@ -1385,7 +1386,7 @@ p {
 	.ecosystem-tabs {
 		.nav-tabset {
 			margin-bottom: 30px;
-	
+
 			.nav-tab {
 				span {
     				font-size: 16px;
@@ -1410,7 +1411,7 @@ p {
 			.owl-nav {
 				bottom: 15px;
 				max-width: 100%;
-				
+
 				[class*=owl-] {
 					font-size: 14px;
 
@@ -1421,14 +1422,14 @@ p {
 					&.owl-prev {
 						padding-left: 18px;
 						left: 0;
-	
+
 						i {
 							left: -5px;
 						}
 					}
 					&.owl-next {
 						padding-right: 18px;
-	
+
 						i {
 							right: -5px;
 						}
@@ -1468,7 +1469,7 @@ p {
 		.owl-theme {
 			.owl-nav {
 				margin-top: 30px !important;
-	
+
 				.owl-prev, .owl-next {
 					width: 50px;
 					height: 50px;
@@ -1491,10 +1492,10 @@ p {
 	}
 	.page-banner-content {
 		max-width: 100%;
-		
+
 		ul {
 			margin-bottom: 12px;
-	
+
 			li {
 				margin: {
 					left: 14px;
@@ -1560,7 +1561,7 @@ p {
 	// Section Title
 	.section-title {
 		margin: 0 auto 45px;
-	
+
 		.top-title {
 			margin-bottom: 10px;
 		}
@@ -1573,7 +1574,7 @@ p {
 	.how-it-works-tabs {
 		.nav-tabset {
 			margin-bottom: 40px;
-	
+
 			.nav-tab {
 				span {
 					padding: 22px 70px;
@@ -1599,7 +1600,7 @@ p {
 			.owl-nav {
 				bottom: 16px;
 				max-width: 100%;
-				
+
 				[class*=owl-] {
 					font-size: 15px;
 
@@ -1648,7 +1649,7 @@ p {
 		.owl-theme {
 			.owl-nav {
 				margin-top: 30px !important;
-	
+
 				.owl-prev, .owl-next {
 					width: 50px;
 					height: 50px;
@@ -1663,7 +1664,7 @@ p {
 	.ecosystem-tabs {
 		.nav-tabset {
 			margin-bottom: 40px;
-	
+
 			.nav-tab {
 				span {
 					font-size: 16px;
@@ -1682,7 +1683,7 @@ p {
 	}
 	.page-banner-content {
 		max-width: 860px;
-		
+
 		ul {
 			li {
 				&::before {

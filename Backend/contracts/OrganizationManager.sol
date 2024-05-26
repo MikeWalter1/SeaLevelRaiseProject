@@ -43,7 +43,7 @@ contract OrganizationManager {
 
     function createOrganization(string memory _organizationName, string memory _organizationDescription) public  {
         // TODO: Check whether msg.sender has already an organization
-        organizations[payable(msg.sender)] = Organization(organizationsCount, payable(msg.sender), _organizationName, _organizationDescription, OrganizationState.Onboarding, 0, 0);
+        organizations[payable(msg.sender)] = Organization(organizationsCount, payable(msg.sender), _organizationName, _organizationDescription, OrganizationState.Onboarded, 0, 0);
         organizationIdToAddress[organizationsCount] = payable(msg.sender);
         organizationsCount++;
     }

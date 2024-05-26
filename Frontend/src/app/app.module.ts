@@ -67,6 +67,8 @@ import { OrganizationListitemComponent } from './components/common/organization-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { WalletLoginComponent } from './components/pages/inner-pages/wallet-login/wallet-login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DonateDialogComponent } from './components/common/donate-dialog/donate-dialog.component';
 
 @NgModule({
     declarations: [
@@ -123,7 +125,8 @@ import { WalletLoginComponent } from './components/pages/inner-pages/wallet-logi
         CreateProjectComponent,
         OrganizationsOverviewComponent,
         OrganizationListitemComponent,
-        WalletLoginComponent
+        WalletLoginComponent,
+        DonateDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -135,6 +138,9 @@ import { WalletLoginComponent } from './components/pages/inner-pages/wallet-logi
         FormsModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatDialogModule,
+        MatInputModule,
+        MatButtonModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

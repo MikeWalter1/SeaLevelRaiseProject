@@ -153,19 +153,20 @@
                                 <form>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <button class="default-btn button-small" (click)="voteForProject()">Vote for Project</button>
+                                            <!-- <button class="default-btn button-small" (click)="voteForProject()">Vote for Project</button> -->
+                                            <button class="default-btn" (click)="openVotingDialog()">Vote for Project</button>
                                         </div>
-                                        <div class="col-lg-4 col-md-4">
+                                        <!-- <div class="col-lg-4 col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="votingAmount" id="votingAmount" class="form-control" required placeholder="22" [(ngModel)]="votingAmount">
                                             </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2">
-                                                <span>Tokens</span>
+                                        </div> -->
+                                        <!-- <div class="col-lg-2 col-md-2">
+                                                <span>Tokens</span> -->
                                                 <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
 
                                             <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
-                                        </div>
+                                        <!-- </div> -->
 
                                     </div>
                                 </form>
@@ -191,9 +192,9 @@
                                 <form>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <button class="default-btn button-small" (click)="donateToDao()">Donate to DAO</button>
+                                            <button class="default-btn" (click)="openDonationDialog()">Donate to DAO</button>
                                         </div>
-                                        <div class="col-lg-4 col-md-4">
+                                        <!-- <div class="col-lg-4 col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="donationAmount" id="donationAmount" class="form-control" required placeholder="22" [(ngModel)]="donationAmount">
                                             </div>
@@ -201,9 +202,7 @@
                                         <div class="col-lg-2 col-md-2">
 
                                                 <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth">
-
-                                            <!-- <img class="eth-icon" src="assets/images/Ethereum-ETH-icon.png" alt="eth"> -->
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </form>
