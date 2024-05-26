@@ -27,16 +27,18 @@ import { WalletConnectComponent } from './components/common/wallet-connect/walle
 import { CreateOrganizationComponent } from './components/pages/inner-pages/create-organization/create-organization.component';
 import { CreateProjectComponent } from './components/pages/inner-pages/create-project/create-project.component';
 import { OrganizationsOverviewComponent } from './components/pages/inner-pages/organizations-overview/organizations-overview.component';
+import { DaoAddressGuard } from './wallet-guard.guard';
+import { WalletLoginComponent } from './components/pages/inner-pages/wallet-login/wallet-login.component';
 
 const routes: Routes = [
 
     // Multi-page
-    {path: '', component: GamingMetaverseComponent},
+    {path: '', component: GamingMetaverseComponent, canActivate: [DaoAddressGuard]},
     // {path: '', component: MetavarseLaunchpadComponent},
-    {path: 'index-2', component: DexOfferingComponent},
-    {path: 'index-3', component: GamingMetaverseComponent},
-    {path: 'index-4', component: NftCentricMetaverseComponent},
-    {path: 'index-5', component: LandSellingPlatformComponent},
+    // {path: 'index-2', component: DexOfferingComponent },
+    {path: 'index-3', component: GamingMetaverseComponent, canActivate: [DaoAddressGuard]},
+    // {path: 'index-4', component: NftCentricMetaverseComponent},
+    // {path: 'index-5', component: LandSellingPlatformComponent},
 
     // Single Page
     // {path: 'metavarse-launchpad', component: MetavarseLaunchpadLandingComponent},
@@ -46,19 +48,21 @@ const routes: Routes = [
     // {path: 'land-selling-platform', component: LandSellingPlatformLandingComponent},
 
     // Inner Pages
-    {path: 'about-us', component: AboutPageComponent},
-    {path: 'team', component: TeamPageComponent},
-    {path: 'features', component: FeaturesPageComponent},
-    {path: 'feature-details', component: FeatureDetailsPageComponent},
-    {path: 'projects', component: ProjectsPageComponent},
-    {path: 'project-details', component: ProjectDetailsPageComponent},
-    {path: 'blog', component: BlogPageComponent},
-    {path: 'blog-details', component: BlogDetailsPageComponent},
-    {path: 'privacy-policy', component: PrivacyPolicyPageComponent},
-    {path: 'terms-conditions', component: TermsConditionsPageComponent},
-    {path: 'create-organization', component: CreateOrganizationComponent},
-    {path: 'create-project', component: CreateProjectComponent},
-    {path: 'organizations-overview', component: OrganizationsOverviewComponent},
+    {path: 'wallet-login', component: WalletLoginComponent},
+    {path: 'about-us', component: AboutPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'team', component: TeamPageComponent, canActivate: [DaoAddressGuard]},
+
+    // {path: 'features', component: FeaturesPageComponent},
+    // {path: 'feature-details', component: FeatureDetailsPageComponent},
+    {path: 'projects', component: ProjectsPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'project-details', component: ProjectDetailsPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'blog', component: BlogPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'blog-details', component: BlogDetailsPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'privacy-policy', component: PrivacyPolicyPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'terms-conditions', component: TermsConditionsPageComponent, canActivate: [DaoAddressGuard]},
+    {path: 'create-organization', component: CreateOrganizationComponent, canActivate: [DaoAddressGuard]},
+    {path: 'create-project', component: CreateProjectComponent, canActivate: [DaoAddressGuard]},
+    {path: 'organizations-overview', component: OrganizationsOverviewComponent, canActivate: [DaoAddressGuard]},
     // {path: 'contact-us', component: ContactPageComponent},
     // Here add new pages component
 

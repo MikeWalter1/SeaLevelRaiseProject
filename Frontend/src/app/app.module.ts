@@ -66,6 +66,7 @@ import { OrganizationsOverviewComponent } from './components/pages/inner-pages/o
 import { OrganizationListitemComponent } from './components/common/organization-listitem/organization-listitem.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { WalletLoginComponent } from './components/pages/inner-pages/wallet-login/wallet-login.component';
 
 @NgModule({
     declarations: [
@@ -121,7 +122,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         ProjectListitemComponent,
         CreateProjectComponent,
         OrganizationsOverviewComponent,
-        OrganizationListitemComponent
+        OrganizationListitemComponent,
+        WalletLoginComponent
     ],
     imports: [
         BrowserModule,
@@ -133,9 +135,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         FormsModule,
         MatFormFieldModule,
         MatSelectModule,
-        MatTableModule,
-        MatPaginatorModule
-
     ],
     providers: [],
     bootstrap: [AppComponent]

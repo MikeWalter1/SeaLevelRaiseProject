@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Web3Service } from '../../../web3.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Web3Service } from '../../../web3.service';
 export class WalletConnectComponent implements OnInit {
   public account: string | null = null;
 
-  constructor(private web3Service: Web3Service, private cd: ChangeDetectorRef) { }
+  constructor(private web3Service: Web3Service, private cd: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit(): void {
     // this.loadAccount();
@@ -19,6 +20,9 @@ export class WalletConnectComponent implements OnInit {
   async tryConnectWallet() {
     await this.web3Service.connectWallet();
     this.account = await this.web3Service.getAccount();
+    if (this.account) {
+      this.router.navigate(['']);
+    }
     this.cd.detectChanges();
   }
 
