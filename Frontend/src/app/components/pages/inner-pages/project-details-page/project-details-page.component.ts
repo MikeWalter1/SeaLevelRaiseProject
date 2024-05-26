@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Project } from 'src/app/project';
 import { Web3Service } from 'src/app/web3.service';
 
 @Component({
@@ -19,10 +20,15 @@ export class ProjectDetailsPageComponent implements OnInit {
     @Input() public fundsNeeded: string = '1200';
     @Input() public totalDonations: string = '632';
     @Input() public votingAmount:string = '0';
+    public project: Project;
+    public donatedInPercent: number = 0;
 
     public donationAmount: string = '0';
 
-    constructor(private web3: Web3Service) { }
+    constructor(private web3: Web3Service) {
+        this.project = this.web3.selectedProject;
+        this.donatedInPercent = Math.floor((((parseInt(this.project.totalDonations) / parseInt(this.project.fundsNeeded)) * 100))* 10) / 10;
+    }
 
     ngOnInit() {
         this.myInterval = setInterval(() => {
@@ -49,7 +55,7 @@ export class ProjectDetailsPageComponent implements OnInit {
     }
 
     voteForProject(){
-        this.web3.voteForProject(+this.projectId, +this.votingAmount);
+        this.web3.voteForProject(+this.project.id, +this.votingAmount);
         console.log('Voting for project with ID: ' + this.projectId + " and amount: " + this.votingAmount);
     }
 

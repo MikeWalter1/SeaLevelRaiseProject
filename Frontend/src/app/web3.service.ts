@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import { HttpClient } from '@angular/common/http';
 import ContractDeployed from 'src/assets/DAO_SLR.json';
 import { from } from 'rxjs';
+import { Project } from './project';
 
 declare let window: any;
 
@@ -18,26 +19,27 @@ export class Web3Service {
     public testAbi: any;
     private contract: any;
     public account: string | null = null;
+    public connected: boolean = false;
+
+    public selectedProject: Project;
 
     constructor(private http: HttpClient) {
-        if (window.ethereum) {
-            this.web3 = new Web3(window.ethereum);
-            window.ethereum.enable(); // Prompt user to connect their wallet
-        } else {
-            console.warn('No Ethereum browser detected. Install MetaMask!');
-            this.web3 = new Web3(window.ethereum);
-        }
-        console.log(ContractDeployed.abi);
+        // if (window.ethereum) {
+        //     this.web3 = new Web3(window.ethereum);
+        //     window.ethereum.enable(); // Prompt user to connect their wallet
+        //     this.connected=true;
+        // } else {
+        //     console.warn('No Ethereum browser detected. Install MetaMask!');
+        //     this.web3 = new Web3(window.ethereum);
+        // }
+        // console.log(ContractDeployed.abi);
 
 
-        this.getTextFromFile('assets/deployed-contracts.json').then((abi: string | undefined) => {
-            this.daoAddress = abi;
-            console.log("Smart Contract Address: " + this.daoAddress);
-            this.contract = new this.web3.eth.Contract(ContractDeployed.abi, this.daoAddress);
-
-            //test
-            // this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
-        });
+        // this.getTextFromFile('assets/deployed-contracts.json').then((abi: string | undefined) => {
+        //     this.daoAddress = abi;
+        //     console.log("Smart Contract Address: " + this.daoAddress);
+        //     this.contract = new this.web3.eth.Contract(ContractDeployed.abi, this.daoAddress);
+        // });
     }
 
 
@@ -64,15 +66,12 @@ export class Web3Service {
     }
 
     async createOrganzation(orgName: string, orgDesc: string): Promise<any> {
-        console.log('hier:' + this.account);
         this.account = await this.getAccount();
         const org = await this.contract.methods.createOrganization(orgName, orgDesc).send({ from: this.account });
-        console.log(org);
         return org;
     }
 
     async createProject(projectTitle: string, projectDescription: string, donationGoal: string): Promise<any> {
-        //address payable _owner, uint _organizationId, string memory _title, string memory _description, uint _goal
         this.account = await this.getAccount();
         const project = await this.contract.methods.createProject(projectTitle, projectDescription, donationGoal).send({ from: this.account });
         return project;
@@ -84,11 +83,6 @@ export class Web3Service {
         return donation;
     }
 
-    // async voteForProject(projectId: number): Promise<any> {
-    //     this.account = await this.getAccount();
-    //     const vote = await this.contract.methods.voteForProject(projectId).send({ from: this.account });
-    //     return vote;
-    // }
     async getAllOrganizations(){
         this.account = await this.getAccount();
         const result = await this.contract.methods.getAllOrganizations().call({from: this.account});
@@ -98,34 +92,19 @@ export class Web3Service {
 
     async getAllProjects(){
         this.account = await this.getAccount();
-        // const projects: any[] = await this.contract.methods.getLastTenProjects().call();
-        console.log("§ads");
-        // this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
         const result = await this.contract.methods.getAllProjectsTest().call({from: this.account});
-        // await this.contract.methods.getLastTenProjects().call().then((result: any) => {
-        //     console.log("§huhu");
-        //     resulto = result;
-
-        //     // console.log(result);
-        // });
         return result;
     }
 
     async getLastTenProjects(){
         this.account = await this.getAccount();
-        // const projects: any[] = await this.contract.methods.getLastTenProjects().call();
-        console.log("§ads");
         this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
         const resulto = await this.contract.methods.getLastTenProjects().call({from: this.account});
-        // await this.contract.methods.getLastTenProjects().call().then((result: any) => {
-        //     console.log("§huhu");
-        //     resulto = result;
-
-        //     // console.log(result);
-        // });
-        console.log("333");
-        console.log(resulto);
         return "test";
+    }
+
+    public selectProject(project: Project): void {
+        this.selectedProject = project;
     }
 
     async testSendTransaction(contractAddress: string, abi: any[], methodName: string, args: any[], value: number): Promise<any> {
@@ -142,30 +121,22 @@ export class Web3Service {
         return result;
       }
 
-    async getProjects(): Promise<any> {
-        const account = await this.getAccount();
-        const contract = new this.web3.eth.Contract([], this.daoAddress);
-        // return contract.methods.["getOrganizationById(0)"].call();
-        // this.uDonate = new this.web3js.eth.Contract(uDonate_abi, uDonate_address);
-
-        // const create = await this.uDonate
-        //   .methods.createOrganization(orgID, payableWallet, orgName, tokenAddress)
-        //   .send({ from: this.accounts[0] });
-        // return create;
-    }
-
     async connectWallet(): Promise<void> {
+        this.setContract();
         if (window.ethereum) {
             try {
                 this.web3 = new Web3(window.ethereum);
                 await window.ethereum.enable();
                 this.loadAccount();
                 console.log("Connected to wallet...");
+                this.connected=true;
             } catch (error) {
                 console.error("User denied account access...");
+                this.connected=false;
             }
           } else {
                 console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
+                this.connected=false;
           }
     }
 
@@ -173,6 +144,13 @@ export class Web3Service {
         this.account = null;
     }
 
+    setContract(): void {
+        this.getTextFromFile('assets/deployed-contracts.json').then((abi: string | undefined) => {
+            this.daoAddress = abi;
+            console.log("Smart Contract Address: " + this.daoAddress);
+            this.contract = new this.web3.eth.Contract(ContractDeployed.abi, this.daoAddress);
+        });
+    }
     async loadAccount() {
         const accounts = await this.web3.eth.getAccounts();
         this.account = accounts[0] || null;

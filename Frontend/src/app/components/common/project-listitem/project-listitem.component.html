@@ -1,17 +1,17 @@
 <!-- <div class="col-lg-4 col-md-6"> -->
     <div class="single-next-project">
-        <img [src]="imageUrl" alt="project-image">
+        <img [src]="project.imageUrl" alt="project-image">
         <div class="next-project-content">
-            <h3>{{ projectTitle }}</h3>
-            <p>{{ projectDescription }} </p>
+            <h3>{{ project?.title }}</h3>
+            <p>{{ project.description }} </p>
             <ul>
                 <li>
                     Amount Needed
-                    <span>{{ fundsNeeded }} <sub>ETH</sub></span>
+                    <span>{{ project.fundsNeeded }} <sub>ETH</sub></span>
                 </li>
                 <li>
                     Raised Funds
-                    <span>{{ totalDonations }} <sub>ETH</sub></span>
+                    <span>{{ project.totalDonations }} <sub>ETH</sub></span>
                 </li>
                 <li>
                     Phase:
@@ -19,6 +19,6 @@
                 </li>
             </ul>
         </div>
-        <a routerLink="/project-details" class="read-more-btn">READ MORE</a>
+        <a routerLink="/project-details" class="read-more-btn" (click)="selectProject()">READ MORE & DONATE</a>
     </div>
 <!-- </div> -->

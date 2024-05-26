@@ -50,7 +50,8 @@
                         <!-- <ng-template ngFor let-project let-i="index" [ngForOf]="projects">
                             <app-project-listitem [projectTitle]="project.title" [projectDescription]="project.description"></app-project-listitem>
                         </ng-template> -->
-                        <app-project-listitem class="col-lg-4 col-md-6" *ngFor="let project of projects" [projectTitle]="project.title" [projectDescription]="project.description" [fundsNeeded]="project.fundsNeeded" [totalDonations]="project.totalDonations" [imageUrl]="project.imageUrl"></app-project-listitem>
+                        <!-- <app-project-listitem class="col-lg-4 col-md-6" *ngFor="let project of newProjects" [projectId]="project.id" [projectTitle]="project.title" [projectDescription]="project.description" [fundsNeeded]="project.fundsNeeded" [totalDonations]="project.totalDonations" [imageUrl]="project.imageUrl"></app-project-listitem> -->
+                        <app-project-listitem class="col-lg-4 col-md-6" *ngFor="let project of newProjects" [project]="project"></app-project-listitem>
                         <!-- <div class="col-lg-4 col-md-6">
                             <div class="single-next-project">
                                 <img src="assets/images/next-project/next-project-1.jpg" alt="project-image">

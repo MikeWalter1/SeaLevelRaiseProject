@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Web3Service } from './../../../../web3.service';
+import { Project } from 'src/app/project';
 
 @Component({
     selector: 'app-projects-page',
@@ -8,9 +9,11 @@ import { Web3Service } from './../../../../web3.service';
 })
 export class ProjectsPageComponent implements OnInit {
     projects = [
-        { title: 'Project 1', description: 'Description 1', fundsNeeded: '1200', totalDonations: '632', imageUrl: 'assets/images/projects/project-1.jpg'},
-        { title: 'Project 2', description: 'Description 2', fundsNeeded: '1200', totalDonations: '632', imageUrl: 'assets/images/projects/project-2.jpg'},
+        { id: '0', title: 'Project 1', description: 'Description 1', fundsNeeded: '1200', totalDonations: '632', imageUrl: 'assets/images/projects/project-1.jpg'},
+        { id: '1', title: 'Project 2', description: 'Description 2', fundsNeeded: '1200', totalDonations: '632', imageUrl: 'assets/images/projects/project-2.jpg'},
     ]
+
+    public newProjects: Project[] = [];
     // public projects: any[] = [];
     testProjects: any;
 
@@ -33,15 +36,15 @@ export class ProjectsPageComponent implements OnInit {
         console.log(this.testProjects);
         for (let index = 0; index < this.testProjects.names.length; index++) {
             const name = this.testProjects.names[index];
-            this.projects.push({title: this.testProjects.names[index], description: this.testProjects.descriptions[index],
+            this.projects.push({
+                id: this.testProjects.projectIds[index],
+                title: this.testProjects.names[index], description: this.testProjects.descriptions[index],
                 fundsNeeded: this.testProjects.goals[index],
                 totalDonations: this.testProjects.currentFundings[index],
                 imageUrl: "assets/images/projects/project-"+this.getRandomInt(1, 9).toString()+".jpg"});
+                this.newProjects.push(new Project(this.testProjects.projectIds[index], this.testProjects.names[index], this.testProjects.descriptions[index], this.testProjects.goals[index], this.testProjects.currentFundings[index], "assets/images/projects/project-"+this.getRandomInt(1, 9).toString()+".jpg"));
         }
         console.log(this.projects);
-
-        // console.log(test);
-        console.log("poop");
     }
 
     // Tabs
