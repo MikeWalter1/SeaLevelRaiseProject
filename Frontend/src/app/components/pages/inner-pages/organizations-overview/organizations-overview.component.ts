@@ -21,7 +21,8 @@ export class OrganizationsOverviewComponent {
             return;
         }
         for (let index = 0; index < orgas.ids.length; index++) {
-            const name = orgas.names[index];
+            // const name = orgas.names[index];
+            console.log(orgas.downvotes[index]);
             this.organizations.push({
                 id: orgas.ids[index],
                 name: orgas.names[index],
@@ -31,6 +32,10 @@ export class OrganizationsOverviewComponent {
                 downvotes: orgas.downvotes[index],
                 imageUrl: "assets/images/flag/flag-"+this.getRandomInt(1, 6).toString()+".png"});
         }
+    }
+
+    receiveMessage($event: any) {
+        this.getAllOrganizations();
     }
 
     organizations = [{

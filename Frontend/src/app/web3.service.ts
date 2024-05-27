@@ -197,6 +197,16 @@ export class Web3Service {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
     }
+
+    async downVoteOrganization(orgaId: string){
+        this.account = await this.getAccount();
+        await this.contract.methods.voteAgainstOrganization(orgaId).send({from: this.account});
+    }
+
+    async upvoteOrganization(orgaId: string){
+        this.account = await this.getAccount();
+        await this.contract.methods.voteForOrganization(orgaId).send({from: this.account});
+    }
 }
 
 

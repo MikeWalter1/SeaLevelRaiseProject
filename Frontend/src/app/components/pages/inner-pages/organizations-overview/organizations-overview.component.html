@@ -30,7 +30,7 @@
             <h2>Meet The Team Behind The Scene</h2>
         </div>
         <div class="row justify-content-center">
-            <app-organization-listitem class="col-lg-4 col-md-6" *ngFor="let organization of organizations" [name]="organization.name" [description]="organization.description" [id]="organization.id" [imageUrl]="organization.imageUrl" [upvotes]="organization.upvotes"></app-organization-listitem>
+            <app-organization-listitem class="col-lg-4 col-md-6" *ngFor="let organization of organizations" [name]="organization.name" [description]="organization.description" [id]="organization.id" [imageUrl]="organization.imageUrl" [upvotes]="organization.upvotes" [downvotes]="organization.downvotes" (organizationUpdated)="receiveMessage($event)"></app-organization-listitem>
             <!-- <div class="col-lg-3 col-6 col-md-4">
                 <div class="single-team">
                     <img src="assets/images/team/team-1.png" alt="team-image">

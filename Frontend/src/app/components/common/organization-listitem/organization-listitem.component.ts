@@ -1,4 +1,5 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { Web3Service } from 'src/app/web3.service';
 
 @Component({
     selector: 'app-organization-listitem',
@@ -6,6 +7,7 @@ import { Component, Input, input } from '@angular/core';
     styleUrl: './organization-listitem.component.scss'
 })
 export class OrganizationListitemComponent {
+        // TO-DO: Convert into organization class
         @Input() public id: string = '0';
         @Input() public name: string = 'Organization 1';
         @Input() public description: string = 'Description 1';
@@ -14,11 +16,24 @@ export class OrganizationListitemComponent {
         @Input() public downvotes: string = '32';
         @Input() public imageUrl: string = "assets/images/projects/project-1.jpg";
 
-        upvote(){
+        @Output() organizationUpdated = new EventEmitter<string>();
+
+        constructor(private web3: Web3Service) {
 
         }
+        async upvote(){
+            await this.web3.upvoteOrganization(this.id).then(
+                (result) => {
+                    this.organizationUpdated.emit(this.id);}
+            );
+            // this.organizationUpdated.emit(this.id);
+        }
 
-        downvote(){
+        async downvote(){
+            await this.web3.downVoteOrganization(this.id).then(
+                (result) => {
+                    this.organizationUpdated.emit(this.id);}
+            );
 
         }
 }
