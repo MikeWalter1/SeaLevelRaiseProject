@@ -103,6 +103,10 @@ contract ProjectManager is OrganizationManager {
         return getProjectsInRange(projectCount - 10, projectCount - 1);
     }
 
+    function getLastProject() public view returns(Project memory){
+        return projects[projectCount - 1];
+    }
+
     // Function for donors to vote for the project
     function vote(uint _projectId, uint _amount) public {
         projects[_projectId].totalVotes += _amount;

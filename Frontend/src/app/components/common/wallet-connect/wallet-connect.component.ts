@@ -14,13 +14,13 @@ export class WalletConnectComponent implements OnInit {
   constructor(private web3Service: Web3Service, private cd: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit(): void {
-    // this.loadAccount();
   }
 
   async tryConnectWallet() {
     await this.web3Service.connectWallet();
     this.account = await this.web3Service.getAccount();
     if (this.account) {
+      this.web3Service.updateDonorTokenBalance();
       this.router.navigate(['']);
     }
     this.cd.detectChanges();
@@ -32,21 +32,4 @@ export class WalletConnectComponent implements OnInit {
     this.account = null;
     this.cd.detectChanges();
   }
-//   async loadAccount() {
-//     const accounts = await this.web3Service.web3.eth.getAccounts();
-//     this.account = accounts[0] || null;
-//   }
-
-//   async connectWallet() {
-//     if (window.ethereum) {
-//       try {
-//         await window.ethereum.enable();
-//         this.loadAccount();
-//       } catch (error) {
-//         console.error("User denied account access...");
-//       }
-//     } else {
-//       console.error("Non-Ethereum browser detected. You should consider trying MetaMask!");
-//     }
-//   }
 }

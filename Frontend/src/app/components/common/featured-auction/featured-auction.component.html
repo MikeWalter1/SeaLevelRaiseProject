@@ -1,12 +1,12 @@
-<div class="featured-auction-area bg-color-140c2dr">
+<div *ngIf="project" class="featured-auction-area bg-color-140c2dr">
     <div class="container">
         <div class="featured-auction-bg">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-5">
                     <div class="featured-auction-info-wrap d-flex align-items-center">
-                        <img src="assets/images/featured-auction-img.jpg" alt="featured-auction-img">
+                        <img class="logo" [src]="project.imageUrl" alt="featured-auction-img">
                         <div class="featured-auction-info">
-                            <h3>Water Desalination Plant</h3>
+                            <h3>{{project.title}}</h3>
                             <span>Latest project</span>
                         </div>
                     </div>
@@ -100,10 +100,11 @@
                 <span class="bg-color"></span>
             </div>
             <ul class="total-raised d-flex justify-content-between">
-                <li>Total raised: 1.033 ETH (74%)</li>
+                <li>Total raised: {{project.totalDonations}} ETH ({{donationPercentage}}%)</li>
                 <!-- <li>Allocations: 1000 BUSD Max</li> -->
-                <li>Open for Donations!</li>
-                <li>Targeted raise: 1240 ETH</li>
+                <button class="default-btn connect" (click)="voteButtonClicked()">Vote for Project</button>
+                <!-- <li>Open for Donations!</li> -->
+                <li>Targeted raise: {{project.fundsNeeded}} ETH</li>
             </ul>
         </div>
     </div>

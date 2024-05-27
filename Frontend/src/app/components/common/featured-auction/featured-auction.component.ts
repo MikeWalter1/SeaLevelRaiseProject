@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Project } from 'src/app/project';
+import { Web3Service } from 'src/app/web3.service';
 
 @Component({
     selector: 'app-featured-auction',
@@ -6,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./featured-auction.component.scss']
 })
 export class FeaturedAuctionComponent implements OnInit {
+    @Input() public project: Project;
+
+    donationPercentage = 0;
 
     days: any;
     hours: any;
@@ -13,12 +19,26 @@ export class FeaturedAuctionComponent implements OnInit {
     seconds: any;
     myInterval: any;
 
-    constructor() { }
+    constructor(private router: Router, private web3: Web3Service) {
+        this.updateProject();
+    }
 
     ngOnInit() {
         this.myInterval = setInterval(() => {
             this.commingSoonTime();
         }, 0);
+    }
+
+    async updateProject(){
+        await this.web3.getAllProjects();
+        this.project =  this.web3.projects[this.web3.projects.length - 1];
+        this.donationPercentage = Math.floor((((parseInt(this.project.totalDonations) / parseInt(this.project.fundsNeeded)) * 100)) * 10) / 10;
+    }
+
+    voteButtonClicked(){
+        this.web3.selectProject(this.project);
+        this.router.navigate(['/project-details']);
+
     }
 
     commingSoonTime = () => {

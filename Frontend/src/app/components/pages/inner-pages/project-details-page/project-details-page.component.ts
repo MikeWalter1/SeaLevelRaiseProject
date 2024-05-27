@@ -77,7 +77,8 @@ export class ProjectDetailsPageComponent implements OnInit {
           data: {
             title: "Spend Voting Tokens",
             buttonText: "Vote",
-            amount: this.amount
+            amount: this.amount,
+            balance: this.web3.donorBalance
         }
         });
 
@@ -95,7 +96,8 @@ export class ProjectDetailsPageComponent implements OnInit {
           data: {
             title: "Donate ETH to DAO",
             buttonText: "Donate",
-            amount: this.amount
+            amount: this.amount,
+            balance: this.web3.donorBalance
         }
         });
 

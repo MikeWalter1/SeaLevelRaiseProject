@@ -29,7 +29,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-5">
                     <div class="featured-auction-info-wrap d-flex align-items-center">
-                        <img src="assets/images/featured-auction-img.jpg" alt="featured-auction-img">
+                        <!-- <img src="assets/images/featured-auction-img.jpg" alt="featured-auction-img"> -->
+                        <img class="logo" [src]="project.imageUrl" alt="featured-auction-img">
                         <div class="featured-auction-info">
                             <h3>{{project.title}}</h3>
                             <span>{{project.fundsNeeded}} ETH</span>

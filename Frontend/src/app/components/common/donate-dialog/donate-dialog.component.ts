@@ -10,12 +10,14 @@ export class DonateDialogComponent {
   amount: number;
   title: string;
   buttonText: string;
+  balance: string;
 
   constructor(
     public dialogRef: MatDialogRef<DonateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
         this.title = data.title;
         this.buttonText = data.buttonText;
+        this.balance = data.balance;
     }
 
   onNoClick(): void {

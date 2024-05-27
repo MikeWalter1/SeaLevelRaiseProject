@@ -19,6 +19,7 @@ export class Web3Service {
     public testAbi: any;
     private contract: any;
     public account: string | null = null;
+    public donorBalance: number | null = null;
     public connected: boolean = false;
 
     public projects: Project[] = [];
@@ -119,6 +120,12 @@ export class Web3Service {
         this.contract.methods.getOrganizationById(0).call().then((result: any) => {console.log(result);});
         const resulto = await this.contract.methods.getLastTenProjects().call({from: this.account});
         return "test";
+    }
+
+    async updateDonorTokenBalance(){
+        this.account = await this.getAccount();
+        const result = await this.contract.methods.getDonorTokenBalance(this.account).call({from: this.account});
+        console.log(result);
     }
 
     public selectProject(project: Project): void {

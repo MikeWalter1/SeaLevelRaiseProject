@@ -10,11 +10,14 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
     // uint public projectCount;
-    uint public tokenMultiplier = 1;
+    // uint public tokenMultiplier = 	1000000000000000; // Milliether
+    
+    //this way 1 ether is 1 voting token
+    uint public tokenMultiplier = 1000000000000000000; // Ether
 
     // Function to donate and receive voting tokens
     receive() external payable {
-        addVotingTokens(msg.sender, msg.value * tokenMultiplier);
+        addVotingTokens(msg.sender, msg.value / tokenMultiplier);
     }
 
     // Function to vote for a project using voting tokens

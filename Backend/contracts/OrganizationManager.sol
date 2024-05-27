@@ -42,7 +42,7 @@ contract OrganizationManager {
     }
 
     function createOrganization(string memory _organizationName, string memory _organizationDescription) public  {
-        // TODO: Check whether msg.sender has already an organization
+        require(organizations[msg.sender].walletAddress != msg.sender, "You can only create one organization.");
         organizations[payable(msg.sender)] = Organization(organizationsCount, payable(msg.sender), _organizationName, _organizationDescription, OrganizationState.Onboarded, 0, 0);
         organizationIdToAddress[organizationsCount] = payable(msg.sender);
         organizationsCount++;

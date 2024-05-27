@@ -69,6 +69,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { WalletLoginComponent } from './components/pages/inner-pages/wallet-login/wallet-login.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DonateDialogComponent } from './components/common/donate-dialog/donate-dialog.component';
+import { WalletIconsComponent } from './components/common/wallet-icons/wallet-icons.component';
 
 @NgModule({
     declarations: [
@@ -126,7 +127,8 @@ import { DonateDialogComponent } from './components/common/donate-dialog/donate-
         OrganizationsOverviewComponent,
         OrganizationListitemComponent,
         WalletLoginComponent,
-        DonateDialogComponent
+        DonateDialogComponent,
+        WalletIconsComponent
     ],
     imports: [
         BrowserModule,
