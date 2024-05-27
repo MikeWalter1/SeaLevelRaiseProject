@@ -22,7 +22,7 @@ export class OrganizationsOverviewComponent {
         }
         for (let index = 0; index < orgas.ids.length; index++) {
             // const name = orgas.names[index];
-            console.log(orgas.downvotes[index]);
+            // console.log(orgas.downvotes[index]);
             this.organizations.push({
                 id: orgas.ids[index],
                 name: orgas.names[index],

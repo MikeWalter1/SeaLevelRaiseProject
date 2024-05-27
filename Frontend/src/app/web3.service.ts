@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import ContractDeployed from 'src/assets/DAO_SLR.json';
 import { from } from 'rxjs';
 import { Project, ProjectState, stateNumberToEnum } from './project';
+import { Organization } from './organization';
 
 declare let window: any;
 
@@ -125,7 +126,6 @@ export class Web3Service {
     async updateDonorTokenBalance(){
         this.account = await this.getAccount();
         const result = await this.contract.methods.getDonorTokenBalance(this.account).call({from: this.account});
-        console.log(result);
     }
 
     public selectProject(project: Project): void {
@@ -198,14 +198,20 @@ export class Web3Service {
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
     }
 
-    async downVoteOrganization(orgaId: string){
+    async downVoteOrganization(orgaId: string): Promise<Organization>{
         this.account = await this.getAccount();
         await this.contract.methods.voteAgainstOrganization(orgaId).send({from: this.account});
+        const result = await this.contract.methods.getOrganizationById(orgaId).call({from: this.account});
+        const org = new Organization(result.organizationId, result.organizationName, result.organizationDescription, "State Placeholder", result.votes, result.downVotes);
+        return org;
     }
 
-    async upvoteOrganization(orgaId: string){
+    async upvoteOrganization(orgaId: string): Promise<any>{
         this.account = await this.getAccount();
         await this.contract.methods.voteForOrganization(orgaId).send({from: this.account});
+        const result = await this.contract.methods.getOrganizationById(orgaId).call({from: this.account});
+        const org = new Organization(result.organizationId, result.organizationName, result.organizationDescription, "State Placeholder", result.votes, result.downVotes);
+        return org;
     }
 }
 

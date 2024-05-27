@@ -29,6 +29,8 @@ contract OrganizationManager {
 
     uint public organizationsCount;
 
+    event VotingUpdated(uint _orgId, uint _votes, uint _downVotes);
+
     modifier onlyOrganizationOwner() {
         require(organizations[msg.sender].walletAddress == msg.sender, "Only an organization can call this function.");
         _;
@@ -48,49 +50,45 @@ contract OrganizationManager {
         organizationsCount++;
     }
 
-    function voteAlreadyCasted(address _donor , uint _orgId, bool _increaseVote) internal view returns(bool){
-        if (_increaseVote)
-            return votesForOrga[hashVote(_donor, _orgId, _increaseVote)];
+    function voteAlreadyCasted(address _donor , uint _orgId, bool _upVotes) internal view returns(bool){
+        if (_upVotes)
+            return votesForOrga[hashVote(_donor, _orgId)];
         else
-            return votesAgainstOrga[hashVote(_donor, _orgId, _increaseVote)];
+            return votesAgainstOrga[hashVote(_donor, _orgId)];
     }
 
     // removes all votes for a specific organization, negative and positive
-    function removeAllVotesFromDonorForOrganization(address _donor , uint _orgId, bool _increaseVote) internal {
+    function removeAllVotesFromDonorForOrganization(address _donor , uint _orgId) internal {
         //maybe use require() and shut down if vote was already casted?
-        if(voteAlreadyCasted(_donor, _orgId, _increaseVote)){
-            decreaseVotes(_orgId);
-            votesForOrga[hashVote(_donor, _orgId, _increaseVote)] = false;
+        if(voteAlreadyCasted(_donor, _orgId, true)){
+            decreaseUpVotes(_orgId);
+            votesForOrga[hashVote(_donor, _orgId)] = false;
         }
-        if(voteAlreadyCasted(_donor, _orgId, !_increaseVote)){
+        if(voteAlreadyCasted(_donor, _orgId, false)){
             decreaseDownVotes(_orgId);
-            votesAgainstOrga[hashVote(_donor, _orgId, _increaseVote)] = false;
+            votesAgainstOrga[hashVote(_donor, _orgId)] = false;
         }
     }
 
-    function increaseVotes(uint _orgId) internal {
-        votesForOrga[hashVote(msg.sender, _orgId, true)] = true;
+    function increaseUpVotes(uint _orgId) internal {
+        votesForOrga[hashVote(msg.sender, _orgId)] = true;
         organizations[organizationIdToAddress[_orgId]].votes++;
         updateOrganizationState(_orgId);
     }
 
-    function decreaseVotes(uint _orgaId) internal {
-        unchecked{
-        uint votes = organizations[organizationIdToAddress[_orgaId]].votes;
-        organizations[organizationIdToAddress[_orgaId]].votes = votes - 1;}
+    function decreaseUpVotes(uint _orgaId) internal {
+        organizations[organizationIdToAddress[_orgaId]].votes--;
         updateOrganizationState(_orgaId);
     }
 
     function increaseDownVotes(uint _orgId) internal {
-        votesForOrga[hashVote(msg.sender, _orgId, true)] = true;
+        votesAgainstOrga[hashVote(msg.sender, _orgId)] = true;
         organizations[organizationIdToAddress[_orgId]].downVotes++;
         updateOrganizationState(_orgId);
     }
 
     function decreaseDownVotes(uint _orgaId) internal {
-        unchecked{
         organizations[organizationIdToAddress[_orgaId]].downVotes--;
-        }
         updateOrganizationState(_orgaId);
     }
 
@@ -134,7 +132,7 @@ contract OrganizationManager {
     function getOrganizationState(address _walletAddress) public view returns(OrganizationState) {
         return organizations[_walletAddress].state;
     }
-
+    
     function getAllOrganizations() public view returns(uint[] memory ids, string[] memory names, string[] memory descriptions, OrganizationState[] memory states, uint[] memory upvotes, uint[] memory downvotes) {
         uint[] memory orgIds = new uint[](organizationsCount);
         string[] memory orgaNames = new string[](organizationsCount);
@@ -161,8 +159,8 @@ contract OrganizationManager {
         return (orgIds, orgaNames, orgaDescriptions, orgaStates, votes, downVotes);
     }
 
-    function hashVote(address _donor , uint _orgId, bool _increaseVote) private pure returns(bytes32){
-        string memory nftMetaHash = string(abi.encodePacked(_donor, _orgId, _increaseVote));
+    function hashVote(address _donor , uint _orgId) private pure returns(bytes32){
+        string memory nftMetaHash = string(abi.encodePacked(_donor, _orgId));
         return sha256(bytes(nftMetaHash)); //instead of sha256 use keccak256?
     }
 

@@ -29,14 +29,24 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
         vote(_projectId, _tokens);
     }
 
-    function voteForOrganization(uint _orgaId) public onlyValidDonor {
-        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId, true);
-        increaseVotes(_orgaId);
+    function voteForOrganization(uint _orgaId) public onlyValidDonor returns(uint orgaId, uint upvotes, uint downvotes) {
+        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId);
+        increaseUpVotes(_orgaId);
+        uint votes = organizations[organizationIdToAddress[_orgaId]].votes;
+        uint downVotes = organizations[organizationIdToAddress[_orgaId]].downVotes;
+        
+        emit VotingUpdated(_orgaId, votes, downVotes);
+        return (_orgaId, votes, downVotes);
     }
 
-    function voteAgainstOrganization(uint _orgaId) public onlyValidDonor {
-        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId, false);
+    function voteAgainstOrganization(uint _orgaId) public onlyValidDonor returns(uint orgaId, uint upvotes, uint downvotes) {
+        removeAllVotesFromDonorForOrganization(msg.sender, _orgaId);
         increaseDownVotes(_orgaId);
+        uint votes = organizations[organizationIdToAddress[_orgaId]].votes;
+        uint downVotes = organizations[organizationIdToAddress[_orgaId]].downVotes;
+        
+        emit VotingUpdated(_orgaId, votes, downVotes);
+        return (_orgaId, votes, downVotes);
     }
 
     // Function to mint NFTs for donors if a project receives enough votes

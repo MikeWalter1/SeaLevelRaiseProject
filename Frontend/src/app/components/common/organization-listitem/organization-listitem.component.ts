@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { Organization } from 'src/app/organization';
 import { Web3Service } from 'src/app/web3.service';
 
 @Component({
@@ -15,8 +16,8 @@ export class OrganizationListitemComponent {
         @Input() public upvotes: string = '632';
         @Input() public downvotes: string = '32';
         @Input() public imageUrl: string = "assets/images/projects/project-1.jpg";
-
-        @Output() organizationUpdated = new EventEmitter<string>();
+        @Input() public organization: Organization;
+        // @Output() organizationUpdated = new EventEmitter<string>();
 
         constructor(private web3: Web3Service) {
 
@@ -24,17 +25,21 @@ export class OrganizationListitemComponent {
         async upvote(){
             await this.web3.upvoteOrganization(this.id).then(
                 (result) => {
-                    this.organizationUpdated.emit(this.id);}
+                    this.organization = result;
+                    this.upvotes = this.organization.votes;
+                    this.downvotes = this.organization.downVotes;
+                }
             );
-            // this.organizationUpdated.emit(this.id);
         }
 
         async downvote(){
             await this.web3.downVoteOrganization(this.id).then(
                 (result) => {
-                    this.organizationUpdated.emit(this.id);}
+                    this.organization = result;
+                    this.upvotes = this.organization.votes;
+                    this.downvotes = this.organization.downVotes;
+                }
             );
-
         }
 }
 
