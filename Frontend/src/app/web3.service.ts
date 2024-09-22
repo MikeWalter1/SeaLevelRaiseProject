@@ -126,6 +126,7 @@ export class Web3Service {
     async updateDonorTokenBalance(){
         this.account = await this.getAccount();
         const result = await this.contract.methods.getDonorTokenBalance(this.account).call({from: this.account});
+        this.donorBalance = result;
     }
 
     public selectProject(project: Project): void {
@@ -144,7 +145,8 @@ export class Web3Service {
         const accounts = await this.web3.eth.getAccounts();
         const result = await this.contract.methods[functionName](...params).call({ from: accounts[0] });
         return result;
-      }
+
+    }
 
     async connectWallet(): Promise<void> {
         this.setContract();

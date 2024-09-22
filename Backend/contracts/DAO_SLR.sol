@@ -7,7 +7,11 @@ import "./DonationReceiptPrinter.sol";
 import "./DonorManager.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-
+/**
+ * @title DAO_SLR
+ * @dev DAO_SLR is a decentralized autonomous organization (DAO) contract that manages projects, donations, and voting.
+ * It inherits functionalities from ProjectManager, DonationReceiptPrinter, and DonorManager contracts.
+ */
 contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
     // uint public projectCount;
     // uint public tokenMultiplier = 	1000000000000000; // Milliether
@@ -17,10 +21,18 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
 
     // Function to donate and receive voting tokens
     receive() external payable {
-        addVotingTokens(msg.sender, msg.value / tokenMultiplier);
+        addVotingTokens(msg.sender, msg.value / 1);//tokenMultiplier);
     }
 
-    // Function to vote for a project using voting tokens
+    /**
+     * @dev Function to vote for a project using voting tokens.
+     * @param _projectId The ID of the project to vote for.
+     * @param _tokens The number of voting tokens to use for voting.
+     * Requirements:
+     * - The project must be in the voting state.
+     * - The project ID must be valid.
+     * - The sender must have sufficient voting tokens.
+     */
     function voteForProject(uint _projectId, uint _tokens) public {
         require(projects[_projectId].state == ProjectState.Voting, "Project is not in voting state");
         require(_projectId < projectCount, "Invalid project ID");
@@ -29,6 +41,7 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
         vote(_projectId, _tokens);
     }
 
+    // Function to vote for a project
     function voteForOrganization(uint _orgaId) public onlyValidDonor returns(uint orgaId, uint upvotes, uint downvotes) {
         removeAllVotesFromDonorForOrganization(msg.sender, _orgaId);
         increaseUpVotes(_orgaId);
@@ -39,6 +52,14 @@ contract DAO_SLR is ProjectManager, DonationReceiptPrinter, DonorManager  {
         return (_orgaId, votes, downVotes);
     }
 
+    /**
+     * @dev Function to vote for an organization.
+     * @return orgaId The ID of the organization.
+     * @return upvotes The number of upvotes the organization has received.
+     * @return downvotes The number of downvotes the organization has received.
+     * Requirements:
+     * - The sender must be a valid donor.
+     */
     function voteAgainstOrganization(uint _orgaId) public onlyValidDonor returns(uint orgaId, uint upvotes, uint downvotes) {
         removeAllVotesFromDonorForOrganization(msg.sender, _orgaId);
         increaseDownVotes(_orgaId);

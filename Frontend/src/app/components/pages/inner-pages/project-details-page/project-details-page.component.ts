@@ -22,10 +22,12 @@ export class ProjectDetailsPageComponent implements OnInit {
     public project: Project;
     public donatedInPercent: number = 0;
     public donationAmount: string = '0';
+    public balance: any;
 
     constructor(private web3: Web3Service, public dialog: MatDialog) {
         this.project = this.web3.selectedProject;
         this.donatedInPercent = Math.floor((((parseInt(this.project.totalDonations) / parseInt(this.project.fundsNeeded)) * 100))* 10) / 10;
+        this.balance = this.web3.donorBalance;
     }
 
     ngOnInit() {
@@ -71,6 +73,7 @@ export class ProjectDetailsPageComponent implements OnInit {
 
 
     openVotingDialog(): void {
+        console.log(this.web3.donorBalance);
         const dialogRef = this.dialog.open(DonateDialogComponent, {
           width: '300px',
           height: '220px',
