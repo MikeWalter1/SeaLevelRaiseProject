@@ -68,3 +68,15 @@ The expanded usage allows for more control of the compiler:
 - `evmVersion`: a string controlling the target evm version. For example: `istanbul`, `berlin` or `london`. Default value: managed by `solc`.
 
 If any of your contracts have a version pragma that is not satisfied by the compiler version you configured, then Hardhat will throw an error.
+
+
+# Frontend
+
+**Set local variable**
+`Set NODE_OPTIONS=--openssl-legacy-provider`
+
+**Install dependencies**
+`npm install`
+
+**Start Server**
+`ng serve`
